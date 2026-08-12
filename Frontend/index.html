@@ -22,12 +22,25 @@
 <body>
 
     <!-- ========== INTRO ========== -->
+    <!-- Paths traçados de src/assets/LOGO1.png. Os dois SVGs dividem o mesmo
+         viewBox e ficam sobrepostos, então a marca remonta exata no centro. -->
     <div class="intro-overlay" id="introOverlay" aria-hidden="true">
         <div class="intro-split intro-split-top"></div>
         <div class="intro-split intro-split-bottom"></div>
-        <div class="intro-cz-group">
-            <span class="intro-letter intro-letter-c">C</span>
-            <span class="intro-letter intro-letter-z">Z</span>
+        <div class="intro-stage">
+            <div class="intro-glow"></div>
+            <div class="intro-cz-group">
+                <svg class="intro-letter intro-letter-c" viewBox="0 0 727 355" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path
+                        d="M343 0L368 0L373 6L312 84L306 87L122 87L115 89L104 100L98 113L98 247L100 253L115 267L123 270L359 271L360 274L301 349L294 355L86 355L78 352L1 281L0 83L2 77L32 48L79 4L86 1L342 1Z" />
+                </svg>
+                <svg class="intro-letter intro-letter-z" viewBox="0 0 727 355" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path
+                        d="M716 0L725 1L727 7L445 355L341 355L338 351L545 90L540 86L353 87L351 83L412 5L417 1L715 1ZM558 269L717 271L718 274L659 347L651 355L494 355L491 350L550 275L557 270Z" />
+                </svg>
+            </div>
         </div>
     </div>
 
