@@ -118,6 +118,12 @@ vertical" do briefing.
 Se o resultado visual não agradar, reverter é trocar `810` por `720` e remover o
 tween de contra-rotação; as letras então terminam na horizontal, em pé.
 
+**Ponto de ajuste esperado.** Em t=1,8s o tween `power2.inOut` do grupo já
+percorreu cerca de 756 dos 810 graus, com ~54 restantes. A contra-rotação começa,
+portanto, enquanto o grupo ainda assenta, o que pode ler como um trepidar em vez
+de um encaixe firme. A janela de 0,2s é um botão de ajuste, não um número
+definitivo — vale testar começar mais tarde ou encurtar.
+
 ## Responsividade
 
 Sem breakpoints e sem `gsap.matchMedia()`. A responsividade vem das unidades:
@@ -143,8 +149,11 @@ breakpoint.
 
 Em ambos os casos o caminho é idêntico: o overlay recebe `display: none`
 imediatamente, nenhuma timeline é criada, nenhum lock de scroll é aplicado, e a
-página aparece normal. A flag `czIntroPlayed` é gravada ao final da animação (ou
-no início do caminho de pulo).
+página aparece normal.
+
+A flag `czIntroPlayed` é gravada no **início** da animação, não no `onComplete`.
+Gravar no fim quebraria o contrato de "uma vez por sessão": um reload em t=1,5s
+não teria gravado nada ainda e a intro recomeçaria do zero.
 
 Sem botão de pular: 2,5s é curto o bastante, e quem já viu não vê de novo na
 mesma sessão.
@@ -154,27 +163,54 @@ mesma sessão.
 `document.body.style.overflow = 'hidden'` no início, revertido no callback
 `onComplete` da timeline.
 
-**Cuidado com ScrollTrigger.** O módulo `reveal.js` registra ScrollTriggers no
-`DOMContentLoaded`, e ScrollTrigger calcula posições a partir da altura do
-documento. Mudar `overflow` do body durante esse cálculo pode produzir posições
-erradas. Mitigação: chamar `ScrollTrigger.refresh()` no `onComplete` da intro,
-depois de liberar o scroll. As revelações do hero não dependem disso — em
-`base.css` o seletor `.hero .reveal` já força opacidade 1 sem esperar scroll.
+**A reversão precisa ser `document.body.style.overflow = ''`** — string vazia,
+que remove a propriedade inline. Reverter para `'visible'` ou `'auto'` deixaria
+um estilo inline permanente que sobrescreve o `overflow-x: hidden` declarado em
+`base.css` (linha 47). O site perderia sua proteção contra estouro horizontal
+pelo resto da sessão, justamente onde ela importa: o hero tem cards flutuantes
+posicionados e um canvas de partículas injetado por JS.
 
 ## Ordem de inicialização
 
-`initIntro()` roda **antes** dos demais inits em `main.js`. O site é montado
-normalmente por trás do overlay durante os 2,5s, de forma que a cortina revela
-uma página já pronta e pintada, sem flash de conteúdo carregando.
+`initIntro()` roda **por último** em `main.js`, depois de `initReveal()` e dos
+demais.
+
+O overlay está no HTML e é ocultado por CSS desde o parse — não depende de JS
+para cobrir a tela, então não há flash em rodar por último. O que `initIntro()`
+faz é apenas disparar a timeline.
+
+A ordem importa por causa do ScrollTrigger: `reveal.js` registra triggers cujas
+posições são calculadas a partir da altura do documento. Rodando `initReveal()`
+antes do lock de scroll, ele mede com o `overflow` do body ainda limpo e as
+posições saem corretas. Isso dispensa qualquer `ScrollTrigger.refresh()` de
+correção depois — o problema não chega a existir.
+
+O site é montado normalmente por trás do overlay durante os 2,5s, de forma que a
+cortina revela uma página já pronta e pintada.
 
 ## Verificação
 
-A animação será validada rodando `npm run dev` e conferindo, em desktop e em
-viewport mobile emulada:
+Rodar em **dois modos**, desktop e viewport mobile emulada:
+
+- `npm run dev`
+- `npm run build && npm run preview`
+
+Os dois são necessários porque `intro.css` chega à página pela cadeia de
+`@import` de `index.css`. O Vite serve esses imports como requisições separadas
+em dev e os embute no bundle em produção — exatamente a diferença onde um flash
+de overlay sem estilo apareceria em um modo e não no outro.
+
+Checklist:
 
 1. As letras entram das bordas opostas e se encontram no centro.
 2. O giro completa duas voltas e para com C acima e Z abaixo, ambas em pé.
 3. A cortina abre na horizontal e revela o site já renderizado.
-4. Recarregar a página não repete a animação (mesma sessão).
-5. Com `prefers-reduced-motion` ativo, o site aparece direto.
-6. O scroll está livre e as animações de reveal funcionam após a intro.
+4. Recarregar a página não repete a animação (mesma sessão). Testar também
+   recarregando **no meio** da animação, por volta de t=1,5s.
+5. Com `prefers-reduced-motion` ativo, o site aparece direto, sem flash.
+6. No instante em que a cortina termina, os elementos `.reveal` abaixo da dobra
+   ainda estão em `opacity: 0` e só aparecem ao rolar. Verificar pelo negativo:
+   se estiverem todos visíveis de cara, os ScrollTriggers mediram errado e o
+   teste "reveal funciona" passaria mesmo com o bug.
+7. O scroll está livre e `document.body` não tem `style="overflow: ..."` inline
+   depois da intro (inspecionar no DevTools).
