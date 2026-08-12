@@ -6,6 +6,7 @@ import { initReveal } from './modules/reveal.js';
 import { initChatDemo } from './modules/chat-demo.js';
 import { initMobileMenu } from './modules/mobile-menu.js';
 import { initNavbarScroll } from './modules/navbar-scroll.js';
+import { initIntro } from './modules/intro.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initParticles();
@@ -13,4 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initChatDemo();
     initMobileMenu();
     initNavbarScroll();
+    // Por último: o ScrollTrigger do reveal mede antes do lock de scroll
+    initIntro();
 });
