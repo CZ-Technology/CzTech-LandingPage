@@ -29,17 +29,22 @@
         <div class="intro-split intro-split-bottom"></div>
         <div class="intro-stage">
             <div class="intro-glow"></div>
+            <!-- Cada SVG vai dentro de um div: o GSAP anima o div, e assim
+                 vw, xPercent e transform-origin resolvem contra o box do
+                 grupo, não contra o getBBox do glifo -->
             <div class="intro-cz-group">
-                <svg class="intro-letter intro-letter-c" viewBox="0 0 727 355" fill="none"
-                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path
-                        d="M343 0L368 0L373 6L312 84L306 87L122 87L115 89L104 100L98 113L98 247L100 253L115 267L123 270L359 271L360 274L301 349L294 355L86 355L78 352L1 281L0 83L2 77L32 48L79 4L86 1L342 1Z" />
-                </svg>
-                <svg class="intro-letter intro-letter-z" viewBox="0 0 727 355" fill="none"
-                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path
-                        d="M716 0L725 1L727 7L445 355L341 355L338 351L545 90L540 86L353 87L351 83L412 5L417 1L715 1ZM558 269L717 271L718 274L659 347L651 355L494 355L491 350L550 275L557 270Z" />
-                </svg>
+                <div class="intro-letter intro-letter-c">
+                    <svg viewBox="0 0 727 355" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path
+                            d="M343 0L368 0L373 6L312 84L306 87L122 87L115 89L104 100L98 113L98 247L100 253L115 267L123 270L359 271L360 274L301 349L294 355L86 355L78 352L1 281L0 83L2 77L32 48L79 4L86 1L342 1Z" />
+                    </svg>
+                </div>
+                <div class="intro-letter intro-letter-z">
+                    <svg viewBox="0 0 727 355" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path
+                            d="M716 0L725 1L727 7L445 355L341 355L338 351L545 90L540 86L353 87L351 83L412 5L417 1L715 1ZM558 269L717 271L718 274L659 347L651 355L494 355L491 350L550 275L557 270Z" />
+                    </svg>
+                </div>
             </div>
         </div>
     </div>

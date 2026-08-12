@@ -54,6 +54,10 @@ export function initIntro() {
             // o overflow-x do base.css pelo resto da sessão
             document.body.style.overflow = '';
             overlay.style.display = 'none';
+            // O ScrollTrigger se atualiza sozinho no evento load, que com as
+            // imagens pesadas desta página cai dentro da intro — ou seja, mede
+            // sem barra de rolagem e com o layout travado. Remede agora.
+            if (window.ScrollTrigger) window.ScrollTrigger.refresh();
         },
     });
 
