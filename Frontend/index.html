@@ -17,6 +17,48 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="src/css/index.css">
+
+    <!-- CSS crítico da intro, inline de propósito: garante que no primeiro
+         quadro o overlay já esteja preto e as letras já estejam fora da tela,
+         mesmo antes de a folha externa chegar. Sem isto a marca pisca montada
+         no centro até o GSAP assumir. Mantenha em sincronia com intro.css. -->
+    <style>
+        .intro-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .intro-split {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: calc(50vh + 1px);
+            background: #000;
+        }
+
+        .intro-split-top {
+            top: 0;
+        }
+
+        .intro-split-bottom {
+            bottom: 0;
+        }
+
+        .intro-letter {
+            position: absolute;
+            inset: 0;
+        }
+
+        .intro-letter-c {
+            transform: translateX(-100vw);
+        }
+
+        .intro-letter-z {
+            transform: translateX(100vw);
+        }
+    </style>
 </head>
 
 <body>

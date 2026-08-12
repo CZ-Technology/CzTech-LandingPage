@@ -66,6 +66,16 @@
     will-change: transform;
 }
 
+/* Estado do quadro zero: totalmente fora da viewport. Precisa bater com o
+   ponto de partida do fromTo em intro.js, senão a marca salta ao iniciar. */
+.intro-letter-c {
+    transform: translateX(-100vw);
+}
+
+.intro-letter-z {
+    transform: translateX(100vw);
+}
+
 .intro-letter svg {
     display: block;
     width: 100%;

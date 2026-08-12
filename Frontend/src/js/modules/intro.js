@@ -39,6 +39,7 @@ export function initIntro() {
     markAsPlayed();
     document.body.style.overflow = 'hidden';
 
+    const group = overlay.querySelector('.intro-cz-group');
     const letterC = overlay.querySelector('.intro-letter-c');
     const letterZ = overlay.querySelector('.intro-letter-z');
 
@@ -47,6 +48,13 @@ export function initIntro() {
     // letras voltariam a ficar lado a lado.
     gsap.set(letterC, { transformOrigin: ORIGIN_C });
     gsap.set(letterZ, { transformOrigin: ORIGIN_Z });
+
+    // Quanto cada letra precisa andar para acompanhar a metade da tela a que
+    // está colada. A cortina desliza 50vh; o eixo x local vira o y da tela
+    // depois do giro de 90 graus, e xPercent é relativo à largura do grupo.
+    // offsetWidth e não getBoundingClientRect: este último devolveria a caixa
+    // já rotacionada.
+    const ride = () => (window.innerHeight * 0.5 / group.offsetWidth) * 100;
 
     const tl = gsap.timeline({
         onComplete: () => {
@@ -62,14 +70,16 @@ export function initIntro() {
     });
 
     tl
-        // Entrada: cada metade parte inteiramente fora da sua borda.
-        // expo.out arranca rápido e assenta longo — leitura de peso e controle.
+        // Entrada a partir de fora da viewport. O ponto de partida espelha o
+        // translateX do CSS crítico, para não haver salto no primeiro quadro.
+        // power3.out, e não expo.out: o expo cobria 11% da distância já no
+        // primeiro quadro e as letras pareciam nascer na borda.
         .fromTo(letterC,
-            { xPercent: -100, x: '-50vw' },
-            { xPercent: 0, x: 0, duration: 0.95, ease: 'expo.out' }, 0)
+            { x: '-100vw', xPercent: 0 },
+            { x: 0, duration: 1.10, ease: 'power3.out' }, 0)
         .fromTo(letterZ,
-            { xPercent: 100, x: '50vw' },
-            { xPercent: 0, x: 0, duration: 0.95, ease: 'expo.out' }, 0)
+            { x: '100vw', xPercent: 0 },
+            { x: 0, duration: 1.10, ease: 'power3.out' }, 0)
 
         // Halo sobe junto com o encaixe da marca
         .fromTo('.intro-glow',
@@ -77,29 +87,36 @@ export function initIntro() {
             { opacity: 1, scale: 1, duration: 1.0, ease: 'power2.out' }, 0.35)
 
         // 810 = duas voltas + o quarto de volta que leva C ao topo e Z à base
-        .to('.intro-cz-group',
-            { rotation: 810, duration: 1.0, ease: 'power3.inOut' }, 1.15)
+        .to(group,
+            { rotation: 810, duration: 1.0, ease: 'power3.inOut' }, 1.30)
 
         // Desfaz o tombamento que o giro impõe aos glifos. Termina depois do
         // giro do grupo, para ler como assentamento e não como tremor.
         // O xPercent afasta as letras: empilhadas na distância original da
-        // marca elas se cruzariam, porque o eixo x local vira o y da tela
-        // depois do giro de 90 graus do grupo.
+        // marca elas se cruzariam.
         .to(letterC,
-            { rotation: -90, xPercent: -3, duration: 0.45, ease: 'power2.out' }, 1.95)
+            { rotation: -90, xPercent: -3, duration: 0.45, ease: 'power2.out' }, 2.10)
         .to(letterZ,
-            { rotation: -90, xPercent: 3, duration: 0.45, ease: 'power2.out' }, 1.95)
+            { rotation: -90, xPercent: 3, duration: 0.45, ease: 'power2.out' }, 2.10)
 
-        // Pausa em 2.40-2.55 para a forma empilhada respirar antes de sair.
-        // A marca se dissolve crescendo, em vez de encolher.
-        .to('.intro-cz-group',
-            { opacity: 0, scale: 1.08, duration: 0.42, ease: 'power2.inOut' }, 2.55)
         .to('.intro-glow',
-            { opacity: 0, duration: 0.5, ease: 'power2.in' }, 2.55)
+            { opacity: 0, duration: 0.5, ease: 'power2.in' }, 2.65)
 
         // Cortina: expo.inOut arranca com energia e desacelera muito devagar
         .to('.intro-split-top',
-            { yPercent: -100, duration: 0.95, ease: 'expo.inOut' }, 2.65)
+            { yPercent: -100, duration: 0.95, ease: 'expo.inOut' }, 2.75)
         .to('.intro-split-bottom',
-            { yPercent: 100, duration: 0.95, ease: 'expo.inOut' }, 2.65);
+            { yPercent: 100, duration: 0.95, ease: 'expo.inOut' }, 2.75)
+
+        // As letras viajam coladas às metades: mesmo instante, mesma duração e
+        // mesma curva da cortina. C sobe com a metade de cima, Z desce com a
+        // de baixo.
+        .to(letterC,
+            { xPercent: () => -ride(), duration: 0.95, ease: 'expo.inOut' }, 2.75)
+        .to(letterZ,
+            { xPercent: () => ride(), duration: 0.95, ease: 'expo.inOut' }, 2.75)
+
+        // Só então somem, já com a cortina em movimento
+        .to('.intro-letter',
+            { opacity: 0, duration: 0.65, ease: 'power2.in' }, 2.90);
 }
