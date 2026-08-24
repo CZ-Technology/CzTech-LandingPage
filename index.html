@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CZ TECH — direções visuais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F172A; --surface:#1E293B; --text:#F8F9FA; --text-2:#94A3B8; --border:#334155;
+    --orange:#FF6B35; --orange-hover:#E85A2A;
+  }
+  *{box-sizing:border-box;}
+  ::selection{background:var(--orange);color:#0F172A;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Inter',system-ui,sans-serif; line-height:1.5;
+  }
+  h1,h2,.wordmark{font-family:'Space Grotesk',system-ui,sans-serif;}
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:4px;}
+
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.5rem clamp(1.25rem,4vw,3rem);
+    border-bottom:1px solid var(--border);
+  }
+  .wordmark{font-weight:700; font-size:1.1rem; letter-spacing:-0.01em;}
+  .wordmark .cz{color:var(--orange);}
+  .wordmark .tech{color:var(--text-2);}
+
+  main{max-width:1100px; margin:0 auto; padding:clamp(2.5rem,6vw,5rem) clamp(1.25rem,4vw,3rem) 6rem;}
+  .intro{max-width:640px; margin-bottom:clamp(2.5rem,5vw,4rem);}
+  .intro h1{font-size:clamp(1.9rem,4vw,2.75rem); font-weight:700; margin:0 0 .75rem; letter-spacing:-0.02em;}
+  .intro p{color:var(--text-2); font-size:1.05rem; margin:0;}
+
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.25rem;
+  }
+  .card{
+    display:flex; flex-direction:column; gap:.6rem;
+    background:var(--surface); border:1px solid var(--border); border-radius:10px;
+    padding:1.5rem; text-decoration:none; color:var(--text);
+    transition:transform .25s cubic-bezier(0,0,0.2,1), border-color .25s ease;
+  }
+  .card:hover, .card:focus-visible{
+    transform:translateY(-3px);
+    border-color:var(--orange);
+  }
+  .card .tag{font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--orange); font-weight:600;}
+  .card h2{font-size:1.3rem; margin:0; font-weight:700;}
+  .card p{color:var(--text-2); font-size:.92rem; margin:0; flex:1;}
+  .card .go{font-size:.85rem; font-weight:600; color:var(--text);}
+  .card .go::after{content:" →"; color:var(--orange);}
+
+  footer{
+    border-top:1px solid var(--border); padding:1.5rem clamp(1.25rem,4vw,3rem);
+    color:var(--text-2); font-size:.85rem;
+  }
+</style>
+</head>
+<body>
+<header>
+  <span class="wordmark"><span class="cz">CZ</span> <span class="tech">TECH</span></span>
+  <span style="color:var(--text-2); font-size:.85rem;">Comparação de direções</span>
+</header>
+<main>
+  <div class="intro">
+    <h1>5 direções, mesma proposta.</h1>
+    <p>Mesmo conteúdo e mesma intenção — automação inteligente para resultados reais — em cinco execuções visuais distintas. Escolha a que melhor representa a CZ TECH.</p>
+  </div>
+  <div class="grid">
+    <a class="card" href="dark.html">
+      <span class="tag">Versão 1</span>
+      <h2>High-End Dark</h2>
+      <p>Navy profundo, autoridade tecnológica máxima. O "CZ" laranja brilha sozinho no cabeçalho.</p>
+      <span class="go">Ver versão</span>
+    </a>
+    <a class="card" href="clean.html">
+      <span class="tag">Versão 2</span>
+      <h2>Clean Automation</h2>
+      <p>Modo claro, leve e amigável — like a interface de painel de alta eficiência.</p>
+      <span class="go">Ver versão</span>
+    </a>
+    <a class="card" href="editorial.html">
+      <span class="tag">Versão 3</span>
+      <h2>Editorial Print-Tech</h2>
+      <p>Grade e linhas finas, hierarquia tipográfica pura — livro técnico de luxo.</p>
+      <span class="go">Ver versão</span>
+    </a>
+    <a class="card" href="cinematic.html">
+      <span class="tag">Versão 4</span>
+      <h2>Vast Quiet Cinematic</h2>
+      <p>Cabeçalho monumental, paisagem real que se funde ao corpo do site.</p>
+      <span class="go">Ver versão</span>
+    </a>
+    <a class="card" href="dither.html">
+      <span class="tag">Versão 5</span>
+      <h2>Dither Retro-Tech</h2>
+      <p>Textura pontilhada crua, técnica — laranja pontual só na ação.</p>
+      <span class="go">Ver versão</span>
+    </a>
+  </div>
+
+  <div class="intro" style="margin-top:clamp(3.5rem,7vw,5.5rem);">
+    <h1>Mesma estética, três estruturas.</h1>
+    <p>A partir das versões 1 e 4 — o mundo visual escolhido — três formatos de corpo diferentes para o mesmo conteúdo: um shell persistente, um deck em tela cheia e um fluxo editorial contínuo.</p>
+  </div>
+  <div class="grid">
+    <a class="card" href="rail.html">
+      <span class="tag">Estrutura A</span>
+      <h2>Sticky Rail</h2>
+      <p>Coluna esquerda fixa com foto, navegação e CTA sempre visíveis; conteúdo rola à direita.</p>
+      <span class="go">Ver versão</span>
+    </a>
+    <a class="card" href="deck.html">
+      <span class="tag">Estrutura B</span>
+      <h2>Scroll-Snap Deck</h2>
+      <p>Uma ideia por tela — hero em SVG abstrato (linhas que se fundem em laranja) e painéis em cheio viewport, um por capacidade.</p>
+      <span class="go">Ver versão</span>
+    </a>
+    <a class="card" href="dossie.html">
+      <span class="tag">Estrutura C</span>
+      <h2>Editorial Dossiê</h2>
+      <p>Fluxo contínuo em coluna única, numeração marginal e uma faixa de foto interstitial.</p>
+      <span class="go">Ver versão</span>
+    </a>
+  </div>
+</main>
+<footer>CZ TECH — protótipo interno de direção visual, não para distribuição pública.</footer>
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CZ TECH — Automação inteligente para resultados reais</title>
+<meta name="description" content="A CZ TECH cria agentes de inteligência artificial que automatizam atendimento, organizam processos e apoiam o crescimento operacional — sem meses de treinamento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F172A;
+    --surface: #1E293B;
+    --text: #F8F9FA;
+    --text-secondary: #94A3B8;
+    --border: #334155;
+    --action: #FF6B35;
+    --action-hover: #FF8657;
+    --action-active: #E85A2A;
+    --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+    --font-body: 'Inter', 'Segoe UI', sans-serif;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --header-h: 76px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-h);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: var(--action); color: var(--bg); }
+
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    border-radius: 8px;
+    border: 3px solid var(--bg);
+  }
+  ::-webkit-scrollbar-thumb:hover { background-color: #475569; }
+  * { scrollbar-color: var(--border) var(--bg); scrollbar-width: thin; }
+
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--action);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+    color: var(--text);
+  }
+
+  h3 { font-weight: 500; letter-spacing: -0.01em; }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+    max-width: 68ch;
+  }
+
+  a { color: inherit; }
+
+  img, svg { display: block; max-width: 100%; }
+
+  .container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: clamp(1.5rem, 4vw, 3rem);
+    padding-right: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  /* ---------- Header ---------- */
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.375rem;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .wordmark .cz { color: var(--action); }
+  .wordmark .tech { color: var(--text-secondary); }
+
+  .primary-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color 0.2s var(--ease-out-expo);
+  }
+
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -2px;
+    height: 1px;
+    background: var(--text);
+    transition: right 0.3s var(--ease-out-expo);
+  }
+
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { right: 0; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.35s var(--ease-out-expo),
+                box-shadow 0.35s var(--ease-out-expo),
+                background-color 0.2s var(--ease-out-expo);
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--action);
+    color: var(--bg);
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.55);
+  }
+  .btn-primary:hover {
+    background: var(--action-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 28px -12px rgba(0, 0, 0, 0.6);
+  }
+  .btn-primary:active {
+    background: var(--action-active);
+    transform: translateY(0);
+    box-shadow: 0 4px 10px -6px rgba(0, 0, 0, 0.5);
+  }
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+  }
+  .btn-primary[disabled] {
+    background: var(--border);
+    color: var(--text-secondary);
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-large { padding: 1.05rem 2.25rem; font-size: 1rem; border-radius: 8px; }
+
+  .nav-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 0;
+    flex: none;
+  }
+  .nav-toggle:hover { border-color: var(--text-secondary); }
+
+  .nav-toggle-bars {
+    position: relative;
+    width: 18px;
+    height: 12px;
+  }
+  .nav-toggle-bars span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.3s var(--ease-out-expo), opacity 0.2s var(--ease-out-expo), top 0.3s var(--ease-out-expo);
+  }
+  .nav-toggle-bars span:nth-child(1) { top: 0; }
+  .nav-toggle-bars span:nth-child(2) { top: 5px; }
+  .nav-toggle-bars span:nth-child(3) { top: 10px; }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(1) {
+    top: 5px; transform: rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(3) {
+    top: 5px; transform: rotate(-45deg);
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: clamp(4.5rem, 12vw, 9rem) 0 clamp(4rem, 9vw, 7rem);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(1.75rem, 3.5vw, 2.5rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw + 0.5rem, 5.75rem);
+    max-width: 16ch;
+  }
+
+  .hero h1 .reveal {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(0.55em);
+    animation: reveal-word 0.9s var(--ease-out-expo) forwards;
+  }
+  .hero h1 .reveal { animation-delay: calc(var(--i) * 0.09s + 0.1s); }
+
+  @keyframes reveal-word {
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+
+  .hero-sub {
+    font-size: clamp(1.0625rem, 1.4vw + 0.75rem, 1.25rem);
+    line-height: 1.65;
+    max-width: 62ch;
+    opacity: 0;
+    transform: translateY(0.6em);
+    animation: reveal-block 0.9s var(--ease-out-expo) forwards;
+    animation-delay: 0.68s;
+  }
+
+  .hero-cta {
+    opacity: 0;
+    transform: translateY(0.6em);
+    animation: reveal-block 0.9s var(--ease-out-expo) forwards;
+    animation-delay: 0.86s;
+  }
+
+  @keyframes reveal-block {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .reveal, .hero-sub, .hero-cta {
+      opacity: 1; filter: none; transform: none; animation: none;
+    }
+  }
+
+  /* ---------- Diferencial ---------- */
+
+  .diferencial {
+    padding: clamp(5rem, 10vw, 8.5rem) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .diferencial .split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .diferencial h2 {
+    font-size: clamp(1.875rem, 3vw + 0.8rem, 3rem);
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+
+  .diferencial .prose {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .diferencial .prose p {
+    max-width: 66ch;
+    font-size: 1.0625rem;
+  }
+
+  .diferencial .prose p:first-child {
+    color: var(--text);
+    font-size: 1.1875rem;
+    line-height: 1.55;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  @media (max-width: 860px) {
+    .diferencial .split { grid-template-columns: 1fr; }
+    .diferencial h2 { position: static; max-width: 24ch; }
+  }
+
+  /* ---------- Como funciona ---------- */
+
+  .como-funciona {
+    padding: clamp(5rem, 10vw, 8.5rem) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .como-funciona > .container > h2 {
+    font-size: clamp(1.875rem, 3vw + 0.8rem, 3rem);
+    max-width: 20ch;
+    margin-bottom: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .capabilities { border-top: 1px solid var(--border); }
+
+  .capability {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding: clamp(2.25rem, 5vw, 3rem) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .capability h3 {
+    font-size: clamp(1.375rem, 1.6vw + 0.9rem, 1.75rem);
+    max-width: 18ch;
+  }
+
+  .capability p { font-size: 1.0625rem; max-width: 64ch; }
+
+  @media (max-width: 860px) {
+    .capability { grid-template-columns: 1fr; gap: 0.85rem; }
+  }
+
+  /* ---------- CTA final ---------- */
+
+  .cta-final {
+    padding: clamp(5rem, 11vw, 8rem) 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .cta-final .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  .cta-final h2 {
+    font-size: clamp(2rem, 4.2vw + 0.6rem, 3.5rem);
+    max-width: 18ch;
+  }
+
+  .cta-final p {
+    font-size: 1.125rem;
+    max-width: 50ch;
+    margin: 0 auto;
+  }
+
+  /* ---------- Footer ---------- */
+
+  .site-footer { padding: clamp(3rem, 6vw, 4rem) 0 clamp(2.5rem, 5vw, 3rem); }
+
+  .site-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .footer-left { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .footer-wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.125rem;
+  }
+  .footer-wordmark .cz { color: var(--action); }
+  .footer-wordmark .tech { color: var(--text-secondary); }
+
+  .footer-contact a {
+    color: var(--action);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s var(--ease-out-expo);
+  }
+  .footer-contact a:hover { border-bottom-color: var(--action); }
+
+  .footer-meta {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+
+  /* ---------- Mobile nav ---------- */
+
+  @media (max-width: 860px) {
+    .nav-links, .primary-nav .btn-primary { display: none; }
+    .nav-toggle { display: flex; }
+
+    .mobile-panel {
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem clamp(1.5rem, 4vw, 3rem) 2.5rem;
+      gap: 2rem;
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s var(--ease-out-expo), transform 0.25s var(--ease-out-expo);
+    }
+    .mobile-panel[data-open="true"] {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .mobile-panel .nav-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    .mobile-panel .nav-links a { font-size: 1.25rem; }
+    .mobile-panel .btn-primary { align-self: flex-start; }
+  }
+
+  @media (min-width: 861px) {
+    .mobile-panel { display: none; }
+  }
+</style>
+</head>
+<body>
+<!--
+THESIS: Authority through restraint, not decoration — one deep navy field and one orange signal do all the work.
+OWN-WORLD: bg #0F172A, surfaces #1E293B, text #F8F9FA / secondary #94A3B8, borders #334155, Space Grotesk 700/500 headings, Inter 400/600 body+UI, "CZ" solo-lit orange #FF6B35 in header, orange reserved for CTA/critical links only.
+STORY: visitor reads CZ TECH as an already-arrived infrastructure partner, scans differential and mechanism, clicks to agendar demo.
+FIRST VIEWPORT: full-bleed navy hero, CZ wordmark left (CZ orange + TECH secondary), nav right, Space Grotesk 700 headline at near-max scale, Inter subhead, single orange CTA button below — no imagery, type and negative space carry the weight.
+FORM: brief-pinned direction (1 of 5 user-specified), no roll, no seed key.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+<header class="site-header">
+  <div class="container">
+    <a href="#top" class="wordmark"><span class="cz">CZ</span><span class="tech"> TECH</span></a>
+    <nav class="primary-nav" aria-label="Navegação principal">
+      <ul class="nav-links">
+        <li><a href="#produto">Produto</a></li>
+        <li><a href="#diferencial">Diferencial</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <a class="btn btn-primary" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+    </nav>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobilePanel" aria-label="Abrir menu de navegação">
+      <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel" data-open="false">
+  <nav aria-label="Navegação móvel">
+    <ul class="nav-links">
+      <li><a href="#produto">Produto</a></li>
+      <li><a href="#diferencial">Diferencial</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+  <a class="btn btn-primary btn-large" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+</div>
+
+<main id="top">
+
+  <section class="hero" id="produto" aria-label="Apresentação">
+    <div class="container">
+      <h1>
+        <span class="reveal" style="--i:0">Automação</span>
+        <span class="reveal" style="--i:1">inteligente</span>
+        <span class="reveal" style="--i:2">para</span>
+        <span class="reveal" style="--i:3">resultados</span>
+        <span class="reveal" style="--i:4">reais.</span>
+      </h1>
+      <p class="hero-sub">A CZ TECH constrói agentes de inteligência artificial que assumem o atendimento, organizam os processos do dia a dia e sustentam o crescimento da operação — prontos para o seu negócio, sem meses de implementação até funcionar.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-large" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="diferencial" id="diferencial" aria-label="Diferencial">
+    <div class="container split">
+      <h2>Tecnologia que se adapta à sua rotina — não o contrário.</h2>
+      <div class="prose">
+        <p>A maioria das plataformas de IA promete transformação e entrega mais um sistema para configurar, treinar e manter. Meses de parametrização depois, a operação ainda espera o retorno prometido.</p>
+        <p>A CZ TECH segue o caminho oposto. Os agentes que construímos chegam prontos para o vocabulário, os processos e o ritmo do seu negócio — sem exigir uma equipe dedicada só para operar a ferramenta, sem curva de aprendizado que atrasa o resultado.</p>
+        <p>Enquanto sistemas complexos pedem que a empresa se adapte à tecnologia, nós adaptamos a tecnologia à rotina comercial que já existe. O que muda é o volume de trabalho manual que desaparece — não a forma como sua equipe já opera.</p>
+        <p>Simplicidade, aqui, não é uma versão reduzida de algo maior. É a decisão deliberada de construir agentes que resolvem problemas reais desde o primeiro dia, sem meses de ajuste antes de gerar retorno.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="como-funciona" id="como-funciona" aria-label="Como funciona">
+    <div class="container">
+      <h2>Como funciona</h2>
+      <div class="capabilities">
+        <article class="capability">
+          <h3>Atendimento automatizado</h3>
+          <p>Agentes que respondem, qualificam e encaminham conversas nos canais que seus clientes já usam, mantendo o tom da sua marca e agindo dentro dos limites que você define — sem deixar solicitações simples esperando por um humano disponível.</p>
+        </article>
+        <article class="capability">
+          <h3>Organização de processos</h3>
+          <p>Tarefas de rotina — triagem, atualização de status, encaminhamento entre times — passam a acontecer de forma automática e consistente, reduzindo o retrabalho manual e os gargalos que dependem de alguém lembrar do próximo passo.</p>
+        </article>
+        <article class="capability">
+          <h3>Crescimento operacional eficiente</h3>
+          <p>Com o volume operacional absorvido pelos agentes, a equipe comercial concentra energia em negociação, relacionamento e decisões que exigem julgamento humano — crescendo a operação sem multiplicar proporcionalmente o esforço manual.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final" id="contato" aria-label="Chamada final para contato">
+    <div class="container">
+      <h2>Automação inteligente para resultados reais.</h2>
+      <p>Fale com a CZ TECH e veja como os agentes se encaixam na operação que você já tem, sem meses de espera pelo primeiro resultado.</p>
+      <a class="btn btn-primary btn-large" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-left">
+      <span class="footer-wordmark"><span class="cz">CZ</span><span class="tech"> TECH</span></span>
+      <span class="footer-contact"><a href="mailto:contato@cztechnology.com.br"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->contato@cztechnology.com.br</a></span>
+    </div>
+    <p class="footer-meta">© 2026 CZ TECH. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var panel = document.getElementById('mobilePanel');
+    if (!toggle || !panel) return;
+
+    function closePanel() {
+      panel.setAttribute('data-open', 'false');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function openPanel() {
+      panel.setAttribute('data-open', 'true');
+      toggle.setAttribute('aria-expanded', 'true');
+      var firstLink = panel.querySelector('a');
+      if (firstLink) firstLink.focus();
+    }
+
+    toggle.addEventListener('click', function () {
+      var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      if (isOpen) { closePanel(); } else { openPanel(); }
+    });
+
+    panel.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closePanel();
+        toggle.focus();
+      }
+    });
+
+    panel.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        closePanel();
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        closePanel();
+        toggle.focus();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

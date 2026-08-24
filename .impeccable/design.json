@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-24T02:50:00Z",
+  "title": "Design System: CZ Technology",
+  "extensions": {
+    "colorMeta": {
+      "navy-profundo": {
+        "role": "neutral",
+        "displayName": "Navy Profundo",
+        "canonical": "#0F172A",
+        "tonalRamp": ["#0F172A", "#1E293B", "#334155", "#94A3B8", "#F8F9FA"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "#1E293B",
+        "tonalRamp": ["#0F172A", "#1E293B", "#334155", "#94A3B8", "#F8F9FA"]
+      },
+      "borda": {
+        "role": "neutral",
+        "displayName": "Borda",
+        "canonical": "#334155",
+        "tonalRamp": ["#0F172A", "#1E293B", "#334155", "#94A3B8", "#F8F9FA"]
+      },
+      "texto-secundario": {
+        "role": "neutral",
+        "displayName": "Texto Secundário",
+        "canonical": "#94A3B8",
+        "tonalRamp": ["#0F172A", "#1E293B", "#334155", "#94A3B8", "#F8F9FA"]
+      },
+      "texto-primario": {
+        "role": "neutral",
+        "displayName": "Texto Primário",
+        "canonical": "#F8F9FA",
+        "tonalRamp": ["#0F172A", "#1E293B", "#334155", "#94A3B8", "#F8F9FA"]
+      },
+      "laranja-sinal": {
+        "role": "primary",
+        "displayName": "Laranja de Sinal",
+        "canonical": "#FF6B35",
+        "tonalRamp": ["#E85A2A", "#FF6B35", "#FF8657"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Space Grotesk 700", "purpose": "Todo título h1–h3, sem exceção. Nunca usada em corpo de texto." },
+      "body": { "displayName": "Inter 400", "purpose": "Parágrafos e texto corrido, max 68ch." },
+      "label": { "displayName": "Inter 600", "purpose": "Botões, links de navegação, labels de UI." }
+    },
+    "shadows": [
+      { "name": "button-rest", "value": "0 6px 16px -4px rgba(0,0,0,0.45)", "purpose": "Estado de repouso do botão primário — única sombra do sistema." },
+      { "name": "button-hover", "value": "0 10px 22px -4px rgba(0,0,0,0.5)", "purpose": "Botão primário no hover, junto com translateY(-2px)." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Easing padrão de toda transição do sistema (botão, nav, dots)." },
+      { "name": "signal-draw", "value": "stroke-dashoffset 2.6s cubic-bezier(0.16, 1, 0.3, 1) forwards, delay 0.4s", "purpose": "Traço laranja do motivo assinatura se desenhando ao carregar o hero. Desativado sob prefers-reduced-motion." },
+      { "name": "button-lift", "value": "transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease, background 0.18s ease", "purpose": "Hover/active do botão primário." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "860px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Único botão de conversão do sistema; única sombra do sistema.",
+      "html": "<button class=\"ds-btn-primary\">Agendar demonstração</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9375rem; border: none; border-radius: 8px; padding: 0.85rem 1.6rem; background: #FF6B35; color: #0F172A; box-shadow: 0 6px 16px -4px rgba(0,0,0,0.45); cursor: pointer; transition: transform 0.18s cubic-bezier(0.16,1,0.3,1), box-shadow 0.18s ease, background 0.18s ease; } .ds-btn-primary:hover { background: #FF8657; transform: translateY(-2px); box-shadow: 0 10px 22px -4px rgba(0,0,0,0.5); } .ds-btn-primary:focus-visible { outline: 2px solid #FF6B35; outline-offset: 3px; border-radius: 4px; } .ds-btn-primary:active { transform: translateY(0); background: #E85A2A; }"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Nav fixo que alterna de transparente (sobre o hero) para sólido com blur ao rolar.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-word\" href=\"#\">CZ<span>TECH</span></a><ul class=\"ds-nav-links\"><li><a href=\"#\">Diferencial</a></li><li><a href=\"#\">Como funciona</a></li></ul><button class=\"ds-nav-cta\">Agendar demonstração</button></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.5rem 2rem; background: rgba(15,23,42,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid #334155; font-family: 'Inter', sans-serif; } .ds-nav-word { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; text-decoration: none; color: #FF6B35; } .ds-nav-word span { color: #94A3B8; } .ds-nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; } .ds-nav-links a { text-decoration: none; color: #F8F9FA; font-size: 0.9rem; font-weight: 600; opacity: 0.85; transition: opacity 0.2s ease; } .ds-nav-links a:hover { opacity: 1; } .ds-nav-cta { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.875rem; border: none; border-radius: 8px; padding: 0.75rem 1.4rem; background: #FF6B35; color: #0F172A; cursor: pointer; }"
+    },
+    {
+      "name": "Progress Dots",
+      "kind": "custom",
+      "refersTo": "progress-dots",
+      "description": "Indicador vertical fixo de posição no deck scroll-snap; ativo escala e vira laranja.",
+      "html": "<nav class=\"ds-progress\" aria-label=\"Progresso\"><a class=\"ds-dot\" href=\"#\" aria-label=\"Painel 1\"></a><a class=\"ds-dot is-active\" href=\"#\" aria-label=\"Painel 2\"></a><a class=\"ds-dot\" href=\"#\" aria-label=\"Painel 3\"></a></nav>",
+      "css": ".ds-progress { display: flex; flex-direction: column; gap: 0.9rem; } .ds-dot { width: 9px; height: 9px; border-radius: 50%; background: #334155; display: block; transition: background 0.25s ease, transform 0.25s ease; } .ds-dot:hover { background: #94A3B8; } .ds-dot.is-active { background: #FF6B35; transform: scale(1.35); }"
+    },
+    {
+      "name": "Capability Panel",
+      "kind": "custom",
+      "refersTo": "capability-panel",
+      "description": "Painel de viewport cheio: numeral-índice monumental em contorno + ícone de linha + prosa.",
+      "html": "<article class=\"ds-capability\"><span class=\"ds-cap-index\">01</span><div><h3>Atendimento automatizado</h3><p>Um agente de IA conduz as conversas do primeiro contato à resolução, disponível fora do horário comercial.</p></div></article>",
+      "css": ".ds-capability { display: grid; grid-template-columns: minmax(0,0.55fr) minmax(0,1fr); gap: 3rem; align-items: center; font-family: 'Inter', sans-serif; } .ds-cap-index { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 6rem; line-height: 0.85; color: #1E293B; -webkit-text-stroke: 1.5px #334155; letter-spacing: -0.02em; } .ds-capability h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 1.75rem; color: #F8F9FA; margin: 0 0 1rem; } .ds-capability p { color: #94A3B8; font-size: 1.0625rem; line-height: 1.7; margin: 0; max-width: 56ch; }"
+    },
+    {
+      "name": "Hero Signal Graphic",
+      "kind": "custom",
+      "refersTo": "hero-signal-graphic",
+      "description": "Motivo assinatura do sistema: linhas cinzas dispersas convergindo num único traço laranja que se desenha ao carregar. Substitui fotografia de estoque como imagem do hero.",
+      "html": "<svg class=\"ds-signal\" viewBox=\"0 0 1600 900\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\"><path d=\"M -50 300 C 300 320, 650 400, 1000 448\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.75\" stroke-linecap=\"round\" opacity=\"0.4\"/><path d=\"M -50 400 C 300 410, 650 435, 1000 450\" fill=\"none\" stroke=\"#334155\" stroke-width=\"2\" stroke-linecap=\"round\" opacity=\"0.55\"/><path d=\"M -50 500 C 300 490, 650 465, 1000 451\" fill=\"none\" stroke=\"#334155\" stroke-width=\"2\" stroke-linecap=\"round\" opacity=\"0.55\"/><path d=\"M -50 600 C 300 570, 650 500, 1000 452\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.75\" stroke-linecap=\"round\" opacity=\"0.4\"/><path class=\"ds-signal-line\" d=\"M 1000 450 C 1220 450, 1430 450, 1650 450\" fill=\"none\" stroke=\"#FF6B35\" stroke-width=\"4.5\" stroke-linecap=\"round\"/></svg>",
+      "css": ".ds-signal { width: 100%; height: 100%; display: block; background: #0F172A; } .ds-signal-line { stroke-dasharray: 1200; stroke-dashoffset: 1200; animation: ds-signal-draw 2.6s 0.4s cubic-bezier(0.16,1,0.3,1) forwards; } @keyframes ds-signal-draw { to { stroke-dashoffset: 0; } } @media (prefers-reduced-motion: reduce) { .ds-signal-line { animation: none; stroke-dashoffset: 0; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Sinal Claro",
+    "overview": "CZ TECH vende simplicidade operacional — a promessa é que agentes de IA absorvem a complexidade da rotina comercial em vez de somar mais uma ferramenta para aprender. O sistema visual traduz isso literalmente: ruído se resolve em um único sinal deliberado. Um campo navy profundo e quase sem decoração carrega o peso; um único laranja aparece só onde existe uma ação real a tomar, e o motivo assinatura do hero — linhas cinzas dispersas convergindo num único traço laranja — é essa mesma ideia desenhada. A voz é confiante e contida: autoridade tecnológica que não precisa se provar com brilho. Silêncio visual é o luxo aqui, não escassez de recursos. O sistema rejeita explicitamente o vocabulário genérico de \"AI slop\" — gradiente roxo/azul brilhante, esferas 3D flutuantes, glow ambiente — em favor de tipografia com peso real, espaço negativo disciplinado e uma única cor de ação usada com extrema economia.",
+    "keyCharacteristics": [
+      "Campo único navy profundo (#0F172A), quase sem gradientes, sem imagem de fundo.",
+      "Laranja de sinal usado exclusivamente em ação/conversão — nunca decorativo.",
+      "Space Grotesk exclusivo para títulos; Inter para todo o resto.",
+      "Motivo assinatura: caos (linhas cinzas) resolvendo-se em ordem (um traço laranja).",
+      "Sombra existe em um único lugar do sistema: o botão de ação."
+    ],
+    "rules": [
+      { "name": "The Signal Rule", "body": "O laranja de sinal ocupa menos de 5% de qualquer viewport. Sua raridade é o que o torna legível como \"aja aqui\" — usá-lo em mais de um elemento por tela dilui o sinal.", "section": "colors" },
+      { "name": "The Weight Rule", "body": "Nenhum título usa uma fonte genérica sem personalidade — Space Grotesk é obrigatório em h1–h3, sem exceção, mesmo em componentes novos.", "section": "typography" },
+      { "name": "The One Shadow Rule", "body": "Sombra existe em exatamente um componente do sistema — o botão de ação. Nenhum painel, cartão ou elemento de navegação recebe sombra; adicionar uma segunda fonte de elevação dilui o sinal de \"isto é clicável\".", "section": "elevation" }
+    ],
+    "dos": [
+      "Do reservar Laranja de Sinal exclusivamente para botões de conversão, links críticos e o traço final do motivo gráfico — nunca decoração.",
+      "Do usar Space Grotesk 700 em todo título (h1–h3); nunca uma fonte genérica sem personalidade nesse papel.",
+      "Do manter o motivo \"caos que se resolve em um traço\" como o dispositivo de imagem assinatura do sistema ao invés de fotografia de estoque.",
+      "Do respeitar prefers-reduced-motion: desativar o desenho do traço, o pulso dos pontos e qualquer scroll-snap forçado.",
+      "Do limitar sombra ao botão de ação primário; toda outra profundidade vem de alternância de tom (Navy ↔ Surface)."
+    ],
+    "donts": [
+      "Don't usar gradientes roxo/azul brilhantes de SaaS genérico.",
+      "Don't usar esferas ou formas 3D flutuantes sem propósito.",
+      "Don't usar fotografia de paisagem ou imagem de estoque genérica como hero — rejeitado explicitamente nesta sessão por não comunicar nada sobre o produto.",
+      "Don't adicionar sombra a painéis, cartões ou elementos de navegação — a sombra é exclusiva do botão de ação.",
+      "Don't misturar Inter em títulos ou Space Grotesk em corpo de texto."
+    ]
+  }
+}

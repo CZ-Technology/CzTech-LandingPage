@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CZ TECH — Automação inteligente para resultados reais</title>
+<meta name="description" content="Agentes de IA que automatizam atendimento, organizam processos e fazem negócios crescerem com mais eficiência e menos esforço operacional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F172A;
+    --surface: #1E293B;
+    --text: #F8F9FA;
+    --text-2: #94A3B8;
+    --border: #334155;
+    --action: #FF6B35;
+    --action-hover: #FF8657;
+    --action-active: #E85A2A;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --header-h: 76px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-h);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-snap-type: none; scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+  h3 { font-weight: 500; letter-spacing: -0.01em; }
+  p { margin: 0; color: var(--text-2); max-width: 68ch; }
+  a { color: inherit; }
+  ::selection { background: var(--action); color: var(--navy); }
+
+  ::-webkit-scrollbar { width: 12px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; border: 3px solid var(--navy); }
+  * { scrollbar-color: var(--border) var(--navy); scrollbar-width: thin; }
+
+  :focus { outline: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--action); outline-offset: 3px; border-radius: 4px; }
+
+  .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem; background: var(--action); color: var(--navy);
+    font-weight: 600; padding: 0.75rem 1.25rem; border-radius: 6px; z-index: 1000; transition: top 0.2s ease;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; text-decoration: none; display: inline-flex; gap: 0.15em; }
+  .wordmark .cz { color: var(--action); }
+  .wordmark .tech { color: var(--text-2); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9375rem; text-decoration: none;
+    cursor: pointer; border: none; border-radius: 8px; padding: 0.85rem 1.6rem;
+    background: var(--action); color: var(--navy); box-shadow: 0 6px 16px -4px rgba(0,0,0,0.45);
+    transition: transform 0.18s var(--ease), box-shadow 0.18s ease, background 0.18s ease; white-space: nowrap;
+  }
+  .btn:hover { background: var(--action-hover); transform: translateY(-2px); box-shadow: 0 10px 22px -4px rgba(0,0,0,0.5); }
+  .btn:active { transform: translateY(0); background: var(--action-active); }
+  .btn-large { padding: 1.05rem 2.25rem; font-size: 1rem; }
+
+  /* ============ TOP NAV (persistent across panels) ============ */
+
+  .topnav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: var(--header-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1.25rem, 4vw, 3rem);
+    background: linear-gradient(to bottom, rgba(15,23,42,0.55), rgba(15,23,42,0));
+  }
+  .topnav.is-solid { background: rgba(15,23,42,0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+
+  .topnav-links { display: flex; align-items: center; gap: clamp(1.25rem, 2.5vw, 2rem); list-style: none; margin: 0; padding: 0; }
+  .topnav-links a { text-decoration: none; color: var(--text); font-size: 0.9rem; font-weight: 600; opacity: 0.85; }
+  .topnav-links a:hover { opacity: 1; }
+
+  .menu-toggle { display: none; background: none; border: none; padding: 0.5rem; cursor: pointer; z-index: 20; }
+  .menu-toggle .bar { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; transition: transform 0.25s ease, opacity 0.25s ease; }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ============ PROGRESS DOTS ============ */
+
+  .progress {
+    position: fixed; right: clamp(1rem, 2.5vw, 2.25rem); top: 50%; transform: translateY(-50%); z-index: 55;
+    display: flex; flex-direction: column; gap: 0.9rem;
+  }
+  .progress a {
+    width: 9px; height: 9px; border-radius: 50%; background: var(--border);
+    display: block; transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .progress a:hover { background: var(--text-2); }
+  .progress a.is-active { background: var(--action); transform: scale(1.35); }
+
+  /* ============ PANELS ============ */
+
+  .panel {
+    scroll-snap-align: start;
+    min-height: 100svh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: calc(var(--header-h) + 2rem) clamp(1.5rem, 6vw, 5rem) 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .panel-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+
+  /* Hero panel: abstract SVG — layered gray lines fusing into one orange line */
+  .panel-hero { overflow: hidden; }
+  .panel-hero svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+  .hero-clean-line { stroke-dasharray: 1200; stroke-dashoffset: 1200; animation: hero-draw 2.6s 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  @keyframes hero-draw { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) { .hero-clean-line { animation: none; stroke-dashoffset: 0; } }
+  .panel-hero .panel-inner { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; max-width: 780px; margin: 0 auto; }
+  .panel-hero h1 { font-size: clamp(2.1rem, 5.6vw, 4.25rem); line-height: 1.08; max-width: 18ch; }
+  .panel-hero .hero-sub { margin-top: 1.5rem; font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); max-width: 46ch; }
+  .panel-hero .hero-cta { margin-top: 2.25rem; }
+  .panel-hero .hero-cta .btn { padding: 1.05rem 2.25rem; font-size: 1rem; }
+  .scroll-cue { position: absolute; bottom: 1.75rem; left: 50%; transform: translateX(-50%); z-index: 2; color: var(--text); opacity: 0.65; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; display: flex; flex-direction: column-reverse; align-items: center; gap: 0.5rem; }
+  .scroll-cue span { width: 1px; height: 22px; background: currentColor; animation: cue-pulse 1.8s ease-in-out infinite; }
+  @keyframes cue-pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .scroll-cue span { animation: none; } }
+
+  /* Diferencial panel: centered pull-quote */
+  .panel-diferencial { background: var(--navy); }
+  .panel-diferencial .panel-inner { max-width: 780px; text-align: center; }
+  .panel-diferencial .kicker { color: var(--action); font-weight: 600; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .panel-diferencial h2 { margin-top: 1.25rem; font-size: clamp(1.75rem, 4vw, 3rem); line-height: 1.22; color: var(--text); }
+  .panel-diferencial h2 strong { color: var(--action); font-weight: 700; }
+  .panel-diferencial p.sub { margin-top: 1.75rem; font-size: 1.0625rem; line-height: 1.75; max-width: 60ch; margin-left: auto; margin-right: auto; }
+
+  /* Capability panels: monumental index number */
+  .panel-cap { background: var(--navy); }
+  .panel-cap .panel-inner { display: grid; grid-template-columns: minmax(0,0.55fr) minmax(0,1fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .panel-cap .index-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(4.5rem, 13vw, 9rem); line-height: 0.85; color: var(--surface); -webkit-text-stroke: 1.5px var(--border); letter-spacing: -0.02em; }
+  .panel-cap .cap-icon { width: 44px; height: 44px; color: var(--action); margin-bottom: 1.5rem; }
+  .panel-cap .cap-icon svg { width: 100%; height: 100%; }
+  .panel-cap h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 500; max-width: 16ch; color: var(--text); }
+  .panel-cap .cap-text p { margin-top: 1.25rem; font-size: 1.0625rem; line-height: 1.75; max-width: 56ch; }
+  .panel-cap:nth-child(4) { background: var(--surface); }
+
+  /* CTA panel */
+  .panel-cta { background: var(--surface); text-align: center; border-bottom: none; }
+  .panel-cta .panel-inner { display: flex; flex-direction: column; align-items: center; max-width: 640px; }
+  .panel-cta h2 { font-size: clamp(1.875rem, 4.5vw, 3.25rem); line-height: 1.18; }
+  .panel-cta p { margin-top: 1.25rem; font-size: 1.0625rem; max-width: 48ch; }
+  .panel-cta .btn { margin-top: 2.25rem; }
+
+  /* Footer — free scroll, not a snap point */
+  footer.site-footer { scroll-snap-align: none; padding: clamp(2.5rem, 6vw, 3.5rem) clamp(1.5rem, 5vw, 4.5rem); }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+  .footer-contact a { color: var(--action); font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-contact a:hover { border-bottom-color: var(--action); }
+  .footer-meta { color: var(--text-2); font-size: 0.8125rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* ============ FLOATING CTA ============ */
+
+  .floating-cta {
+    position: fixed; right: clamp(1.25rem, 3vw, 2.5rem); bottom: clamp(1.25rem, 3vw, 2.5rem); z-index: 65;
+    opacity: 0; transform: translateY(12px) scale(0.96); pointer-events: none;
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .floating-cta.is-visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+
+  /* ============ MOBILE ============ */
+
+  @media (max-width: 860px) {
+    .topnav-links { position: fixed; inset: 0; z-index: 58; flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+      background: rgba(15,23,42,0.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      transform: translateY(-100%); opacity: 0; transition: transform 0.35s var(--ease), opacity 0.3s ease; pointer-events: none; }
+    .topnav-links.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .topnav-links a { font-size: 1.375rem; }
+    .menu-toggle { display: block; }
+    .progress { display: none; }
+    .panel-cap .panel-inner { grid-template-columns: 1fr; gap: 1.25rem; }
+    .panel-cap .index-num { font-size: 3.5rem; }
+  }
+</style>
+</head>
+<body>
+<!--
+THESIS: One idea per screen — the visitor never scrolls two thoughts into one glance.
+OWN-WORLD: full-viewport scroll-snap panels, entirely on tokens (#0F172A navy, #1E293B surface, #FF6B35 action) — no stock photography anywhere. Hero replaces landscape imagery with an original SVG: eight tapering gray lines dissolving into one drawn orange line, echoed by the monumental outlined index numerals standing in for imagery in the capability panels after it.
+STORY: visitor reads the hero's fused line as "complexity resolving into one clear action" before any copy lands, then absorbs one differentiator, one capability per deliberate scroll gesture; a floating CTA stays reachable throughout so no panel can bury the action.
+FIRST VIEWPORT: flat navy field, eight gray lines converging from the left edge into one orange line that draws in on load, transparent overlay nav, centered headline, single orange CTA, scroll cue signaling the deck continues.
+FORM: structural extension of the brief-pinned dark+cinematic world (versions 1 and 4), hero swapped from stock photography to an original abstract graphic per explicit user direction, iterated through three rounds (photo options → abstract concepts → fusion variants) to this locked composition, no roll, no seed key.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<nav class="topnav" id="topnav" aria-label="Navegação principal">
+  <a href="#home" class="wordmark"><span class="cz">CZ</span><span class="tech">TECH</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="topnavLinks" aria-label="Abrir menu">
+    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+  </button>
+  <ul class="topnav-links" id="topnavLinks">
+    <li><a href="#diferencial">Diferencial</a></li>
+    <li><a href="#cap-1">Como funciona</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a class="btn" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a></li>
+  </ul>
+</nav>
+
+<nav class="progress" aria-label="Progresso da página">
+  <a href="#home" data-target="home" aria-label="Ir para Início"></a>
+  <a href="#diferencial" data-target="diferencial" aria-label="Ir para Diferencial"></a>
+  <a href="#cap-1" data-target="cap-1" aria-label="Ir para Atendimento automatizado"></a>
+  <a href="#cap-2" data-target="cap-2" aria-label="Ir para Organização de processos"></a>
+  <a href="#cap-3" data-target="cap-3" aria-label="Ir para Crescimento operacional"></a>
+  <a href="#contato" data-target="contato" aria-label="Ir para Contato"></a>
+</nav>
+
+<main id="conteudo">
+  <section class="panel panel-hero" id="home" aria-label="Apresentação">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M -50 220 C 300 250, 650 380, 1000 448" fill="none" stroke="#334155" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+      <path d="M -50 290 C 300 310, 650 400, 1000 449" fill="none" stroke="#334155" stroke-width="1.75" stroke-linecap="round" opacity="0.45"/>
+      <path d="M -50 360 C 300 370, 650 415, 1000 449" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+      <path d="M -50 420 C 300 425, 650 435, 1000 450" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      <path d="M -50 480 C 300 475, 650 465, 1000 450" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      <path d="M -50 540 C 300 530, 650 485, 1000 451" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+      <path d="M -50 610 C 300 590, 650 500, 1000 452" fill="none" stroke="#334155" stroke-width="1.75" stroke-linecap="round" opacity="0.45"/>
+      <path d="M -50 680 C 300 650, 650 520, 1000 453" fill="none" stroke="#334155" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+      <path class="hero-clean-line" d="M 1000 450 C 1220 450, 1430 450, 1650 450" fill="none" stroke="#FF6B35" stroke-width="4.5" stroke-linecap="round"/>
+    </svg>
+    <div class="panel-inner">
+      <h1>Automação inteligente para resultados reais.</h1>
+      <p class="hero-sub">Agentes de IA que assumem o atendimento, organizam processos e fazem sua operação crescer — sem meses de treinamento nem complexidade extra.</p>
+      <div class="hero-cta">
+        <a class="btn" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+      </div>
+    </div>
+    <span class="scroll-cue" aria-hidden="true"><span></span>role</span>
+    <span class="visually-hidden">Continue rolando para ver o conteúdo</span>
+  </section>
+
+  <section class="panel panel-diferencial" id="diferencial" aria-label="Diferencial">
+    <div class="panel-inner">
+      <span class="kicker">Diferencial</span>
+      <h2>Tecnologia de ponta não deveria significar <strong>mais trabalho</strong> para você.</h2>
+      <p class="sub">A CZ TECH parte de um princípio simples: uma ferramenta só vale a pena se puder ser usada imediatamente. Nossos agentes chegam configurados para a realidade do seu negócio — sem meses de implementação, sem manual que ninguém tem tempo de ler.</p>
+    </div>
+  </section>
+
+  <section class="panel panel-cap" id="cap-1" aria-label="Atendimento automatizado">
+    <div class="panel-inner">
+      <span class="index-num" aria-hidden="true">01</span>
+      <div>
+        <span class="cap-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 14a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H20l-8 7v-7h-.5A4 4 0 0 1 8 28.5V14Z"/>
+            <circle cx="17" cy="21" r="1.4" fill="currentColor" stroke="none"/>
+            <circle cx="24" cy="21" r="1.4" fill="currentColor" stroke="none"/>
+            <circle cx="31" cy="21" r="1.4" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <h3>Atendimento automatizado</h3>
+        <div class="cap-text"><p>Um agente de IA conduz as conversas do primeiro contato à resolução, entendendo o contexto de cada cliente e respondendo com a linguagem da sua empresa — disponível fora do horário comercial, sem fila de espera.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel-cap" id="cap-2" aria-label="Organização de processos">
+    <div class="panel-inner">
+      <span class="index-num" aria-hidden="true">02</span>
+      <div>
+        <span class="cap-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="9" width="15" height="15" rx="2"/>
+            <rect x="26" y="9" width="15" height="15" rx="2"/>
+            <rect x="7" y="28" width="15" height="11" rx="2"/>
+            <path d="M33.5 28v11M28 33.5h11"/>
+          </svg>
+        </span>
+        <h3>Organização de processos</h3>
+        <div class="cap-text"><p>Tarefas repetitivas, roteamentos manuais e planilhas paralelas dão lugar a um fluxo único e rastreável. A IA identifica gargalos operacionais e organiza o trabalho da equipe automaticamente.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel-cap" id="cap-3" aria-label="Crescimento operacional eficiente">
+    <div class="panel-inner">
+      <span class="index-num" aria-hidden="true">03</span>
+      <div>
+        <span class="cap-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 34V22M18 34V14M28 34V19M38 34V9"/>
+            <path d="M30 9h8v8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h3>Crescimento operacional eficiente</h3>
+        <div class="cap-text"><p>Com atendimento e processos rodando de forma consistente, a operação ganha capacidade de crescer sem multiplicar custo fixo proporcionalmente — menos esforço manual por resultado entregue.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel-cta" id="contato" aria-label="Chamada final para contato">
+    <div class="panel-inner">
+      <h2>Automação inteligente para resultados reais.</h2>
+      <p>Fale com a CZ TECH e veja como os agentes se encaixam na operação que você já tem.</p>
+      <a class="btn btn-large" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="#home" class="wordmark"><span class="cz">CZ</span><span class="tech">TECH</span></a>
+    <div class="footer-meta">
+      <span class="footer-contact"><a href="mailto:contato@cztechnology.com.br"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->contato@cztechnology.com.br</a></span>
+      <span>&copy; <span id="year">2026</span> CZ Technology.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="btn floating-cta" id="floatingCta" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o" aria-hidden="true" tabindex="-1"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('menuToggle');
+    var links = document.getElementById('topnavLinks');
+    var nav = document.getElementById('topnav');
+    var hero = document.getElementById('home');
+    var floating = document.getElementById('floatingCta');
+    var dots = document.querySelectorAll('.progress a');
+    var panels = document.querySelectorAll('.panel');
+
+    function closeMenu() {
+      links.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menu');
+    }
+    function openMenu() {
+      links.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Fechar menu');
+    }
+    toggle.addEventListener('click', function () {
+      var isOpen = links.classList.contains('is-open');
+      if (isOpen) { closeMenu(); } else { openMenu(); }
+    });
+    links.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); } });
+
+    if ('IntersectionObserver' in window) {
+      var heroObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          nav.classList.toggle('is-solid', !entry.isIntersecting);
+          floating.classList.toggle('is-visible', !entry.isIntersecting);
+          floating.setAttribute('aria-hidden', entry.isIntersecting ? 'true' : 'false');
+          floating.tabIndex = entry.isIntersecting ? -1 : 0;
+        });
+      }, { threshold: 0.4 });
+      heroObserver.observe(hero);
+
+      var panelObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            dots.forEach(function (d) { d.classList.toggle('is-active', d.dataset.target === entry.target.id); });
+          }
+        });
+      }, { threshold: 0.6 });
+      panels.forEach(function (p) { panelObserver.observe(p); });
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>

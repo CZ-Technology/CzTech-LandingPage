@@ -1,0 +1,47 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-08-21T16:19:05.312Z",
+        "reason": "user brief pinned Inter as secondary/UI typeface, recorded in PRODUCT.md Brand Commitments"
+      },
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "createdAt": "2026-08-21T16:19:05.398Z",
+        "reason": "user brief pinned Space Grotesk as primary heading typeface, recorded in PRODUCT.md Brand Commitments"
+      },
+      {
+        "rule": "radial-halo",
+        "value": "*",
+        "files": [
+          "dither.html"
+        ],
+        "createdAt": "2026-08-21T16:28:29.478Z",
+        "reason": "monochrome navy (#0F172A-on-#0F172A) legibility vignette over the dither texture, not a saturated/chromatic decorative glow; no orange or neon involved"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "2px",
+        "createdAt": "2026-08-24T02:52:14.100Z",
+        "reason": "rail.html mobile hamburger bar rounding, pre-existing cosmetic value on a page outside DESIGN.md's documented surface (deck.html)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(0,0,0,0.4)",
+        "createdAt": "2026-08-24T02:52:14.184Z",
+        "reason": "dossie.html photo-caption text-shadow tint, pre-existing value on a page outside DESIGN.md's documented surface (deck.html)"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "10px",
+        "createdAt": "2026-08-24T02:52:14.267Z",
+        "reason": "index.html hub-page card radius, pre-existing value predating DESIGN.md and outside its documented surface (deck.html)"
+      }
+    ]
+  }
+}

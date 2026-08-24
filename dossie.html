@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CZ TECH — Automação inteligente para resultados reais</title>
+<meta name="description" content="Agentes de IA que automatizam atendimento, organizam processos e fazem negócios crescerem com mais eficiência e menos esforço operacional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F172A;
+    --surface: #1E293B;
+    --text: #F8F9FA;
+    --text-2: #94A3B8;
+    --border: #334155;
+    --action: #FF6B35;
+    --action-hover: #FF8657;
+    --action-active: #E85A2A;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --header-h: 68px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+  h3 { font-weight: 500; letter-spacing: -0.01em; }
+  p { margin: 0; color: var(--text-2); max-width: 68ch; }
+  a { color: inherit; }
+  ::selection { background: var(--action); color: var(--navy); }
+
+  ::-webkit-scrollbar { width: 12px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; border: 3px solid var(--navy); }
+  * { scrollbar-color: var(--border) var(--navy); scrollbar-width: thin; }
+
+  :focus { outline: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--action); outline-offset: 3px; border-radius: 4px; }
+
+  .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem; background: var(--action); color: var(--navy);
+    font-weight: 600; padding: 0.75rem 1.25rem; border-radius: 6px; z-index: 1000; transition: top 0.2s ease;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  .container { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+
+  .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; text-decoration: none; display: inline-flex; gap: 0.15em; }
+  .wordmark .cz { color: var(--action); }
+  .wordmark .tech { color: var(--text-2); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9375rem; text-decoration: none;
+    cursor: pointer; border: none; border-radius: 8px; padding: 0.8rem 1.5rem;
+    background: var(--action); color: var(--navy); box-shadow: 0 6px 16px -4px rgba(0,0,0,0.45);
+    transition: transform 0.18s var(--ease), box-shadow 0.18s ease, background 0.18s ease; white-space: nowrap;
+  }
+  .btn:hover { background: var(--action-hover); transform: translateY(-2px); box-shadow: 0 10px 22px -4px rgba(0,0,0,0.5); }
+  .btn:active { transform: translateY(0); background: var(--action-active); }
+  .btn-large { padding: 1.05rem 2.25rem; font-size: 1rem; }
+
+  /* ============ HEADER ============ */
+
+  .site-header {
+    position: sticky; top: 0; z-index: 100; height: var(--header-h);
+    display: flex; align-items: center; background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+  }
+  .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+
+  .nav-links { display: flex; align-items: center; gap: clamp(1.25rem, 2.5vw, 2.25rem); list-style: none; margin: 0; padding: 0; }
+  .nav-links a { font-weight: 600; font-size: 0.875rem; text-decoration: none; color: var(--text-2); transition: color 0.2s ease; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { display: inline-flex; }
+
+  .menu-toggle { display: none; background: none; border: none; padding: 0.5rem; cursor: pointer; }
+  .menu-toggle .bar { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; transition: transform 0.25s ease, opacity 0.25s ease; }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ============ HERO (dossier cover) ============ */
+
+  .hero { padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(3rem, 6vw, 4.5rem); border-bottom: 1px solid var(--border); }
+  .hero .container { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.9fr); gap: clamp(2.5rem, 6vw, 4.5rem); align-items: end; }
+
+  .hero-kicker { display: flex; align-items: center; gap: 0.75rem; color: var(--action); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .hero-kicker::before { content: ''; width: 24px; height: 1px; background: var(--action); }
+
+  .hero h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); line-height: 1.1; max-width: 15ch; }
+
+  .hero-sub { margin-top: 1.5rem; font-size: 1.0625rem; line-height: 1.7; max-width: 52ch; }
+
+  .hero-cta { margin-top: 2rem; }
+
+  .dossier-meta { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 1.1rem; }
+  .dossier-meta dt { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin: 0; }
+  .dossier-meta dd { margin: 0.3rem 0 0; font-size: 0.9375rem; font-weight: 500; color: var(--text); }
+
+  /* ============ NUMBERED SECTIONS ============ */
+
+  .numbered-section { padding: clamp(3.5rem, 8vw, 6rem) 0; border-bottom: 1px solid var(--border); }
+
+  .section-head { display: flex; align-items: baseline; gap: 1.25rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .section-head .num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; color: var(--action); flex-shrink: 0; }
+  .section-head h2 { font-size: clamp(1.5rem, 2.8vw, 2.125rem); max-width: 26ch; }
+
+  /* Diferencial: marginalia paragraphs */
+  .marginalia { display: flex; flex-direction: column; }
+  .marginalia-row {
+    display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 1.25rem;
+    padding: 1.5rem 0; border-top: 1px solid var(--border);
+  }
+  .marginalia-row:last-child { border-bottom: 1px solid var(--border); }
+  .marginalia-row .tag { font-family: 'Space Grotesk', sans-serif; font-size: 0.8125rem; color: var(--text-2); padding-top: 0.15rem; }
+  .marginalia-row p { font-size: 1.0625rem; line-height: 1.75; max-width: 66ch; }
+  .marginalia-row p strong { color: var(--text); font-weight: 600; }
+
+  /* Interstitial photo band */
+  .interstitial { position: relative; height: clamp(280px, 46vh, 480px); overflow: hidden; border-bottom: 1px solid var(--border); }
+  .interstitial img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
+  .interstitial::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, var(--navy) 0%, rgba(15,23,42,0.15) 22%, rgba(15,23,42,0.15) 70%, var(--navy) 100%);
+  }
+  .interstitial-caption {
+    position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 clamp(1.5rem, 4vw, 3rem) 1.75rem; max-width: 1040px; margin: 0 auto;
+  }
+  .interstitial-caption p { color: var(--text); font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(1.0625rem, 1.8vw, 1.375rem); max-width: 30ch; text-shadow: 0 1px 12px rgba(0,0,0,0.4); }
+  .interstitial-credit { position: absolute; bottom: 0.85rem; right: clamp(1.5rem, 4vw, 3rem); z-index: 1; font-size: 0.7rem; color: rgba(248,249,250,0.7); }
+  .interstitial-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .interstitial-credit a:hover { color: var(--text); }
+
+  /* Como funciona: dense list rows */
+  .capability-list { display: flex; flex-direction: column; }
+  .capability-row {
+    display: grid; grid-template-columns: 3rem minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 1.25rem;
+    padding: clamp(1.5rem, 3vw, 2rem) 0; border-top: 1px solid var(--border); align-items: baseline;
+  }
+  .capability-row:last-child { border-bottom: 1px solid var(--border); }
+  .capability-row .tag { font-family: 'Space Grotesk', sans-serif; font-size: 0.8125rem; color: var(--action); padding-top: 0.15rem; }
+  .capability-row h3 { font-size: 1.1875rem; max-width: 18ch; }
+  .capability-row p { font-size: 1rem; line-height: 1.7; max-width: 60ch; }
+
+  @media (max-width: 720px) {
+    .capability-row { grid-template-columns: 2.25rem 1fr; }
+    .capability-row h3 { grid-column: 2; }
+    .capability-row p { grid-column: 2; margin-top: 0.5rem; }
+  }
+
+  /* CTA */
+  .cta-final { background: var(--surface); text-align: center; border-bottom: 1px solid var(--border); }
+  .cta-final .container { display: flex; flex-direction: column; align-items: center; max-width: 640px; }
+  .cta-final h2 { font-size: clamp(1.875rem, 4vw, 2.75rem); }
+  .cta-final p { margin-top: 1.1rem; font-size: 1.0625rem; max-width: 48ch; }
+  .cta-final .btn { margin-top: 2.25rem; }
+
+  /* Footer */
+  .site-footer { padding: clamp(2.5rem, 6vw, 3.5rem) 0; }
+  .site-footer .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+  .footer-contact a { color: var(--action); font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-contact a:hover { border-bottom-color: var(--action); }
+  .footer-meta { color: var(--text-2); font-size: 0.8125rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
+  .footer-meta .photo-credit a { color: var(--text-2); text-decoration: underline; text-underline-offset: 2px; }
+  .footer-meta .photo-credit a:hover { color: var(--action); }
+
+  /* ============ MOBILE ============ */
+
+  @media (max-width: 860px) {
+    .nav-links { position: fixed; inset: var(--header-h) 0 0 0; z-index: 90; flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+      background: rgba(15,23,42,0.96); transform: translateY(-8px); opacity: 0; pointer-events: none;
+      transition: opacity 0.25s var(--ease), transform 0.25s var(--ease); }
+    .nav-links.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .nav-links a { font-size: 1.25rem; }
+    .menu-toggle { display: block; }
+
+    .hero .container { grid-template-columns: 1fr; }
+    .dossier-meta { flex-direction: row; flex-wrap: wrap; gap: 1.5rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+<!--
+THESIS: The page reads like a dossier's table of contents — every claim is numbered, filed, and findable, not performed.
+OWN-WORLD: continuous single-column editorial flow on the same #0F172A/#1E293B tokens; hairline rules and small orange index numerals (01, 02, 03) replace cards and icons as the organizing device; the cinematic photo runs once, mid-page, as an interstitial band rather than a hero.
+STORY: visitor scans the cover block for the offer, reads diferencial as filed marginalia notes, meets the alpine photo as a breath between sections, then reaches como funciona as a dense, numbered list before the close.
+FIRST VIEWPORT: sticky thin header, two-column cover — monumental Space Grotesk headline left, a small dossier metadata block (direção / aplicação / ação) right — no photo in the first screen at all.
+FORM: structural extension of the brief-pinned dark+cinematic world (versions 1 and 4), brief-specified count of 3, no roll, no seed key.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container">
+    <a href="#top" class="wordmark"><span class="cz">CZ</span><span class="tech">TECH</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#diferencial">Diferencial</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li class="nav-cta"><a class="btn" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="hero" id="top" aria-label="Apresentação">
+    <div class="container">
+      <div>
+        <span class="hero-kicker">CZ Tech — Proposta</span>
+        <h1>Automação inteligente para resultados reais.</h1>
+        <p class="hero-sub">Agentes de IA que assumem o atendimento, organizam processos e fazem sua operação crescer — sem meses de treinamento nem complexidade extra.</p>
+        <div class="hero-cta">
+          <a class="btn btn-large" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+        </div>
+      </div>
+      <dl class="dossier-meta">
+        <div><dt>Direção</dt><dd>Automação inteligente</dd></div>
+        <div><dt>Aplicação</dt><dd>Atendimento, processos, crescimento</dd></div>
+        <div><dt>Ação</dt><dd>Agendar demonstração</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="numbered-section" id="diferencial" aria-label="Diferencial">
+    <div class="container">
+      <div class="section-head"><span class="num">01</span><h2>Tecnologia de ponta não deveria significar mais trabalho para você.</h2></div>
+      <div class="marginalia">
+        <div class="marginalia-row"><span class="tag">Nota</span><p>A maioria das plataformas de IA promete transformação e entrega meses de implementação, treinamento de equipe e um manual de instruções que ninguém tem tempo de ler. Enquanto isso, a rotina comercial continua exigindo respostas — hoje, não daqui a um trimestre.</p></div>
+        <div class="marginalia-row"><span class="tag">Princípio</span><p>A CZ TECH parte de um princípio simples: <strong>uma ferramenta só vale a pena se puder ser usada imediatamente.</strong> Nossos agentes de IA são configurados para a realidade do seu negócio, não para um caso de uso genérico de manual.</p></div>
+        <div class="marginalia-row"><span class="tag">Resultado</span><p>Menos curva de aprendizado. Menos esforço operacional. Mais tempo para o que realmente importa: atender bem e crescer com consistência.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <figure class="interstitial" aria-hidden="false">
+    <!-- Foto: Stephen Coetsee, via Unsplash (Unsplash License) -->
+    <img src="https://images.unsplash.com/photo-1678267361423-dbe60452dc4e?fm=jpg&q=80&w=2000&auto=format&fit=crop"
+         srcset="https://images.unsplash.com/photo-1678267361423-dbe60452dc4e?fm=jpg&q=80&w=900&auto=format&fit=crop 900w,
+                 https://images.unsplash.com/photo-1678267361423-dbe60452dc4e?fm=jpg&q=80&w=1600&auto=format&fit=crop 1600w,
+                 https://images.unsplash.com/photo-1678267361423-dbe60452dc4e?fm=jpg&q=80&w=2000&auto=format&fit=crop 2000w"
+         sizes="100vw"
+         alt="Cordilheira alpina envolta em névoa, paisagem minimalista ao amanhecer" loading="lazy">
+    <figcaption class="interstitial-caption"><p>Menos esforço operacional. Mais espaço para crescer.</p></figcaption>
+    <span class="interstitial-credit">Foto: <a href="https://unsplash.com/@sjcoetsee" target="_blank" rel="noopener noreferrer">Stephen Coetsee</a> / Unsplash</span>
+  </figure>
+
+  <section class="numbered-section" id="como-funciona" aria-label="Como funciona">
+    <div class="container">
+      <div class="section-head"><span class="num">02</span><h2>Como funciona, na prática.</h2></div>
+      <div class="capability-list">
+        <article class="capability-row">
+          <span class="tag">01</span>
+          <h3>Atendimento automatizado</h3>
+          <p>Um agente de IA conduz as conversas do primeiro contato à resolução, entendendo o contexto de cada cliente e respondendo com a linguagem da sua empresa — disponível fora do horário comercial, sem fila de espera.</p>
+        </article>
+        <article class="capability-row">
+          <span class="tag">02</span>
+          <h3>Organização de processos</h3>
+          <p>Tarefas repetitivas, roteamentos manuais e planilhas paralelas dão lugar a um fluxo único e rastreável. A IA identifica gargalos operacionais e organiza o trabalho da equipe automaticamente.</p>
+        </article>
+        <article class="capability-row">
+          <span class="tag">03</span>
+          <h3>Crescimento operacional eficiente</h3>
+          <p>Com atendimento e processos rodando de forma consistente, a operação ganha capacidade de crescer sem multiplicar custo fixo proporcionalmente — menos esforço manual por resultado entregue.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final" id="contato" aria-label="Chamada final para contato">
+    <div class="container">
+      <h2>Automação inteligente para resultados reais.</h2>
+      <p>Fale com a CZ TECH e veja como os agentes se encaixam na operação que você já tem.</p>
+      <a class="btn btn-large" href="mailto:contato@cztechnology.com.br?subject=Agendar%20demonstra%C3%A7%C3%A3o"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <a href="#top" class="wordmark"><span class="cz">CZ</span><span class="tech">TECH</span></a>
+    <div class="footer-meta">
+      <span class="footer-contact"><a href="mailto:contato@cztechnology.com.br"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->contato@cztechnology.com.br</a></span>
+      <span>&copy; <span id="year">2026</span> CZ Technology. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('menuToggle');
+    var links = document.getElementById('navLinks');
+
+    function closeMenu() {
+      links.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menu');
+    }
+    function openMenu() {
+      links.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Fechar menu');
+    }
+    toggle.addEventListener('click', function () {
+      var isOpen = links.classList.contains('is-open');
+      if (isOpen) { closeMenu(); } else { openMenu(); }
+    });
+    links.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); } });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>

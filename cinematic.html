@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CZ TECH — Automação inteligente para resultados reais</title>
+<meta name="description" content="Agentes de IA que automatizam atendimento, organizam processos e fazem negócios crescerem com mais eficiência e menos esforço operacional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F172A;
+    --surface: #1E293B;
+    --text-primary: #F8F9FA;
+    --text-secondary: #94A3B8;
+    --border: #334155;
+    --action: #FF6B35;
+    --action-hover: #ff7f52;
+    --focus-ring: #FF6B35;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--navy);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  h3.subhead-style { font-weight: 500; }
+
+  p { margin: 0; }
+
+  a { color: inherit; }
+
+  /* Selection */
+  ::selection {
+    background: var(--action);
+    color: var(--navy);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 12px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--surface);
+    border-radius: 6px;
+    border: 2px solid var(--navy);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border); }
+  html { scrollbar-color: var(--surface) var(--navy); scrollbar-width: thin; }
+
+  /* Focus */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    background: var(--action);
+    color: #0F172A;
+    font-weight: 600;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    z-index: 1000;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  /* ============ HERO ============ */
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    z-index: 0;
+  }
+
+  /* Gradient scrim: readable text over photo, fades whole hero to navy at bottom */
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.15) 0%,
+        rgba(15, 23, 42, 0.05) 30%,
+        rgba(15, 23, 42, 0.55) 62%,
+        rgba(15, 23, 42, 0.88) 82%,
+        var(--navy) 100%
+      );
+    pointer-events: none;
+  }
+
+  /* ---- Nav ---- */
+  .nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.75rem clamp(1.25rem, 4vw, 3.5rem);
+  }
+
+  .wordmark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    display: inline-flex;
+    gap: 0.15em;
+  }
+  .wordmark .cz { color: var(--action); }
+  .wordmark .tech { color: var(--text-secondary); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    opacity: 0.88;
+    padding: 0.35rem 0.1rem;
+    position: relative;
+    transition: opacity 0.2s ease;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 100%;
+    bottom: -2px;
+    height: 1px;
+    background: var(--action);
+    transition: right 0.25s ease;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a:hover::after { right: 0; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 0.85rem 1.6rem;
+    background: var(--action);
+    color: #0F172A;
+    box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.45);
+    transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.18s ease,
+                background 0.18s ease;
+    white-space: nowrap;
+  }
+  .btn:hover {
+    background: var(--action-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px -4px rgba(0, 0, 0, 0.5);
+  }
+  .btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px -4px rgba(0, 0, 0, 0.4);
+  }
+  .btn:disabled {
+    background: var(--border);
+    color: var(--text-secondary);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  .nav-cta { display: inline-flex; }
+
+  /* Hamburger */
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 20;
+  }
+  .menu-toggle .bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    margin: 5px 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ---- Hero content ---- */
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 clamp(1.25rem, 6vw, 5rem) clamp(3.5rem, 10vh, 7rem);
+  }
+
+  .hero-inner {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-inner h1 {
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+    line-height: 1.08;
+    color: var(--text-primary);
+    text-wrap: balance;
+    max-width: 18ch;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+  }
+
+  .hero-sub {
+    margin-top: 1.75rem;
+    font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+    color: var(--text-primary);
+    opacity: 0.92;
+    max-width: 46ch;
+    text-wrap: balance;
+    text-shadow: 0 1px 12px rgba(0,0,0,0.3);
+  }
+
+  .hero-cta {
+    margin-top: 2.5rem;
+  }
+
+  .hero-cta .btn {
+    padding: 1.05rem 2.25rem;
+    font-size: 1rem;
+  }
+
+  /* ============ SECTIONS BELOW FOLD ============ */
+
+  section.content-section {
+    padding: clamp(5rem, 12vh, 9rem) clamp(1.25rem, 6vw, 5rem);
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* Diferencial */
+  .diferencial .section-inner {
+    max-width: 800px;
+  }
+
+  .diferencial h2 {
+    font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+    line-height: 1.15;
+    max-width: 22ch;
+  }
+
+  .diferencial-body {
+    margin-top: 2.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .diferencial-body p {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    max-width: 68ch;
+  }
+
+  .diferencial-body p strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* Como funciona */
+  .como-funciona-header {
+    max-width: 700px;
+  }
+
+  .como-funciona-header h2 {
+    font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+    line-height: 1.15;
+  }
+
+  .capabilities {
+    margin-top: clamp(3.5rem, 8vh, 5.5rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .capability {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+    padding: clamp(3rem, 7vh, 4.5rem) 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .capability:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .capability-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    color: var(--action);
+  }
+
+  .capability-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .capability-label {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .capability-label h3 {
+    font-size: clamp(1.375rem, 2.4vw, 1.75rem);
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.25;
+    max-width: 16ch;
+  }
+
+  .capability-text p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    max-width: 68ch;
+  }
+
+  /* CTA final band */
+  .cta-band {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cta-band .section-inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 720px;
+  }
+
+  .cta-band h2 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.2;
+    max-width: 18ch;
+  }
+
+  .cta-band .btn {
+    margin-top: 2.5rem;
+    padding: 1.05rem 2.25rem;
+    font-size: 1rem;
+  }
+
+  /* Footer */
+  footer {
+    padding: clamp(3rem, 8vh, 4.5rem) clamp(1.25rem, 6vw, 5rem) clamp(2.5rem, 6vh, 3rem);
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .footer-contact a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .footer-contact a:hover {
+    color: var(--action);
+    border-color: var(--action);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+  }
+
+  .footer-bottom .photo-credit a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+  .footer-bottom .photo-credit a:hover {
+    color: var(--action);
+  }
+
+  /* ============ MOBILE ============ */
+
+  @media (max-width: 860px) {
+    .nav-links {
+      position: fixed;
+      inset: 0;
+      z-index: 15;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.25rem;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .nav-links.is-open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav-links a {
+      font-size: 1.375rem;
+    }
+    .nav-links .nav-cta {
+      margin-top: 0.5rem;
+    }
+    .menu-toggle {
+      display: block;
+    }
+
+    .capability {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content {
+      align-items: flex-end;
+      padding-bottom: 3rem;
+    }
+    .hero-inner h1 {
+      max-width: 16ch;
+    }
+  }
+</style>
+</head>
+<body>
+<!--
+THESIS: Monumental calm — the landscape holds the claim before any word does.
+OWN-WORLD: full-bleed verified photograph (alpine fog, Stephen Coetsee/Unsplash) fading via gradient mask into navy #0F172A body, minimal chrome, Space Grotesk headline over the image in #F8F9FA, orange #FF6B35 the only interactive color.
+STORY: visitor feels the scale and quiet of "less operational effort" before reading a word, then the page unfolds proof at an unhurried pace toward agendar demo.
+FIRST VIEWPORT: full-viewport photo, transparent overlay nav, headline centered in the lower third in Space Grotesk, single orange CTA button, photo fades to navy body on scroll via a gradient mask.
+FORM: brief-pinned direction (4 of 5 user-specified), no roll, no seed key.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- Foto: Stephen Coetsee, via Unsplash (Unsplash License) -->
+<header class="hero">
+  <img
+    class="hero-photo"
+    src="https://images.unsplash.com/photo-1678267361423-dbe60452dc4e?fm=jpg&q=80&w=2400&auto=format&fit=crop"
+    srcset="
+      https://images.unsplash.com/photo-1678267361423-dbe60452dc4e?fm=jpg&q=80&w=800&auto=format&fit=crop 800w,
+      https://images.unsplash.com/photo-1678267361423-dbe60452dc4e?fm=jpg&q=80&w=1400&auto=format&fit=crop 1400w,
+      https://images.unsplash.com/photo-1678267361423-dbe60452dc4e?fm=jpg&q=80&w=2000&auto=format&fit=crop 2000w,
+      https://images.unsplash.com/photo-1678267361423-dbe60452dc4e?fm=jpg&q=80&w=2400&auto=format&fit=crop 2400w
+    "
+    sizes="100vw"
+    alt="Cordilheira alpina envolta em névoa, paisagem minimalista ao amanhecer"
+    fetchpriority="high"
+  >
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Navegação principal">
+    <a href="#conteudo" class="wordmark"><span class="cz">CZ</span><span class="tech">TECH</span></a>
+
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#produto">Produto</a></li>
+      <li><a href="#diferencial">Diferencial</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li class="nav-cta">
+        <a class="btn" href="mailto:contato@cztechnology.com.br"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="hero-content" id="produto">
+    <div class="hero-inner">
+      <h1>Automação inteligente para resultados reais.</h1>
+      <p class="hero-sub">Agentes de IA que assumem o atendimento, organizam processos e fazem sua operação crescer — sem meses de treinamento nem complexidade extra.</p>
+      <div class="hero-cta">
+        <a class="btn" href="mailto:contato@cztechnology.com.br"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="content-section diferencial" id="diferencial">
+    <div class="section-inner">
+      <h2>Tecnologia de ponta não deveria significar mais trabalho para você.</h2>
+      <div class="diferencial-body">
+        <p>A maioria das plataformas de IA promete transformação e entrega meses de implementação, treinamento de equipe e um manual de instruções que ninguém tem tempo de ler. Enquanto isso, a rotina comercial continua exigindo respostas — hoje, não daqui a um trimestre.</p>
+        <p>A CZ TECH parte de um princípio simples: <strong>uma ferramenta só vale a pena se puder ser usada imediatamente.</strong> Nossos agentes de IA são configurados para a realidade do seu negócio, não para um caso de uso genérico de manual — e começam a operar sem exigir que sua equipe pare o que está fazendo para aprender um sistema novo.</p>
+        <p>Menos curva de aprendizado. Menos esforço operacional. Mais tempo para o que realmente importa: atender bem e crescer com consistência.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" id="como-funciona">
+    <div class="section-inner">
+      <div class="como-funciona-header">
+        <h2>Como funciona, na prática.</h2>
+      </div>
+
+      <div class="capabilities">
+        <article class="capability">
+          <div class="capability-label">
+            <span class="capability-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 14a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H20l-8 7v-7h-.5A4 4 0 0 1 8 28.5V14Z"/>
+                <circle cx="17" cy="21" r="1.4" fill="currentColor" stroke="none"/>
+                <circle cx="24" cy="21" r="1.4" fill="currentColor" stroke="none"/>
+                <circle cx="31" cy="21" r="1.4" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <h3 class="subhead-style">Atendimento automatizado</h3>
+          </div>
+          <div class="capability-text">
+            <p>Um agente de IA conduz as conversas do primeiro contato à resolução, entendendo o contexto de cada cliente e respondendo com a linguagem da sua empresa — disponível fora do horário comercial, sem fila de espera e sem perder o padrão de qualidade que você exige.</p>
+          </div>
+        </article>
+
+        <article class="capability">
+          <div class="capability-label">
+            <span class="capability-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="7" y="9" width="15" height="15" rx="2"/>
+                <rect x="26" y="9" width="15" height="15" rx="2"/>
+                <rect x="7" y="28" width="15" height="11" rx="2"/>
+                <path d="M33.5 28v11M28 33.5h11"/>
+              </svg>
+            </span>
+            <h3 class="subhead-style">Organização de processos</h3>
+          </div>
+          <div class="capability-text">
+            <p>Tarefas repetitivas, roteamentos manuais e planilhas paralelas dão lugar a um fluxo único e rastreável. A IA identifica gargalos operacionais e organiza o trabalho da equipe automaticamente, mantendo tudo alinhado sem depender de retrabalho manual.</p>
+          </div>
+        </article>
+
+        <article class="capability">
+          <div class="capability-label">
+            <span class="capability-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 34V22M18 34V14M28 34V19M38 34V9"/>
+                <path d="M30 9h8v8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 22 30 9" opacity="0"/>
+              </svg>
+            </span>
+            <h3 class="subhead-style">Crescimento operacional eficiente</h3>
+          </div>
+          <div class="capability-text">
+            <p>Com atendimento e processos rodando de forma consistente, a operação ganha capacidade de crescer sem multiplicar custo fixo proporcionalmente. Menos esforço manual por resultado entregue — essa é a métrica que importa para a rotina comercial.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section cta-band">
+    <div class="section-inner">
+      <h2>Automação inteligente para resultados reais.</h2>
+      <a class="btn" href="mailto:contato@cztechnology.com.br"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->Agendar demonstração</a>
+    </div>
+  </section>
+</main>
+
+<footer id="contato">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="#conteudo" class="wordmark"><span class="cz">CZ</span><span class="tech">TECH</span></a>
+      <div class="footer-contact">
+        <a href="mailto:contato@cztechnology.com.br"><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->contato@cztechnology.com.br</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year">2026</span> CZ Technology. Todos os direitos reservados.</span>
+      <span class="photo-credit">Foto: <a href="https://unsplash.com/@sjcoetsee" target="_blank" rel="noopener noreferrer">Stephen Coetsee</a> / Unsplash</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('menuToggle');
+    var links = document.getElementById('navLinks');
+
+    function closeMenu() {
+      links.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menu');
+    }
+
+    function openMenu() {
+      links.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Fechar menu');
+    }
+
+    toggle.addEventListener('click', function () {
+      var isOpen = links.classList.contains('is-open');
+      if (isOpen) { closeMenu(); } else { openMenu(); }
+    });
+
+    links.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closeMenu(); }
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>

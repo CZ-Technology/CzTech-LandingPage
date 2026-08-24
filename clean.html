@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CZ TECH — Automação inteligente para resultados reais</title>
+<meta name="description" content="Agentes de IA que automatizam atendimento, organizam processos e fazem sua empresa crescer com mais eficiência — sem meses de treinamento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --surface:#F1F5F9;
+    --text:#0F172A;
+    --text-secondary:#475569;
+    --border:#E2E8F0;
+    --action:#FF6B35;
+    --action-hover:#E85A2A;
+    --shadow-color: 15, 23, 42;
+    --measure: 70ch;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+
+  html{
+    scroll-behavior:smooth;
+    scrollbar-color: var(--text-secondary) var(--surface);
+    scrollbar-width: thin;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', system-ui, sans-serif;
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection{ background:var(--action); color:#0F172A; }
+
+  ::-webkit-scrollbar{ width:12px; height:12px; }
+  ::-webkit-scrollbar-track{ background:var(--surface); }
+  ::-webkit-scrollbar-thumb{ background:var(--border); border-radius:8px; border:3px solid var(--surface); }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--text-secondary); }
+
+  :focus{ outline:none; }
+  :focus-visible{
+    outline:2px solid var(--action);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', 'Inter', sans-serif;
+    font-weight:700;
+    color:var(--text);
+    margin:0;
+    letter-spacing:-0.02em;
+    text-wrap:balance;
+  }
+  h4,h5{
+    font-family:'Space Grotesk', 'Inter', sans-serif;
+    font-weight:500;
+    margin:0;
+  }
+
+  p{ margin:0; }
+
+  a{ color:inherit; }
+
+  button{ font-family:inherit; }
+
+  img,svg{ display:block; max-width:100%; }
+
+  .container{
+    width:100%;
+    max-width:1200px;
+    margin-inline:auto;
+    padding-inline:24px;
+  }
+
+  @media (min-width:900px){
+    .container{ padding-inline:48px; }
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+    border:none;
+    border-radius:10px;
+    padding:14px 26px;
+    cursor:pointer;
+    transition: background-color 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--action);
+    color:#0F172A;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.12), 0 8px 20px -8px rgba(15,23,42,0.35);
+  }
+  .btn-primary:hover{
+    background:var(--action-hover);
+    box-shadow: 0 2px 4px rgba(15,23,42,0.16), 0 12px 28px -8px rgba(15,23,42,0.4);
+    transform:translateY(-1px);
+  }
+  .btn-primary:active{
+    transform:translateY(0);
+    box-shadow: 0 1px 2px rgba(232,90,42,0.3);
+  }
+  .btn-primary:disabled{
+    background:var(--border);
+    color:var(--text-secondary);
+    box-shadow:none;
+    cursor:not-allowed;
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--text);
+    border:1px solid var(--border);
+    padding:13px 22px;
+  }
+  .btn-ghost:hover{
+    border-color:var(--text-secondary);
+    background:var(--surface);
+  }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,0.86);
+    backdrop-filter:saturate(180%) blur(14px);
+    -webkit-backdrop-filter:saturate(180%) blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    height:76px;
+  }
+  .wordmark{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:1.25rem;
+    letter-spacing:-0.01em;
+    text-decoration:none;
+    display:inline-flex;
+  }
+  .wordmark .cz{ color:var(--action); }
+  .wordmark .tech{ color:var(--text); }
+
+  nav.primary-nav{
+    display:flex;
+    align-items:center;
+    gap:36px;
+  }
+  nav.primary-nav a{
+    font-size:0.95rem;
+    font-weight:600;
+    text-decoration:none;
+    color:var(--text-secondary);
+    position:relative;
+    padding:6px 2px;
+    transition:color 150ms ease;
+  }
+  nav.primary-nav a::after{
+    content:"";
+    position:absolute;
+    left:0; right:100%;
+    bottom:0;
+    height:2px;
+    background:var(--text);
+    transition:right 200ms cubic-bezier(0.16,1,0.3,1);
+  }
+  nav.primary-nav a:hover{ color:var(--text); }
+  nav.primary-nav a:hover::after{ right:0; }
+
+  .nav-actions{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+
+  nav.primary-nav .btn-primary{ display:none; }
+
+  .nav-toggle{
+    display:none;
+    width:44px;
+    height:44px;
+    align-items:center;
+    justify-content:center;
+    background:transparent;
+    border:1px solid var(--border);
+    border-radius:8px;
+    cursor:pointer;
+    flex-direction:column;
+    gap:5px;
+  }
+  .nav-toggle span{
+    display:block;
+    width:20px;
+    height:2px;
+    background:var(--text);
+    transition:transform 220ms ease, opacity 180ms ease;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  @media (max-width:860px){
+    nav.primary-nav{
+      position:absolute;
+      top:76px;
+      left:0; right:0;
+      background:var(--bg);
+      border-bottom:1px solid var(--border);
+      flex-direction:column;
+      align-items:stretch;
+      gap:0;
+      padding:8px 24px 20px;
+      transform:translateY(-8px);
+      opacity:0;
+      visibility:hidden;
+      transition:transform 220ms ease, opacity 220ms ease, visibility 220ms;
+      box-shadow:0 16px 32px -20px rgba(15,23,42,0.25);
+    }
+    nav.primary-nav.is-open{
+      transform:translateY(0);
+      opacity:1;
+      visibility:visible;
+    }
+    nav.primary-nav a{
+      padding:14px 0;
+      border-bottom:1px solid var(--border);
+    }
+    nav.primary-nav a::after{ display:none; }
+    .nav-actions .btn-primary{ display:none; }
+    nav.primary-nav .btn-primary{
+      display:inline-flex;
+      margin-top:14px;
+      width:100%;
+    }
+    .nav-toggle{ display:inline-flex; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:88px 0 96px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:64px;
+    align-items:center;
+  }
+  @media (max-width:960px){
+    .hero-grid{ grid-template-columns:1fr; gap:56px; }
+  }
+  @media (max-width:600px){
+    .hero h1{ max-width:22ch; }
+  }
+
+  .hero h1{
+    font-size:clamp(2.4rem, 4.4vw, 3.6rem);
+    line-height:1.08;
+    max-width:16ch;
+  }
+  .hero-sub{
+    margin-top:26px;
+    max-width:56ch;
+    font-size:1.125rem;
+    color:var(--text-secondary);
+    line-height:1.6;
+  }
+  .hero-actions{
+    margin-top:36px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .hero-note{
+    margin-top:20px;
+    font-size:0.9rem;
+    color:var(--text-secondary);
+  }
+
+  /* ---------- Dashboard panel ---------- */
+  .panel-wrap{ display:flex; flex-direction:column; gap:14px; }
+  .panel{
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-shadow:
+      0 1px 0 rgba(15,23,42,0.02),
+      0 20px 45px -22px rgba(15,23,42,0.22),
+      0 8px 18px -12px rgba(15,23,42,0.12);
+    overflow:hidden;
+  }
+  .panel-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 20px;
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+  }
+  .panel-bar-label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+    font-size:0.95rem;
+  }
+  .live-dot{
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--text);
+    flex-shrink:0;
+  }
+  .panel-bar-tag{
+    font-size:0.78rem;
+    font-weight:600;
+    color:var(--text-secondary);
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:4px 10px;
+  }
+  .panel-rows{ padding:8px 8px 12px; }
+  .panel-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:14px 12px;
+    border-radius:10px;
+    opacity:0;
+    transform:translateY(10px);
+    animation: rowIn 620ms cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+  .panel-row:hover{ background:var(--surface); }
+  .panel-row + .panel-row{ margin-top:2px; }
+  .panel-row-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:0.94rem;
+    font-weight:600;
+    color:var(--text);
+  }
+  .row-icon{
+    width:32px; height:32px;
+    border-radius:8px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .row-icon svg{ width:16px; height:16px; stroke:var(--text-secondary); }
+  .status-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--text-secondary);
+    white-space:nowrap;
+  }
+  .status-pill .dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--text-secondary);
+    animation: pulseDot 2.6s ease-in-out infinite;
+  }
+
+  @keyframes rowIn{
+    to{ opacity:1; transform:translateY(0); }
+  }
+  @keyframes pulseDot{
+    0%, 100%{ opacity:0.35; }
+    50%{ opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .panel-row{ animation:none; opacity:1; transform:none; }
+    .status-pill .dot{ animation:none; opacity:1; }
+  }
+
+  .panel-caption{
+    font-size:0.82rem;
+    color:var(--text-secondary);
+    padding-inline:4px;
+  }
+
+  /* ---------- Section base ---------- */
+  section[id], footer[id]{ scroll-margin-top:96px; }
+  section{ padding:96px 0; }
+  .section-head{ max-width:42ch; }
+  .section-head h2{
+    font-size:clamp(1.9rem, 3vw, 2.6rem);
+  }
+  .section-head p{
+    margin-top:20px;
+    color:var(--text-secondary);
+    font-size:1.05rem;
+    max-width:var(--measure);
+  }
+
+  /* ---------- Diferencial ---------- */
+  .diferencial{ background:var(--surface); }
+  .dif-grid{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns:1fr 1px 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .dif-grid{ grid-template-columns:1fr; gap:40px; }
+    .dif-divider{ display:none; }
+  }
+  .dif-divider{ background:var(--border); align-self:stretch; }
+  .dif-col h3{
+    font-size:1.3rem;
+    max-width:20ch;
+  }
+  .dif-col p{
+    margin-top:16px;
+    color:var(--text-secondary);
+    max-width:var(--measure);
+    font-size:1.02rem;
+  }
+  .dif-col p + p{ margin-top:14px; }
+
+  /* ---------- Como funciona ---------- */
+  .como-funciona{ background:var(--bg); }
+  .capability{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:56px;
+    align-items:center;
+    padding:56px 0;
+    border-top:1px solid var(--border);
+  }
+  .capability:first-of-type{ border-top:none; margin-top:56px; }
+  .capability:nth-of-type(even) .capability-visual{ order:2; }
+  @media (max-width:860px){
+    .capability{ grid-template-columns:1fr; gap:28px; padding:40px 0; }
+    .capability:nth-of-type(even) .capability-visual{ order:0; }
+  }
+
+  .capability-text h3{
+    font-size:1.5rem;
+    max-width:18ch;
+  }
+  .capability-text p{
+    margin-top:18px;
+    color:var(--text-secondary);
+    max-width:var(--measure);
+    font-size:1.02rem;
+  }
+
+  .capability-visual{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:28px;
+    min-height:180px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:14px;
+    box-shadow: 0 14px 32px -20px rgba(15,23,42,0.18);
+  }
+  .capability-visual .mini-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    font-size:0.9rem;
+    font-weight:600;
+    color:var(--text);
+  }
+  .capability-visual .mini-row .row-icon{ background:var(--bg); }
+  .capability-visual .mini-row-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .capability-visual .mini-status{
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--text-secondary);
+    white-space:nowrap;
+  }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background:var(--text);
+    color:#F8FAFC;
+    text-align:center;
+    padding:104px 0;
+  }
+  .cta-band h2{
+    color:#FFFFFF;
+    font-size:clamp(1.9rem, 3.6vw, 2.75rem);
+    max-width:20ch;
+    margin-inline:auto;
+  }
+  .cta-band p{
+    margin-top:18px;
+    color:#CBD5E1;
+    max-width:50ch;
+    margin-inline:auto;
+    font-size:1.05rem;
+  }
+  .cta-band .hero-actions{ justify-content:center; margin-top:38px; }
+  .cta-band .btn-ghost{
+    border-color:rgba(248,250,252,0.28);
+    color:#F8FAFC;
+  }
+  .cta-band .btn-ghost:hover{
+    border-color:rgba(248,250,252,0.5);
+    background:rgba(248,250,252,0.06);
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site{
+    background:var(--bg);
+    border-top:1px solid var(--border);
+    padding:56px 0 40px;
+  }
+  .footer-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .footer-contact{
+    margin-top:10px;
+    color:var(--text-secondary);
+    font-size:0.95rem;
+  }
+  .footer-contact a{
+    color:var(--text);
+    font-weight:600;
+    text-decoration:underline;
+    text-underline-offset:3px;
+    text-decoration-color:var(--border);
+    transition:text-decoration-color 150ms ease, color 150ms ease;
+  }
+  .footer-contact a:hover{
+    color:var(--action-hover);
+    text-decoration-color:var(--action-hover);
+  }
+  .footer-meta{
+    color:var(--text-secondary);
+    font-size:0.85rem;
+    text-align:right;
+  }
+  @media (max-width:600px){
+    .footer-row{ flex-direction:column; }
+    .footer-meta{ text-align:left; }
+  }
+
+  .skip-link{
+    position:absolute;
+    left:16px;
+    top:-60px;
+    background:var(--text);
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+    z-index:200;
+    text-decoration:none;
+    font-weight:600;
+    transition:top 160ms ease;
+  }
+  .skip-link:focus{ top:16px; }
+</style>
+</head>
+<body id="topo">
+<!--
+THESIS: Automation feels like a dashboard you already trust, not a pitch — clarity is the differentiator.
+OWN-WORLD: bg #FFFFFF, surfaces #F1F5F9, text #0F172A / secondary #475569, borders #E2E8F0, Space Grotesk 700/500 headings, Inter 400/600 body+UI, "CZ" orange #FF6B35 + "TECH" charcoal #0F172A, orange CTA-only, hover #E85A2A.
+STORY: visitor reads CZ TECH like software they would trust to run their business on tomorrow — friendly, efficient, low-friction path to agendar demo.
+FIRST VIEWPORT: light hero built as an app shell — topbar-style nav, hero panel resembling a live automation-status card (labeled UI chrome, no fabricated numbers), Space Grotesk headline beside/above it, orange CTA button.
+FORM: brief-pinned direction (2 of 5 user-specified), no roll, no seed key.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+<header class="site">
+  <div class="container nav-row">
+    <a href="#topo" class="wordmark" aria-label="CZ TECH — início">
+      <span class="cz">CZ</span><span class="tech">&nbsp;TECH</span>
+    </a>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Navegação principal">
+      <a href="#produto">Produto</a>
+      <a href="#diferencial">Diferencial</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#contato">Contato</a>
+      <!-- PLACEHOLDER — substituir por contato real da CZ TECH -->
+      <a href="mailto:contato@cztechnology.com.br" class="btn btn-primary">Agendar demonstração</a>
+    </nav>
+
+    <div class="nav-actions">
+      <!-- PLACEHOLDER — substituir por contato real da CZ TECH -->
+      <a href="mailto:contato@cztechnology.com.br" class="btn btn-primary">Agendar demonstração</a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menu de navegação">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="hero" id="produto" aria-labelledby="hero-heading">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1 id="hero-heading">Automação inteligente para resultados reais.</h1>
+        <p class="hero-sub">
+          A CZ TECH constrói agentes de IA que automatizam o atendimento, organizam os processos
+          e conduzem o crescimento operacional do seu negócio — prontos para funcionar na rotina
+          comercial de amanhã, sem meses de implantação.
+        </p>
+        <div class="hero-actions">
+          <!-- PLACEHOLDER — substituir por contato real da CZ TECH -->
+          <a href="mailto:contato@cztechnology.com.br" class="btn btn-primary">Agendar demonstração</a>
+          <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
+        </div>
+        <p class="hero-note">Sem plataforma complexa. Sem curva de treinamento longa.</p>
+      </div>
+
+      <div class="panel-wrap">
+        <div class="panel" role="group" aria-label="Painel ilustrativo de automação">
+          <div class="panel-bar">
+            <div class="panel-bar-label">
+              <span class="live-dot" aria-hidden="true"></span>
+              Painel de automação
+            </div>
+            <span class="panel-bar-tag">Em operação</span>
+          </div>
+          <div class="panel-rows">
+            <div class="panel-row" style="animation-delay:80ms">
+              <span class="panel-row-label">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4z"/></svg>
+                </span>
+                Atendimento automatizado
+              </span>
+              <span class="status-pill"><span class="dot" aria-hidden="true"></span>Ativo</span>
+            </div>
+            <div class="panel-row" style="animation-delay:180ms">
+              <span class="panel-row-label">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+                </span>
+                Organização de processos
+              </span>
+              <span class="status-pill"><span class="dot" aria-hidden="true"></span>Em dia</span>
+            </div>
+            <div class="panel-row" style="animation-delay:280ms">
+              <span class="panel-row-label">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg>
+                </span>
+                Fila de mensagens
+              </span>
+              <span class="status-pill"><span class="dot" aria-hidden="true"></span>Sincronizada</span>
+            </div>
+            <div class="panel-row" style="animation-delay:380ms">
+              <span class="panel-row-label">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+                </span>
+                Agente de IA
+              </span>
+              <span class="status-pill"><span class="dot" aria-hidden="true"></span>Monitorando</span>
+            </div>
+          </div>
+        </div>
+        <p class="panel-caption">Interface ilustrativa do painel de automação.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="diferencial" id="diferencial" aria-labelledby="dif-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="dif-heading">Simplicidade é o diferencial, não um discurso.</h2>
+        <p>
+          Boa parte das plataformas de IA promete transformação e entrega semanas de configuração.
+          A CZ TECH escolheu o caminho oposto.
+        </p>
+      </div>
+
+      <div class="dif-grid">
+        <div class="dif-col">
+          <h3>O que evitamos</h3>
+          <p>
+            Sistemas que exigem meses de treinamento antes de gerar valor. Implantações que somam
+            uma nova camada de trabalho em vez de removê-la. Painéis genéricos que prometem
+            inteligência, mas exigem que sua equipe aprenda a operar mais uma ferramenta complexa.
+          </p>
+          <p>
+            Se a automação cria mais fricção do que resolve, ela não serve à rotina comercial —
+            e é exatamente isso que buscamos evitar em cada agente que construímos.
+          </p>
+        </div>
+        <div class="dif-divider" aria-hidden="true"></div>
+        <div class="dif-col">
+          <h3>O que entregamos</h3>
+          <p>
+            Agentes de IA pensados para aplicação imediata: eles se encaixam na forma como sua
+            empresa já atende, já organiza processos e já busca crescer — sem pedir que você mude
+            sua operação para se adaptar ao software.
+          </p>
+          <p>
+            O resultado é uma automação que começa a funcionar na rotina comercial desde os
+            primeiros dias, com simplicidade como padrão de qualidade, não como concessão.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="como-funciona" id="como-funciona" aria-labelledby="como-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="como-heading">Como a automação atua na sua operação.</h2>
+        <p>
+          Três frentes de trabalho que os agentes de IA da CZ TECH assumem no dia a dia comercial,
+          para que sua equipe direcione o tempo para o que exige julgamento humano.
+        </p>
+      </div>
+
+      <div class="capability">
+        <div class="capability-text">
+          <h3>Atendimento automatizado</h3>
+          <p>
+            Agentes de IA respondem, qualificam e encaminham conversas de atendimento em tempo real,
+            mantendo o tom e o padrão da sua empresa em cada interação — sem deixar clientes esperando
+            e sem sobrecarregar a equipe com perguntas repetitivas.
+          </p>
+        </div>
+        <div class="capability-visual" aria-hidden="true">
+          <div class="mini-row">
+            <span class="mini-row-label">
+              <span class="row-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4z"/></svg>
+              </span>
+              Resposta automática
+            </span>
+            <span class="mini-status">Automatizada</span>
+          </div>
+          <div class="mini-row">
+            <span class="mini-row-label">
+              <span class="row-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+              Encaminhamento
+            </span>
+            <span class="mini-status">Por regra</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="capability">
+        <div class="capability-text">
+          <h3>Organização de processos</h3>
+          <p>
+            Rotinas que hoje dependem de planilhas, lembretes manuais e retrabalho passam a rodar
+            de forma estruturada: cada etapa é registrada, cada pendência é sinalizada, e sua equipe
+            enxerga com clareza o que já foi feito e o que ainda precisa de atenção.
+          </p>
+        </div>
+        <div class="capability-visual" aria-hidden="true">
+          <div class="mini-row">
+            <span class="mini-row-label">
+              <span class="row-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+              </span>
+              Etapas registradas
+            </span>
+            <span class="mini-status">Em dia</span>
+          </div>
+          <div class="mini-row">
+            <span class="mini-row-label">
+              <span class="row-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+              </span>
+              Pendências sinalizadas
+            </span>
+            <span class="mini-status">Sob controle</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="capability">
+        <div class="capability-text">
+          <h3>Crescimento operacional eficiente</h3>
+          <p>
+            Com atendimento e processos rodando sem esforço manual constante, a operação ganha
+            capacidade de atender mais, organizar mais e crescer sem que isso signifique contratar
+            proporcionalmente mais gente ou multiplicar a complexidade interna.
+          </p>
+        </div>
+        <div class="capability-visual" aria-hidden="true">
+          <div class="mini-row">
+            <span class="mini-row-label">
+              <span class="row-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l6-6 4 4 6-8"/></svg>
+              </span>
+              Capacidade de atendimento
+            </span>
+            <span class="mini-status">Em expansão</span>
+          </div>
+          <div class="mini-row">
+            <span class="mini-row-label">
+              <span class="row-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+              </span>
+              Esforço operacional
+            </span>
+            <span class="mini-status">Reduzido</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-labelledby="cta-heading">
+    <div class="container">
+      <h2 id="cta-heading">Automação inteligente para resultados reais.</h2>
+      <p>
+        Agende uma demonstração e veja como agentes de IA podem operar o atendimento e os
+        processos da sua empresa desde os primeiros dias.
+      </p>
+      <div class="hero-actions">
+        <!-- PLACEHOLDER — substituir por contato real da CZ TECH -->
+        <a href="mailto:contato@cztechnology.com.br" class="btn btn-primary">Agendar demonstração</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site" id="contato">
+  <div class="container footer-row">
+    <div>
+      <a href="#topo" class="wordmark" aria-label="CZ TECH — início">
+        <span class="cz">CZ</span><span class="tech">&nbsp;TECH</span>
+      </a>
+      <p class="footer-contact">
+        Fale com a gente: <a href="mailto:contato@cztechnology.com.br">contato@cztechnology.com.br</a><!-- PLACEHOLDER — substituir por contato real da CZ TECH -->
+      </p>
+    </div>
+    <div class="footer-meta">
+      <p>&copy; 2026 CZ TECH. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('nav-toggle');
+    var nav = document.getElementById('primary-nav');
+    if(!toggle || !nav) return;
+
+    function closeNav(){
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menu de navegação');
+    }
+    function openNav(){
+      nav.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Fechar menu de navegação');
+    }
+
+    toggle.addEventListener('click', function(){
+      var isOpen = nav.classList.contains('is-open');
+      if(isOpen){ closeNav(); } else { openNav(); }
+    });
+
+    nav.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){ closeNav(); });
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && nav.classList.contains('is-open')){
+        closeNav();
+        toggle.focus();
+      }
+    });
+
+    document.addEventListener('click', function(e){
+      if(!nav.classList.contains('is-open')) return;
+      if(nav.contains(e.target) || toggle.contains(e.target)) return;
+      closeNav();
+    });
+
+    window.matchMedia('(min-width:861px)').addEventListener('change', function(e){
+      if(e.matches){ closeNav(); }
+    });
+  })();
+</script>
+</body>
+</html>
