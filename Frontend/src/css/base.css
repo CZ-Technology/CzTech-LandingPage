@@ -1,0 +1,145 @@
+/* =========================================
+   DESIGN SYSTEM — V1 CORPORATE AUTHORITY
+   CzTechnology · Versão Final
+   ========================================= */
+
+:root {
+    --bg-main: #1F2937;
+    /* Azul Escuro Acinzentado */
+    --bg-surface: #111827;
+    /* Azul Noturno/Charcoal */
+    --bg-alt: #182232;
+    /* Tom secundário intermediário */
+    --orange: #FF7A00;
+    /* Laranja Vibrante */
+    --orange-dark: #E06A00;
+    --border: #374151;
+    /* Borda cinza ajustada */
+    --text-main: #F4F4F5;
+    /* Branco Off-White */
+    --text-body: #A1A1AA;
+    /* Cinza Prateado */
+    --text-muted: #6B7280;
+    --font-heading: 'Manrope', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === RESET === */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* === UTILITIES === */
+.text-orange {
+    color: var(--orange);
+}
+
+.section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 56px;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Hero visível imediatamente sem depender do scroll */
+.hero .reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: none;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+/* === BUTTONS === */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all .2s ease;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-sm {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.btn-lg {
+    padding: 16px 28px;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background: var(--orange);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #FF8C1A;
+    transform: scale(1.05);
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: #1A2330;
+}
+
+/* Offset para navbar sticky */
+section[id] { scroll-margin-top: 68px; }
+

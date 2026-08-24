@@ -1,0 +1,88 @@
+/* === SOBRE NÓS === */
+.about {
+    padding: 120px 0;
+    background: var(--bg-main);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    align-items: flex-start;
+}
+
+.about-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(30px, 3.4vw, 42px);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: var(--text-main);
+}
+
+.about-text p {
+    font-size: 15px;
+    color: var(--text-body);
+    line-height: 1.7;
+}
+
+.about-highlight {
+    border-left: 3px solid var(--orange);
+    padding: 4px 0 4px 18px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.about-visual {
+    position: relative;
+}
+
+.about-img {
+    width: 100%;
+    border-radius: 18px;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+}
+
+.about-float-card {
+    position: absolute;
+    right: -16px;
+    bottom: -28px;
+    max-width: 240px;
+    background: var(--bg-surface);
+    border: 1px solid var(--orange);
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.about-float-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-float-card p {
+    font-size: 13px;
+    color: var(--text-body);
+    line-height: 1.5;
+}
+

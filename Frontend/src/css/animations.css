@@ -1,0 +1,40 @@
+/* === KEYFRAMES === */
+@keyframes czPulse {
+
+    0%,
+    100% {
+        opacity: .4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes czPop {
+    from {
+        opacity: 0;
+        transform: translateY(6px) scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes czDot {
+
+    0%,
+    60%,
+    100% {
+        opacity: .3;
+        transform: translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(-2px);
+    }
+}
+

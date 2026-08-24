@@ -1,0 +1,227 @@
+/* === RESPONSIVO === */
+@media (max-width: 1024px) {
+    .hero-split { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+    .hero-left { align-items: center; }
+    .hero-subtitle { margin: 0 auto 40px; }
+    .hero-right { display: none; }
+    .kpi-strip { grid-template-columns: repeat(3, 1fr); }
+    .trust-bar .section-inner { flex-direction: column; gap: 24px; }
+    .trust-label { text-align: center; }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pain-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .solution-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .diff-header {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        align-items: start;
+    }
+
+    .diff-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+
+    .about-float-card {
+        right: 16px;
+        bottom: -24px;
+    }
+
+    .how-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cta-banner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 40px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .ai-demo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cases-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 14px 20px;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(15, 22, 32, 0.97);
+        flex-direction: column;
+        padding: 24px;
+        gap: 20px;
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(12px);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-actions {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hamburger.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .hero {
+        padding: 80px 20px 60px;
+    }
+
+    .hero-title {
+        font-size: clamp(36px, 8vw, 56px);
+    }
+
+    .section-inner {
+        padding: 0 20px;
+    }
+
+    .kpi-strip {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .services {
+        padding: 80px 0;
+    }
+
+    .pain {
+        padding: 80px 0;
+    }
+
+    .solution {
+        padding: 80px 0;
+    }
+
+    .differential {
+        padding: 80px 0;
+    }
+
+    .diff-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about {
+        padding: 80px 0;
+    }
+
+    .about-float-card {
+        position: static;
+        max-width: 100%;
+        margin-top: 16px;
+        right: auto;
+        bottom: auto;
+    }
+
+    .services-header {
+        flex-direction: column;
+    }
+
+    .section-intro {
+        max-width: 100%;
+    }
+
+    .how {
+        padding: 80px 0;
+    }
+
+    .how-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .before-after {
+        padding: 80px 0;
+    }
+
+    .ba-card {
+        grid-template-columns: 1fr;
+    }
+
+    .ba-before {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .ai-demo {
+        padding: 80px 0;
+    }
+
+    .cases {
+        padding: 80px 0;
+    }
+
+    .cta-final {
+        padding: 60px 0 80px;
+    }
+
+    .cta-banner {
+        padding: 32px 24px;
+    }
+
+    .cta-banner-right {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .cta-feature {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .site-footer {
+        padding: 48px 20px 24px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}

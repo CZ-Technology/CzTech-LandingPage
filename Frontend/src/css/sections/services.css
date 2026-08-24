@@ -1,0 +1,112 @@
+/* === SERVICES === */
+.services {
+    padding: 120px 0;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(36px, 4vw, 56px);
+    color: var(--text-main);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin: 0;
+}
+
+.section-intro {
+    font-size: 16px;
+    color: var(--text-body);
+    max-width: 380px;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.services-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.service-card {
+    background: var(--bg-surface);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.service-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: rgba(255, 122, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.service-card p {
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-body);
+}
+
+.feature-list .plus {
+    color: var(--orange);
+    font-weight: 700;
+}
+
+.section-header {
+    margin-bottom: 56px;
+}
+

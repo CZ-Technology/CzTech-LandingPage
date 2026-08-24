@@ -1,0 +1,23 @@
+/* =========================================
+   DESIGN SYSTEM — V1 CORPORATE AUTHORITY
+   CzTechnology · Versão Final
+   Entry point: importa cada bloco na mesma ordem do arquivo original.
+   ========================================= */
+
+@import './base.css';
+@import './layout/navbar.css';
+@import './sections/hero.css';
+@import './sections/services.css';
+@import './sections/how.css';
+@import './sections/before-after.css';
+@import './sections/ai-demo.css';
+@import './sections/cases.css';
+@import './sections/cta.css';
+@import './layout/footer.css';
+@import './sections/pain.css';
+@import './sections/solution.css';
+@import './sections/differential.css';
+@import './sections/about.css';
+@import './animations.css';
+@import './intro.css';
+@import './responsive.css';
