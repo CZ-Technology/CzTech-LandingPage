@@ -7,6 +7,8 @@ const smoothstep = (p, e0, e1) => { const t = clamp((p - e0) / (e1 - e0)); retur
 /* o ajuste "reduzir movimento" do sistema não desliga as animações do site (decisão de marca); só o layout estático do hero usa a media query de verdade, em GATES e STACK_MQ */
 const reduceMQ = { matches: false, addEventListener() {} };
 window.__czOk = true;
+/* a página sempre abre no topo, igual em qualquer navegador (sem restaurar a rolagem da visita anterior) */
+try { history.scrollRestoration = "manual"; if (!location.hash) scrollTo(0, 0); } catch (e) {}
 const { config, cases, score } = window.CZ;
 
 /* ---------- Rolagem no celular: leva o conteúdo novo para dentro da tela, abaixo do menu ---------- */
