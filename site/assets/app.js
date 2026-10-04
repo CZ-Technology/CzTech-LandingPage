@@ -256,8 +256,7 @@ const GATES = [
   '(max-width: 720px)',
   '(orientation: portrait) and (max-width: 1024px)',
   '(orientation: portrait) and (pointer: coarse)',
-  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
-  '(prefers-reduced-motion: reduce)'
+  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)'
 ];
 const MQLS = GATES.map(q => matchMedia(q));
 function enableScrub() {
@@ -471,7 +470,7 @@ function buildGmn() {
 }
 
 /* ---------- Palcos com pino (celular e movimento reduzido ficam sem pino, idêntico ao CSS) ---------- */
-const STACK_MQ = matchMedia('(max-width: 720px), (prefers-reduced-motion: reduce)');
+const STACK_MQ = matchMedia('(max-width: 720px)');
 const pinned = () => !STACK_MQ.matches;
 
 /* abas: setas do teclado movem entre as abas */
