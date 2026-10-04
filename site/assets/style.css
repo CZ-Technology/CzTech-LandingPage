@@ -872,3 +872,15 @@ a,button,summary,.chip-opt,.ftab,.j-bar{touch-action:manipulation;-webkit-tap-hi
 @media (max-width:720px){
   .mf-cards,.ex-grid,.r-stage{overflow-y:hidden;overscroll-behavior-x:contain}
 }
+
+/* ===== Rodapé no celular: logo e Política na mesma linha; botões flutuantes descem para o centro do rodapé ===== */
+@media (max-width:720px){
+  .footer{padding:26px 0 calc(90px + env(safe-area-inset-bottom))}
+  .footer .foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px}
+  .footer .foot-logo{order:1}
+  .footer .foot>a:not(.foot-logo){order:2;margin-left:auto;text-decoration:none;opacity:.9}
+  .footer .foot>p{order:3;flex:1 0 100%;margin:0}
+  .wa-float,.ig-float{transition:transform .5s var(--out),right .6s var(--out),bottom .6s var(--out)}
+  body.at-foot .wa-float{right:calc(50% - 66px);bottom:calc(16px + env(safe-area-inset-bottom))}
+  body.at-foot .ig-float{right:calc(50% + 8px);bottom:calc(16px + env(safe-area-inset-bottom))}
+}

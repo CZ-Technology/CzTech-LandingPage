@@ -814,6 +814,8 @@ function pageScroll() {
   journeyScroll();
   resultsScroll();
 }
+/* no fim da página (celular), os botões flutuantes descem para o centro do rodapé */
+if ('IntersectionObserver' in window && $('.footer')) new IntersectionObserver(es => es.forEach(e => document.body.classList.toggle('at-foot', e.isIntersecting)), { rootMargin: '0px 0px -150px 0px' }).observe($('.footer'));
 addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(pageScroll); } }, { passive: true });
 addEventListener('resize', () => { lastJ = lastR = ''; rShift = null; pageScroll(); if (scrubOn) onScroll(); });
 STACK_MQ.addEventListener('change', () => { lastJ = lastR = ''; journeyMode(); if (pinned()) pageScroll(); else resultsUnpinned(); });
