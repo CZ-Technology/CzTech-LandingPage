@@ -788,11 +788,16 @@ carousel($('.mf-cards'), '.mf-c', $('.mf-stage'), 'dots-560');
 
 /* ---------- Scroll geral ---------- */
 const nav = $('#nav'), wa = $('.wa-float');
-let lastY = scrollY, ticking = false, navHidden = false, waShown = false, pinOn = false;
+let navAcc = 0, lastY = scrollY, ticking = false, navHidden = false, waShown = false, pinOn = false;
 function pageScroll() {
   ticking = false;
   const y = scrollY, heroEnd = hero.offsetHeight - innerHeight * .5;
-  const hide = y > lastY && y > 300 && !menuOpen;
+  const d = y - lastY;
+  if (d !== 0) { if (Math.sign(d) !== Math.sign(navAcc)) navAcc = 0; navAcc += d; }
+  let hide = navHidden;
+  if (y <= 300 || menuOpen) hide = false;
+  else if (navAcc > 40) hide = true;
+  else if (navAcc < -6) hide = false;
   if (hide !== navHidden) { navHidden = hide; nav.classList.toggle('hide', hide); }
   const show = y > heroEnd;
   if (show !== waShown) { waShown = show; wa.classList.toggle('show', show); }
