@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CZ Tech · Clínicas no topo do Google</title>
+  <meta name="description" content="Otimização do Google Meu Negócio e landing pages que convertem para clínicas odontológicas. Sua clínica no topo do mapa e a agenda cheia de pacientes particulares.">
+  <link rel="icon" href="src/assets/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body class="is-intro">
+
+  <!-- ============ INTRO: CZ piscando ============ -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro-grid"></div>
+    <div class="intro-logo"><span class="intro-c">C</span><span class="intro-z">Z</span></div>
+    <div class="intro-tag">tech · clínicas no topo do Google</div>
+    <div class="intro-scan"></div>
+  </div>
+
+  <!-- cursor customizado -->
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-text" id="cursorText">Ver</span></div>
+  <div class="progress" id="progress"></div>
+
+  <!-- ============ NAV + MENU FULLSCREEN ============ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="brand" aria-label="CZ Tech"><span class="brand-mark">CZ</span><span class="brand-word">tech</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">
+      <span class="menu-txt"><span>Menu</span><span>Fechar</span></span>
+    </button>
+  </header>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav class="menu-links">
+      <a href="#top"><small>01.</small><span>Início</span></a>
+      <a href="#servicos"><small>02.</small><span>Serviços</span></a>
+      <a href="#cases"><small>03.</small><span>Cases</span></a>
+      <a href="#score"><small>04.</small><span>Score Google</span></a>
+      <a href="#contato"><small>05.</small><span>Contato</span></a>
+    </nav>
+    <div class="menu-side">
+      <div><small>Fale com a gente</small><a href="#" class="js-wa menu-big">WhatsApp →</a></div>
+      <div><small>Especialidade</small><p>Google Meu Negócio e landing pages para clínicas odontológicas.</p></div>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <!-- ============ HERO EDITORIAL + COLAGEM ============ -->
+    <section class="hero" id="hero">
+      <h1 class="hero-title" aria-label="Clínicas que lotam a agenda">
+        <span class="ht ht1"><span>Clínicas</span></span>
+        <span class="ht ht2"><span>que <em>lotam</em></span></span>
+        <span class="ht ht3"><span>a agenda</span></span>
+      </h1>
+
+      <!-- peças da colagem: flutuam em parallax por cima do título -->
+      <div class="collage" aria-hidden="true">
+        <div class="piece pc1" data-speed="-.35">
+          <div class="mini-search"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span id="typed"></span><span class="caret"></span></div>
+        </div>
+        <img class="piece pc2" data-speed="-.6" src="src/assets/phone-omnia.png" alt="">
+        <div class="piece pc3" data-speed="-.2"><b>4,9</b><span class="stars">★★★★★</span><small>212 avaliações</small></div>
+        <img class="piece pc4" data-speed="-.85" src="src/assets/phone-defende.png" alt="">
+        <div class="piece pc5" data-speed="-.45"><small>Ligações</small><b id="chipCalls">+0%</b></div>
+        <div class="piece pc6" data-speed="-.7"><span class="pin-ico">📍</span> Top 3 no mapa</div>
+      </div>
+
+      <div class="hero-foot">
+        <p>Google Meu Negócio + landing pages para<br>clínicas odontológicas.</p>
+        <a href="#manifesto" class="arrow-link"><span>Role para baixo</span><i class="circ"><svg viewBox="0 0 24 24"><path d="M12 5v14m0 0-6-6m6 6 6-6"/></svg></i></a>
+      </div>
+    </section>
+
+    <!-- ============ MANIFESTO (escuro, invertido) ============ -->
+    <section class="manifesto" id="manifesto">
+      <div class="mf">
+        <p class="mf-l mf-1 rv">Movidos</p>
+        <p class="mf-l mf-2 rv" data-d="1">por <b>dados.</b></p>
+        <p class="mf-para rv" data-d="2">O paciente não procura dentista por indicação. Ele procura no Google — e marca com uma das 3 primeiras clínicas do mapa. Nosso trabalho é colocar a sua lá e fazer o clique virar consulta.</p>
+        <p class="mf-l mf-3 rv" data-d="1">Feitos para</p>
+        <p class="mf-l mf-4 rv" data-d="2"><b>converter.</b></p>
+        <a href="#servicos" class="arrow-link light rv" data-d="3"><span>O que fazemos</span><i class="circ"><svg viewBox="0 0 24 24"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></i></a>
+      </div>
+    </section>
+
+    <!-- ============ O QUE FAZEMOS (lista editorial) ============ -->
+    <section class="ed" id="servicos">
+      <div class="shell">
+        <h2 class="ed-title"><span class="rv">O que</span> <span class="rv" data-d="1">fazemos</span></h2>
+        <div class="rows">
+          <div class="row rv"><i class="line"></i><h3>Google Meu Negócio</h3><p>Categorias, descrição com palavras-chave da sua cidade, fotos, serviços e postagens semanais. O perfil vira a melhor vitrine do bairro.</p></div>
+          <div class="row rv"><i class="line"></i><h3>Landing pages</h3><p>Uma página por tratamento, rápida no celular e com um único objetivo: levar o paciente ao WhatsApp da recepção.</p></div>
+          <div class="row rv"><i class="line"></i><h3>Gestão de avaliações</h3><p>Estratégia para gerar avaliações 5★ e resposta a todas elas — positivas e negativas.</p></div>
+          <div class="row rv"><i class="line"></i><h3>SEO local &amp; diretórios</h3><p>Citações em diretórios de confiança do Google e rastreamento de cada ligação, rota e mensagem.</p></div>
+          <i class="line"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NA PRÁTICA: widgets vivos ============ -->
+    <section class="demo">
+      <div class="shell">
+        <div class="demo-head">
+          <h2 class="ed-title"><span class="rv">Na</span> <span class="rv" data-d="1">prática</span></h2>
+          <p class="small-para rv" data-d="2">O que acontece quando a clínica é otimizada — ao vivo, na sua tela.</p>
+        </div>
+        <div class="demo-grid">
+          <!-- ranking subindo -->
+          <div class="card rv">
+            <small class="card-k">01 — Ranking no mapa</small>
+            <div class="sim-map" id="simMap">
+              <svg class="map-roads" viewBox="0 0 400 220" preserveAspectRatio="none"><path d="M0 60 Q120 40 200 90 T400 70"/><path d="M0 170 Q160 150 260 190 T400 160"/><path d="M90 0 Q110 110 70 220"/><path d="M300 0 Q270 120 320 220"/></svg>
+              <span class="pin p1">1</span><span class="pin p2">2</span><span class="pin p3">3</span><span class="pin pin-you" id="pinYou">★</span><span class="radar"></span>
+            </div>
+            <ol class="sim-list" id="simList">
+              <li data-id="a"><b>Odonto Center</b><small>4,2 ★ · 38</small></li>
+              <li data-id="b"><b>Clínica Dente Feliz</b><small>4,4 ★ · 51</small></li>
+              <li data-id="c"><b>Sorriso Mais</b><small>4,1 ★ · 22</small></li>
+              <li data-id="you" class="you"><b>Sua clínica</b><small id="youMeta">3,9 ★ · 9</small></li>
+            </ol>
+          </div>
+          <!-- perfil se montando -->
+          <div class="card rv" data-d="1">
+            <small class="card-k">02 — Perfil completo</small>
+            <div class="gmn-build" id="gmnBuild">
+              <div class="gb-row gb-title"><span class="sk"></span><b>Clínica Odonto Prime</b></div>
+              <div class="gb-row gb-stars"><span class="sk"></span><span class="stars">★★★★★</span> <b>4,9</b> <small>(<span class="count" data-to="212">0</span>)</small></div>
+              <div class="gb-row gb-cats"><span class="chip">Dentista</span><span class="chip">Implantodontista</span><span class="chip">Ortodontista</span></div>
+              <div class="gb-row gb-photos"><i></i><i></i><i></i><i></i></div>
+              <div class="gb-row gb-actions"><span>Ligar</span><span>Rotas</span><span>WhatsApp</span></div>
+              <div class="gb-meter"><span>Completo</span><div><i id="gbMeter"></i></div><b id="gbPct">0%</b></div>
+            </div>
+          </div>
+          <!-- landing convertendo -->
+          <div class="card rv" data-d="2">
+            <small class="card-k">03 — Landing que converte</small>
+            <div class="lp-wrap">
+              <div class="phone">
+                <div class="lp">
+                  <div class="lp-hero"><small>Implantes · Londrina</small><b>Volte a sorrir com segurança</b><span>★★★★★ 4,9</span></div>
+                  <div class="lp-blocks"><i></i><i></i></div>
+                  <div class="lp-btn">Agendar no WhatsApp</div>
+                </div>
+                <div class="tap"></div>
+              </div>
+              <div class="conv-bars">
+                <div><i style="--h:30%"></i><span>Mercado<br>2–5%</span></div>
+                <div class="us"><i style="--h:100%"></i><span>CZ<br>8–15%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JORNADA (scroll horizontal) ============ -->
+    <section class="journey" id="jornada">
+      <div class="journey-sticky">
+        <div class="shell journey-head">
+          <h2 class="ed-title">A escolha leva <em>2 minutos.</em></h2>
+        </div>
+        <div class="journey-track" id="journeyTrack">
+          <article class="step"><small>01</small><h3>Busca</h3><p>Digita “dentista perto de mim” no celular.</p></article>
+          <article class="step hot"><small>02</small><h3>Mapa</h3><p>Olha só as 3 primeiras clínicas. O resto não existe.</p><em>a CZ atua aqui</em></article>
+          <article class="step hot"><small>03</small><h3>Confiança</h3><p>Compara nota, avaliações e fotos do consultório.</p><em>a CZ atua aqui</em></article>
+          <article class="step hot"><small>04</small><h3>Contato</h3><p>Clica no WhatsApp, liga ou abre o site.</p><em>a CZ atua aqui</em></article>
+          <article class="step"><small>05</small><h3>Agenda</h3><p>Marca com quem respondeu e convenceu primeiro.</p></article>
+        </div>
+        <div class="journey-bar"><span id="journeyBar"></span></div>
+      </div>
+    </section>
+
+    <!-- ============ CASES EM DESTAQUE (hover com imagem) ============ -->
+    <section class="cases" id="cases">
+      <div class="shell">
+        <div class="cases-head">
+          <h2 class="ed-title"><span class="rv">Cases</span><br><span class="rv indent" data-d="1">em destaque</span></h2>
+          <p class="small-para rv" data-d="2">Negócios comuns que viraram referência no Google. O mesmo método, agora especializado em odontologia.</p>
+        </div>
+        <div class="case-list" id="caseList">
+          <img class="case-img" id="caseImg" src="src/assets/phone-defende.png" alt="">
+          <a href="#resultados" class="case-row" data-img="src/assets/phone-defende.png"><i class="line"></i><h3>Defende</h3><span class="cat">Controle de pragas · Cambé</span><span class="arr">→</span></a>
+          <a href="#resultados" class="case-row" data-img="src/assets/phone-omnia.png"><i class="line"></i><h3>OMNIA</h3><span class="cat">Medicina integrativa · Londrina</span><span class="arr">→</span></a>
+          <a href="#resultados" class="case-row" data-img="src/assets/phone-nail.png"><i class="line"></i><h3>Eduarda Mello</h3><span class="cat">Nail designer · Londrina</span><span class="arr">→</span></a>
+          <i class="line"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESULTADOS: gráfico ============ -->
+    <section class="results" id="resultados">
+      <div class="shell">
+        <div class="cases-head">
+          <h2 class="ed-title"><span class="rv">Curvas que</span><br><span class="rv indent" data-d="1"><em>só sobem.</em></span></h2>
+          <p class="small-para rv" data-d="2">Interações no perfil do Google mês a mês.</p>
+        </div>
+        <div class="case-tabs rv" id="caseTabs" role="tablist"></div>
+        <div class="case rv">
+          <div class="chart-box">
+            <svg id="chart" viewBox="0 0 600 300" preserveAspectRatio="none" aria-label="Gráfico de interações"></svg>
+            <div class="chart-labels" id="chartLabels"></div>
+          </div>
+          <div class="case-side">
+            <h3 id="caseName"></h3>
+            <p class="small-para" id="caseMeta"></p>
+            <div class="case-kpis" id="caseKpis"></div>
+          </div>
+        </div>
+        <div class="real-case rv">
+          <div>
+            <small class="card-k light">Case real · Defende</small>
+            <p>Menos de 30 interações por mês. Começamos em janeiro de 2025 e, em 60 dias, o perfil <b>mais que dobrou</b> ligações, rotas e cliques no site.</p>
+          </div>
+          <div class="real-bars" id="realBars">
+            <div style="--v:30"><i></i><span>dez</span></div>
+            <div style="--v:60"><i></i><span>jan</span></div>
+            <div style="--v:75"><i></i><span>fev</span></div>
+            <div class="total"><b class="count" data-to="198">0</b><span>interações em 4 meses</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EM NÚMEROS ============ -->
+    <section class="numbers">
+      <div class="shell">
+        <h2 class="ed-title"><span class="rv">Em</span><br><span class="rv" data-d="1">números</span></h2>
+        <div class="num-list" id="numList"></div>
+      </div>
+    </section>
+
+    <!-- ============ SCORE GMN ============ -->
+    <section class="score" id="score">
+      <div class="shell score-grid">
+        <div class="score-left">
+          <h2 class="ed-title"><span class="rv">Qual é o</span><br><span class="rv" data-d="1"><em>seu score?</em></span></h2>
+          <p class="small-para">10 perguntas sobre o perfil da sua clínica no Google. Score de 0 a 1000. Leva 1 minuto.</p>
+          <div class="gauge">
+            <svg viewBox="0 0 200 120">
+              <path class="g-track" d="M20 105 A80 80 0 0 1 180 105" />
+              <path class="g-fill" id="gFill" d="M20 105 A80 80 0 0 1 180 105" />
+              <line class="g-needle" id="gNeedle" x1="100" y1="105" x2="100" y2="38" />
+              <circle cx="100" cy="105" r="6" class="g-hub"/>
+            </svg>
+            <div class="g-val"><b id="gVal">0</b><span>/ 1000</span></div>
+          </div>
+          <div class="g-status" id="gStatus">—</div>
+          <p class="g-text" id="gText">Responda as perguntas para ver o diagnóstico.</p>
+          <a href="#" class="arrow-link js-wa" hidden id="scoreCta"><span>Quero subir meu score</span><i class="circ"><svg viewBox="0 0 24 24"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></i></a>
+        </div>
+        <div class="quiz">
+          <div class="quiz-top"><span id="qCount">01 / 10</span><div class="quiz-bar"><i id="qBar"></i></div></div>
+          <div class="quiz-card" id="quizCard"></div>
+          <div class="quiz-nav"><button class="text-btn" id="qPrev">← Voltar</button><button class="text-btn" id="qReset">Recomeçar</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMO TRABALHAMOS ============ -->
+    <section class="ed" id="processo">
+      <div class="shell">
+        <h2 class="ed-title"><span class="rv">Como</span><br><span class="rv" data-d="1">trabalhamos</span></h2>
+        <div class="rows">
+          <div class="row rv"><i class="line"></i><h3><small>01</small>Diagnóstico</h3><p>Semana 1 — Score do perfil, análise dos 3 concorrentes do mapa e palavras-chave da sua cidade.</p></div>
+          <div class="row rv"><i class="line"></i><h3><small>02</small>Otimização</h3><p>Semanas 2–3 — Perfil completo, fotos, serviços, diretórios e a landing page do tratamento principal no ar.</p></div>
+          <div class="row rv"><i class="line"></i><h3><small>03</small>Crescimento</h3><p>Mês 2 em diante — Postagens, gestão de avaliações e relatório mensal com ligações, rotas e WhatsApp.</p></div>
+          <i class="line"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta" id="contato">
+      <div class="shell">
+        <h2 class="cta-title"><span class="rv">Vamos colocar</span><br><span class="rv" data-d="1">sua clínica</span><br><span class="rv" data-d="2"><em>no topo.</em></span></h2>
+        <div class="cta-foot">
+          <div class="rv" data-d="2">
+            <p class="small-para light">Diagnóstico gratuito: Score Google, comparativo com as 3 clínicas acima de você e plano de 90 dias. Atendemos apenas uma clínica por região e especialidade.</p>
+            <a href="#" class="js-wa cta-mail">Falar no WhatsApp</a>
+          </div>
+          <a href="#" class="arrow-link light js-wa rv" data-d="3"><span>Agendar diagnóstico</span><i class="circ"><svg viewBox="0 0 24 24"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span class="brand"><span class="brand-mark">CZ</span><span class="brand-word">tech</span></span>
+      <span>© CZ Tech — Clínicas no topo do Google</span>
+      <a href="privacidade.html">Privacidade</a>
+    </div>
+  </footer>
+
+  <a href="#" class="wa-float js-wa" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+  </a>
+
+  <script type="module" src="src/js/app.js"></script>
+</body>
+</html>

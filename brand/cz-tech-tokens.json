@@ -1,0 +1,120 @@
+{
+  "nome": "CZ Tech",
+  "versao": "1.0",
+  "origem": "site/assets/style.css",
+  "cores": {
+    "claro": {
+      "marca": {
+        "accent": { "valor": "#1A66D6", "uso": "Botões, links, números e títulos em destaque" },
+        "accent-hover": { "valor": "#2F7DE1", "uso": "Botões ao passar o mouse" },
+        "accent-muted": { "valor": "#8CC4FF", "uso": "Textos de destaque sobre fundo escuro" }
+      },
+      "superficies": {
+        "canvas": { "valor": "#EEF4FB", "uso": "Fundo da página" },
+        "panel": { "valor": "#F8FBFF", "uso": "Fundo alternativo das seções" },
+        "stage": { "valor": "#E3EBF6", "uso": "Palco que agrupa cards" },
+        "card": { "valor": "#FFFFFF", "uso": "Superfície dos cards" },
+        "night": { "valor": "#061430", "uso": "Rodapé, hero e faixas escuras" }
+      },
+      "texto": {
+        "text-primary": { "valor": "#0B1A33", "uso": "Texto principal e blocos escuros" },
+        "text-secondary": { "valor": "#4E6180", "uso": "Descrições e rótulos" }
+      },
+      "linhas": {
+        "line": { "valor": "#C9D7EA", "uso": "Divisórias e bordas" },
+        "line-strong": { "valor": "#8FA6C4", "uso": "Contornos de destaque" }
+      }
+    },
+    "escuro": {
+      "marca": {
+        "accent": { "valor": "#3F86EB", "uso": "Textos e números em destaque" },
+        "accent-hover": { "valor": "#4A92F0", "uso": "Hover de textos em destaque" },
+        "accent-botao": { "valor": "#1A66D6", "uso": "Fundo de botões, com texto branco" },
+        "accent-titulo": { "valor": "#5BA6FF", "uso": "Palavra em destaque nos títulos" }
+      },
+      "superficies": {
+        "canvas": { "valor": "#07101F", "uso": "Fundo da página" },
+        "panel": { "valor": "#0A1629", "uso": "Fundo alternativo das seções" },
+        "stage": { "valor": "#0C1932", "uso": "Palco que agrupa cards" },
+        "card": { "valor": "#122240", "uso": "Superfície dos cards" },
+        "bloco-escuro": { "valor": "#0E2142", "uso": "Faixas e blocos escuros" },
+        "moldura-celular": { "valor": "#030A16", "uso": "Moldura dos mockups de celular" }
+      },
+      "texto": {
+        "text-primary": { "valor": "#EAF1FF", "uso": "Texto principal" },
+        "text-secondary": { "valor": "#9DB1CF", "uso": "Descrições e rótulos" }
+      },
+      "linhas": {
+        "line": { "valor": "#1D3254", "uso": "Divisórias e bordas" },
+        "line-strong": { "valor": "#3A5580", "uso": "Contornos de destaque" }
+      }
+    },
+    "apoio": {
+      "whatsapp": { "valor": "#1FA855" },
+      "score": {
+        "vermelho": "#EF4444",
+        "laranja": "#F59E0B",
+        "azul": "#1A66D6",
+        "verde": "#5FAE12"
+      }
+    }
+  },
+  "tipografia": {
+    "titulos": {
+      "familia": "Bricolage Grotesque",
+      "fallback": "Georgia, serif",
+      "pesos": [400, 700],
+      "espacamento-letras": "-0.03em a -0.04em"
+    },
+    "texto": {
+      "familia": "Figtree",
+      "fallback": "system-ui, sans-serif",
+      "pesos": [300, 400, 600],
+      "tamanho-base": "16px"
+    },
+    "rotulos": {
+      "familia": "JetBrains Mono",
+      "fallback": "ui-monospace, monospace",
+      "pesos": [400],
+      "estilo": "caixa alta, espaçamento 0.08em, mínimo 12px"
+    },
+    "google-fonts": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&family=Figtree:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap"
+  },
+  "forma": {
+    "raio-card": "22px",
+    "raio-palco": "32px",
+    "raio-botao": "999px",
+    "altura-minima-toque": "44px"
+  },
+  "regras": [
+    "Blocos e cards são retângulos com cantos arredondados e topo reto, sem cortes inclinados.",
+    "Uma palavra em azul e negrito para o destaque dos títulos.",
+    "Texto secundário nunca abaixo de 4,5:1 de contraste sobre o fundo.",
+    "No modo escuro, botões com fundo azul usam #1A66D6 com texto branco.",
+    "Mockups de celular continuam claros nos dois temas."
+  ],
+  "css": {
+    ":root": {
+      "--canvas": "#EEF4FB",
+      "--panel": "#F8FBFF",
+      "--night": "#061430",
+      "--accent": "#1A66D6",
+      "--accent-hover": "#2F7DE1",
+      "--accent-muted": "#8CC4FF",
+      "--text-primary": "#0B1A33",
+      "--text-secondary": "#4E6180",
+      "--line": "#C9D7EA",
+      "--line-strong": "#8FA6C4"
+    },
+    "[data-theme=\"dark\"]": {
+      "--canvas": "#07101F",
+      "--panel": "#0A1629",
+      "--text-primary": "#EAF1FF",
+      "--text-secondary": "#9DB1CF",
+      "--line": "#1D3254",
+      "--line-strong": "#3A5580",
+      "--accent": "#3F86EB",
+      "--accent-hover": "#4A92F0"
+    }
+  }
+}

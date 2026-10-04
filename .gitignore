@@ -33,3 +33,7 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Material bruto e versão antiga (não vão para o GitHub)
+review/
+archive/frontend-antigo/node_modules/

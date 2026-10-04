@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CZ Tech · Sua Empresa no Topo do Google e Recomendada por IAs</title>
+<meta name="description" content="Especialistas em Google Meu Negócio, SEO Local e Landing Pages de alta conversão. Posicionamos sua empresa no topo do Google Maps, Gemini e ChatGPT para gerar mais ligações, rotas e vendas no WhatsApp.">
+<meta name="theme-color" content="#061430">
+<meta property="og:title" content="CZ Tech · Otimização para Google Meu Negócio, IAs e SEO Local">
+<meta property="og:description" content="Transforme a presença digital da sua empresa em uma máquina de atrair clientes locais. Agende um diagnóstico gratuito do seu perfil!">
+<!-- DEPLOY STEP: trocar pela URL absoluta do ar -->
+<meta property="og:url" content="https://www.SEUDOMINIO.com.br/">
+<meta property="og:image" content="https://www.SEUDOMINIO.com.br/assets/hero-end.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -150 562 554'%3E%3Crect x='-20' y='-150' width='562' height='554' rx='110' fill='%23061430'/%3E%3Cg fill='%238CC4FF'%3E%3Cpath d='M60 0H268L224 61H87L70 72V175L88 190H259L214 254H60L0 200V55Z'/%3E%3Cpath d='M298 0H522L322 254H242L390 61H252Z'/%3E%3Cpath d='M402 191H516L466 254H352Z'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&family=Figtree:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js";setTimeout(function(){if(!window.__czOk)document.documentElement.className=document.documentElement.className.replace(" js","")},3500)</script>
+<script>try{var t=localStorage.getItem("cz-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+
+<!-- símbolo CZ, reutilizado via <use> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cz" viewBox="0 0 522 254"><path d="M60 0H268L224 61H87L70 72V175L88 190H259L214 254H60L0 200V55Z"/><path d="M298 0H522L322 254H242L390 61H252Z"/><path d="M402 191H516L466 254H352Z"/></symbol>
+</svg>
+
+<!-- camada de ambiente fixa: a cidade de pontos derivando -->
+<div class="ambient" aria-hidden="true"></div>
+
+<!-- o pin assinatura: acompanha a página inteira -->
+<div class="pin" id="pin" aria-hidden="true"><i></i><span id="pinLabel">01</span></div>
+
+<header class="nav" id="nav">
+  <a href="#top" class="brand" aria-label="CZ Tech, início"><svg class="brand-cz"><use href="#cz"/></svg><span class="brand-tech"></span></a>
+  <nav aria-label="Navegação Principal" class="nav-links">
+    <a href="#servicos">Serviços &amp; IA</a><a href="#jornada">Como Funciona</a><a href="#resultados">Resultados</a><a href="#score">Score GMN</a><a href="#faq">Dúvidas Frequentes</a>
+  </nav>
+  <button type="button" class="theme-btn" id="themeBtn" aria-label="Alternar modo escuro" aria-pressed="false"><svg class="t-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="t-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg></button>
+  <a class="btn btn-sm js-wa" href="#"><span>Diagnóstico<span class="nb-extra"> Grátis</span></span></a>
+  <button type="button" class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+  <nav class="nav-menu" id="navMenu" aria-label="Menu" hidden>
+    <a href="#servicos">Serviços &amp; IA</a>
+    <a href="#jornada">Como Funciona</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#score">Score GMN</a>
+    <a href="#faq">Dúvidas Frequentes</a>
+  </nav>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ================= HERO: a descida até o ponto ================= -->
+  <section class="hero" id="top" aria-label="Apresentação Principal">
+    <div class="stage" id="stage">
+      <div class="layer l-bg" id="lBg" aria-hidden="true"><span class="bg-glow"></span><div class="wm-wrap" id="wmWrap"><div class="worldmap"><i class="wm-topo"></i><div class="wm-lit"><i class="wm-topo"></i></div><span class="wm-glow"></span><span class="wm-pin br" style="--x:31%;--y:72%"><i class="wm-ring"></i><em class="wm-label">Sua Empresa no Topo</em></span><span class="wm-pin" style="--x:19%;--y:31%"><i class="wm-ring"></i></span><span class="wm-pin" style="--x:43%;--y:36%"><i class="wm-ring"></i></span><span class="wm-pin" style="--x:52%;--y:62%"><i class="wm-ring"></i></span><span class="wm-pin" style="--x:70%;--y:38%"><i class="wm-ring"></i></span><span class="wm-pin" style="--x:84%;--y:75%"><i class="wm-ring"></i></span></div></div></div>
+      <div class="logo-scene" id="logoScene" aria-hidden="true"><div class="logo-wrap" id="logoWrap"><div class="cz3d"></div></div></div>
+      <video id="heroVideo" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+      <div class="scrim" aria-hidden="true"></div>
+
+      <div class="band b1" data-a="0" data-b="0.30">
+        <p class="kicker">CZ Tech · Google Meu Negócio, SEO Local &amp; Inteligência Artificial</p>
+        <h1 class="split blur">Empresas que aparecem primeiro vendem todos os dias.</h1>
+      </div>
+      <div class="band b2" data-a="0.36" data-b="0.64">
+        <p class="split drift big">Seu cliente busca no Google, Gemini ou ChatGPT antes de comprar. Se você não está no Top 3 do mapa, está doando clientes para o seu concorrente.</p>
+      </div>
+      <div class="band b3" data-a="0.70" data-b="1">
+        <h2 class="split rise">Nós fazemos a sua empresa ser a escolha número 1</h2>
+        <p class="sub">Otimização de Google Meu Negócio, SEO Local para IA e Landing Pages de Alta Conversão.</p>
+        <div class="cta-row"><a class="btn js-wa" href="#">Agendar Diagnóstico Gratuito do Perfil</a></div>
+      </div>
+
+      <div class="cue" id="cue" aria-hidden="true">
+        <svg class="ring" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="126" style="stroke-dashoffset:var(--ld,0)"/></svg>
+        <span>Role para ver a transformação</span>
+      </div>
+    </div>
+
+    <!-- hero estático (celular e movimento reduzido) -->
+    <div class="hero-static">
+      <div class="wm-wrap wm-static" aria-hidden="true"><div class="worldmap"><i class="wm-topo"></i><div class="wm-lit"><i class="wm-topo"></i></div><span class="wm-glow"></span><span class="wm-pin br" style="--x:31%;--y:72%"><i class="wm-ring"></i><em class="wm-label">Sua Empresa</em></span><span class="wm-pin" style="--x:19%;--y:31%"><i class="wm-ring"></i></span><span class="wm-pin" style="--x:43%;--y:36%"><i class="wm-ring"></i></span><span class="wm-pin" style="--x:52%;--y:62%"><i class="wm-ring"></i></span><span class="wm-pin" style="--x:70%;--y:38%"><i class="wm-ring"></i></span><span class="wm-pin" style="--x:84%;--y:75%"><i class="wm-ring"></i></span></div></div>
+      <div class="logo-scene hs-scene" aria-hidden="true"><div class="logo-wrap"><div class="cz3d"></div></div></div>
+      <h1 class="hs-title">Nós fazemos a sua empresa ser a escolha número 1</h1>
+      <p class="sub">Posições no topo do Google Maps, recomendações por IA e páginas que convertem no WhatsApp.</p>
+      <a class="btn js-wa" href="#">Agendar Diagnóstico Gratuito</a>
+    </div>
+  </section>
+
+  <!-- ================= MANIFESTO ================= -->
+  <section class="manifesto" id="manifesto" data-pin="02">
+    <div class="shell">
+      <div class="stage-panel mf-stage">
+        <div class="mf-dark in-up">
+          <h2 class="mf-big">Movidos <b>por Inteligência Algorítmica.</b><br>Feitos para <b>Converter.</b></h2>
+          <div class="mf-side">
+            <p class="mf-para">Quando um cliente pesquisa por um serviço na sua cidade, o Google e as IAs recomendam apenas os perfis mais confiáveis e bem estruturados. Nosso trabalho é colocar a sua empresa no topo dessa lista e transformar cada clique em orçamento no WhatsApp.</p>
+            <a class="btn btn-light js-wa" href="#">Agendar Diagnóstico Gratuito</a>
+          </div>
+        </div>
+        <div class="mf-cards">
+          <article class="mf-c in-up" style="--d:0"><p class="mf-count">01</p><h3>Diagnóstico &amp; Score GMN</h3><p>Analisamos a saúde técnica da sua ficha com o laudo Score GMN, auditando 10 pontos críticos e comparando diretamente com os 3 concorrentes do topo.</p></article>
+          <article class="mf-c in-up" style="--d:1"><p class="mf-count">02</p><h3>Decisões Baseadas em Dados</h3><p>Eliminamos o achismo. Cada otimização mira métricas reais de faturamento: solicitações de rota, ligações recebidas e mensagens iniciadas no WhatsApp.</p></article>
+          <article class="mf-c in-up" style="--d:2"><p class="mf-count">03</p><h3>Top 3 Google Maps</h3><p>Ajuste rigoroso de categorias, atributos, posts com contexto semântico e fotografias tratadas como sinais de inteligência visual para o algoritmo.</p></article>
+          <article class="mf-c in-up" style="--d:0"><p class="mf-count">04</p><h3>Landing Page para IA &amp; SEO</h3><p>Desenvolvemos páginas ultrarrápidas com alinhamento do NAP (Nome, Endereço e Telefone), preparadas para validar sua autoridade temática perante o Google e o ChatGPT.</p></article>
+          <article class="mf-c in-up" style="--d:1"><p class="mf-count">05</p><h3>Conversão sem Fricção</h3><p>Quem responde primeiro fecha a venda. Facilitamos o contato do cliente em apenas 1 toque na ficha do mapa e na landing page de vendas.</p></article>
+          <article class="mf-c in-up" style="--d:2"><p class="mf-count">06</p><h3>Relatório de Impacto Mensal</h3><p>Transparência total. Você acompanha a evolução exata de interações, novos clientes vindos do mapa e o retorno sobre o seu investimento.</p></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= O QUE FAZEMOS ================= -->
+  <section class="ed" id="servicos" data-pin="03">
+    <div class="shell">
+      <p class="label in-up">Ecossistema de Performance</p>
+      <h2 class="ed-title in-up">Quatro Pilares Estratégicos.<br><em>Domínio Local Absoluto.</em></h2>
+      <div class="tl" id="tl">
+        <span class="tl-rail" aria-hidden="true"><i></i></span>
+        <article class="tl-item in-up"><span class="tl-node" aria-hidden="true">01</span><div class="tl-card"><h3>Google Meu Negócio &amp; Busca por IA</h3><p>Estruturação de categorias primárias e secundárias, descrições preparadas para busca conversacional e postagens periódicas com foco semântico.</p></div></article>
+        <article class="tl-item in-up"><span class="tl-node" aria-hidden="true">02</span><div class="tl-card"><h3>Landing Pages de Alta Conversão</h3><p>Páginas leves, persuasivas e otimizadas para SEO Local, desenhadas com o único propósito de levar o visitante direto para o seu WhatsApp comercial.</p></div></article>
+        <article class="tl-item in-up"><span class="tl-node" aria-hidden="true">03</span><div class="tl-card"><h3>Gestão &amp; Captação de Avaliações</h3><p>Implementação de estratégias de captação de reviews ricos com fotos e palavras-chave, o sinal semântico número 1 para recomendação por Inteligência Artificial.</p></div></article>
+        <article class="tl-item in-up"><span class="tl-node" aria-hidden="true">04</span><div class="tl-card"><h3>SEO Local &amp; Diretórios NAP</h3><p>Citação e indexação padronizada da sua empresa em mais de 50 diretórios de alta confiança do Google, multiplicando a autoridade do seu perfil local.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NA PRÁTICA ================= -->
+  <section class="demo" id="pratica" data-pin="04">
+    <div class="shell">
+      <div class="head-split">
+        <h2 class="ed-title in-up">Veja na Prática.</h2>
+        <p class="lede in-up" style="--d:1">Como a sua empresa passa a aparecer na tela do cliente, do primeiro lugar no mapa até o contato no WhatsApp.</p>
+      </div>
+      <div class="stage-panel ex-stage">
+        <div class="ex-grid">
+          <article class="ex in-up" id="cardRank">
+            <header class="ex-head"><span class="ex-av" aria-hidden="true">SF</span><div><h3>Studio Forma</h3><p>Academia · Londrina</p></div></header>
+            <p class="ex-tag"><i>01</i> Escalada de Ranking</p>
+            <div class="dphone" aria-hidden="true"><div class="dscreen">
+              <div class="sim-map"><svg class="roads" viewBox="0 0 400 220" preserveAspectRatio="none"><path d="M0 60 Q120 40 200 90 T400 70"/><path d="M0 170 Q160 150 260 190 T400 160"/><path d="M90 0 Q110 110 70 220"/><path d="M300 0 Q270 120 320 220"/></svg><span class="mpin m1">1</span><span class="mpin m2">2</span><span class="mpin m3">3</span><span class="mpin m-you" id="pinYou">★</span><span class="radar"></span></div>
+              <ol class="rank" id="rank">
+                <li data-id="a"><b>Fit Center</b><small>4,2 ★ · 38</small></li>
+                <li data-id="b"><b>Corpo Ativo</b><small>4,4 ★ · 51</small></li>
+                <li data-id="c"><b>Academia Norte</b><small>4,1 ★ · 22</small></li>
+                <li data-id="you" class="you"><b>Studio Forma</b><small id="youMeta">3,9 ★ · 9</small></li>
+              </ol>
+            </div></div>
+            <footer class="ex-res"><b>4º para 1º</b><span>no mapa, depois da adequação de categorias, imagens semânticas e avaliações.</span></footer>
+          </article>
+          <article class="ex in-up" style="--d:1" id="cardGmn">
+            <header class="ex-head"><span class="ex-av" aria-hidden="true">CB</span><div><h3>Café Bom Grão</h3><p>Cafeteria e Padaria · Cambé</p></div></header>
+            <p class="ex-tag"><i>02</i> Perfil Autoridade 100%</p>
+            <div class="dphone" aria-hidden="true"><div class="dscreen">
+              <div class="gmn" id="gmn">
+                <div class="g-row g-title"><span class="sk"></span><b>Café Bom Grão</b></div>
+                <div class="g-row g-stars"><span class="sk"></span><span class="stars">★★★★★</span> <b>4,9</b> <small>(<span id="gmnCount">0</span>)</small></div>
+                <div class="g-row g-cats"><span class="chip">Café</span><span class="chip">Padaria</span><span class="chip">Brunch</span></div>
+                <div class="g-row g-photos"><i></i><i></i><i></i><i></i></div>
+                <div class="g-row g-actions"><span>Ligar</span><span>Rotas</span><span>WhatsApp</span></div>
+                <div class="g-meter"><span>Completo</span><div><i id="gMeter"></i></div><b id="gPct">0%</b></div>
+              </div>
+            </div></div>
+            <footer class="ex-res"><b>212 avaliações</b><span>5 estrelas ativas, respostas com palavras-chave estratégicas e perfil 100% otimizado.</span></footer>
+          </article>
+          <article class="ex in-up" style="--d:2" id="cardLp">
+            <header class="ex-head"><span class="ex-av" aria-hidden="true">MR</span><div><h3>Mendes &amp; Rocha</h3><p>Advocacia Trabalhista · Maringá</p></div></header>
+            <p class="ex-tag"><i>03</i> Landing Page de Alta Conversão</p>
+            <div class="dphone" aria-hidden="true"><div class="dscreen dscreen-lp">
+              <div class="lp"><div class="lp-hero"><small>Advocacia Trabalhista · Maringá</small><b>Seus Direitos Garantidos</b><span>★★★★★ 4,9</span></div><div class="lp-blocks"><i></i><i></i></div><div class="lp-btn">Agendar Consulta no WhatsApp</div></div>
+              <span class="tap"></span>
+              <div class="lp-toast"><i></i><span><b>Novo Orçamento</b><small>“Gostaria de agendar um atendimento”</small></span></div>
+            </div></div>
+            <footer class="ex-res"><b>8% a 15%</b><span>de conversão em mensagens no WhatsApp, contra a média de 2% a 5% de sites comuns.</span></footer>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= A ESCOLHA: o palco das 5 etapas ================= -->
+  <section class="journey" id="jornada" data-pin="05">
+    <div class="j-sticky">
+      <div class="shell">
+        <div class="head-split j-head">
+          <h2 class="ed-title">A decisão de compra leva menos de <em>2 minutos.</em></h2>
+          <p class="lede">Veja a jornada completa do seu cliente desde a primeira busca no celular até fechar o serviço com você. <span class="only-d">Role e veja o funil se fechar.</span><span class="only-m">Toque em cada etapa para ver o que acontece.</span></p>
+        </div>
+        <div class="stage-panel j-stage" id="jStage">
+          <div class="j-fun">
+            <div class="j-funnel" id="jFunnel">
+            <button class="j-bar shown on" data-step="0" style="--w:100%;--in:5.50%" aria-label="Etapa 1: Intenção de Busca"><span class="j-num">01</span><span class="j-name">Busca Conversacional</span><b>Google</b></button>
+            <button class="j-bar" data-step="1" style="--w:89%;--in:6.18%" aria-label="Etapa 2: Domínio do Mapa"><span class="j-num">02</span><span class="j-name">Top 3 Google Maps</span><em class="j-tag">CZ</em></button>
+            <button class="j-bar" data-step="2" style="--w:78%;--in:7.05%" aria-label="Etapa 3: Prova Social &amp; IA"><span class="j-num">03</span><span class="j-name">Reputação &amp; Avaliações</span><em class="j-tag">CZ</em><b>Nota</b></button>
+            <button class="j-bar" data-step="3" style="--w:67%;--in:8.21%" aria-label="Etapa 4: Ponto de Conversão"><span class="j-num">04</span><span class="j-name">Contato em 1 Toque</span><em class="j-tag">CZ</em></button>
+            <button class="j-bar" data-step="4" style="--w:56%;--in:10.00%" aria-label="Etapa 5: Fechamento de Venda"><span class="j-num">05</span><span class="j-name">Venda no WhatsApp</span><b>2 min</b></button>
+            </div>
+            <p class="j-closing">Em cada etapa estratégica marcada pela CZ, blindamos o seu perfil, orquestramos avaliações reais e garantimos que sua empresa seja a primeira e melhor escolha.</p>
+          </div>
+          <div class="j-detail">
+          <div class="j-phone" aria-hidden="true">
+            <div class="jp-s on" data-step="0">
+              <div class="jp-search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span id="jType"></span><i class="caret"></i></div>
+              <ul class="jp-sugg"><li>café perto de mim</li><li>qual o melhor café em Londrina</li><li>café aberto agora</li><li>café avaliações</li></ul>
+            </div>
+            <div class="jp-s" data-step="1">
+              <div class="jp-map"><svg class="roads" viewBox="0 0 400 220" preserveAspectRatio="none"><path d="M0 60 Q120 40 200 90 T400 70"/><path d="M0 170 Q160 150 260 190 T400 160"/><path d="M90 0 Q110 110 70 220"/><path d="M300 0 Q270 120 320 220"/></svg><span class="jp-pin p1">1</span><span class="jp-pin p2">2</span><span class="jp-pin p3">3</span></div>
+              <ol class="jp-list"><li class="you"><b>Sua Empresa</b><small>4,9 ★ · no topo</small></li><li><b>Concorrente A</b><small>4,2 ★</small></li><li><b>Concorrente B</b><small>4,4 ★</small></li></ol>
+            </div>
+            <div class="jp-s" data-step="2">
+              <div class="jp-prof"><b>Sua Empresa</b><span class="stars">★★★★★</span><small>4,9 · 128 avaliações reais</small></div>
+              <div class="jp-photos"><i></i><i></i><i></i></div>
+              <div class="jp-review"><span class="stars">★★★★★</span><i></i><i class="short"></i></div>
+              <div class="jp-review"><span class="stars">★★★★★</span><i></i><i class="short"></i></div>
+            </div>
+            <div class="jp-s" data-step="3">
+              <div class="jp-prof"><b>Sua Empresa</b><small>Aberto Agora · Atendimento no WhatsApp em 1 clique</small></div>
+              <div class="jp-actions"><span>Ligar</span><span>Rotas</span><span class="wa">WhatsApp</span></div>
+              <div class="jp-wa">Chamar no WhatsApp Agora</div>
+              <span class="jp-tap"></span>
+            </div>
+            <div class="jp-s" data-step="4">
+              <p class="jp-month">Outubro</p>
+              <div class="jp-cal"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="booked"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="jp-booked">✓ Agendamento Confirmado via WhatsApp<small>Terça, 14h</small></div>
+            </div>
+          </div>
+            <div class="j-info">
+              <article class="j-i on" data-step="0"><p class="label">Etapa 01 de 05</p><h3>Busca e Intenção</h3><p class="j-sent">O cliente pesquisa por serviços locais no Google, Gemini ou ChatGPT no celular.</p><p class="j-stat"><b>90%+</b><span>das compras locais começam por uma busca digital</span></p></article>
+              <article class="j-i" data-step="1"><p class="label">Etapa 02 de 05</p><h3>Visibilidade no Mapa</h3><p class="j-sent">Ele analisa apenas os 3 primeiros perfis do Google Maps. Quem está na segunda página simplesmente não existe.</p><p class="j-stat"><b>70%+</b><span>de todos os cliques ficam com o Top 3 do mapa</span></p><span class="cz-badge">A CZ posiciona sua empresa aqui</span></article>
+              <article class="j-i" data-step="2"><p class="label">Etapa 03 de 05</p><h3>Prova Social &amp; Confiança</h3><p class="j-sent">O cliente compara as estrelas, lê os comentários recentes e observa a qualidade das fotos do seu ambiente e equipe.</p><p class="j-stat"><b>9 em 10</b><span>pessoas tomam decisões baseadas em avaliações</span></p><span class="cz-badge">A CZ orquestra sua autoridade aqui</span></article>
+              <article class="j-i" data-step="3"><p class="label">Etapa 04 de 05</p><h3>Ponto de Contato Direto</h3><p class="j-sent">O cliente clica no botão do WhatsApp ou acessa a Landing Page. A resposta imediata garante a preferência.</p><p class="j-stat"><b>1 toque</b><span>separa a busca da conversa no seu WhatsApp</span></p><span class="cz-badge">A CZ otimiza sua conversão aqui</span></article>
+              <article class="j-i" data-step="4"><p class="label">Etapa 05 de 05</p><h3>Fechamento de Venda</h3><p class="j-sent">Sua empresa atende com agilidade e fecha o orçamento antes mesmo do concorrente responder.</p><p class="j-stat"><b>2 min</b><span>entre a pesquisa e o agendamento do cliente</span></p></article>
+            </div>
+          </div>
+          <div class="j-progress"><span id="jBar"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CASES ================= -->
+  <section class="cases" id="cases" data-pin="06">
+    <div class="shell">
+      <div class="head-split">
+        <h2 class="ed-title in-up">Histórias Reais<br>de Sucesso.</h2>
+        <p class="lede in-up" style="--d:1">Empresas comuns que passaram a ser encontradas e escolhidas na sua região. O mesmo método serve para qualquer negócio local.</p>
+      </div>
+      <div class="stage-panel case-stage">
+        <div class="case-grid">
+          <button type="button" class="case-card in-up sel" style="--d:0" data-case="0" aria-pressed="true"><span class="case-shot"><img src="assets/phone-defende.webp" alt="Perfil de Defende Controle de Pragas no Google" width="420" height="854" loading="lazy"></span><span class="case-info"><span class="case-n">01</span><h3>Defende</h3><p>Controle de Pragas · Cambé</p><span class="case-go">Ver Análise de Resultados <i aria-hidden="true">↓</i></span></span></button>
+          <button type="button" class="case-card in-up" style="--d:1" data-case="1" aria-pressed="false"><span class="case-shot"><img src="assets/phone-omnia.webp" alt="Perfil de OMNIA Medicina Integrativa no Google" width="420" height="854" loading="lazy"></span><span class="case-info"><span class="case-n">02</span><h3>OMNIA</h3><p>Medicina Integrativa · Londrina</p><span class="case-go">Ver Análise de Resultados <i aria-hidden="true">↓</i></span></span></button>
+          <button type="button" class="case-card in-up" style="--d:2" data-case="2" aria-pressed="false"><span class="case-shot"><img src="assets/phone-nail.webp" alt="Perfil de Eduarda Mello Nail Designer no Google" width="420" height="854" loading="lazy"></span><span class="case-info"><span class="case-n">03</span><h3>Eduarda Mello</h3><p>Nail Designer · Londrina</p><span class="case-go">Ver Análise de Resultados <i aria-hidden="true">↓</i></span></span></button>
+        </div>
+        <div class="case-detail panel-card in-up" id="caseDetail" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESULTADOS: o palco que abre ================= -->
+  <section class="results" id="resultados" data-pin="07">
+    <div class="r-pin" id="rPin">
+      <div class="r-sticky">
+        <div class="shell">
+          <div class="head-split r-head" id="rHead">
+            <h2 class="ed-title">Crescimento que<br><em>dá para medir.</em></h2>
+            <p class="lede">O que muda no volume de chamadas, rotas e mensagens depois da otimização, mês a mês.</p>
+          </div>
+          <div class="stage-panel r-stage" id="rStage">
+            <article class="panel-card r-card r-side" id="rBarsCard">
+              <p class="label">Chamadas e Ligações Diretas</p>
+              <b class="r-big">+190%</b>
+              <p class="r-note">Aumento de ligações vindas diretamente do Google Maps em 6 meses.</p>
+              <div class="mini-bars"><i style="--v:.34"></i><i style="--v:.44"></i><i style="--v:.57"></i><i style="--v:.71"></i><i style="--v:.86"></i><i class="hi" style="--v:1"><em>+190%</em></i></div>
+              <div class="mini-x"><span>jan</span><span>fev</span><span>mar</span><span>abr</span><span>mai</span><span>jun</span></div>
+            </article>
+            <article class="panel-card r-card r-main" id="rMain">
+              <p class="label">Interações e Solicitações de Rota</p>
+              <b class="r-big" id="rMainV">+523%</b>
+              <p class="r-note">Crescimento de 34 para 212 interações mensais na ficha.</p>
+              <div class="area">
+                <svg viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true"><path class="area-fill" d="M0 150 L0 130.2 C10 128.4 40 125 60 119.7 C80 114.4 100 105.9 120 98.2 C140 90.5 160 81 180 73.7 C200 66.4 220 62.4 240 54.5 C260 46.6 290 31.2 300 26.5 L300 150 Z"/><path class="area-line" d="M0 130.2 C10 128.4 40 125 60 119.7 C80 114.4 100 105.9 120 98.2 C140 90.5 160 81 180 73.7 C200 66.4 220 62.4 240 54.5 C260 46.6 290 31.2 300 26.5"/></svg>
+                <div class="marker" id="rMarker"><i></i><em id="rTag">+523%</em></div>
+              </div>
+              <div class="mini-x"><span>jan</span><span>fev</span><span>mar</span><span>abr</span><span>mai</span><span>jun</span></div>
+            </article>
+            <article class="panel-card r-card r-side" id="rCompare">
+              <p class="label">Conversão da Landing Page em Vendas</p>
+              <b class="r-big">8% a 15%</b>
+              <p class="r-note">Visitantes da página que iniciam conversa no WhatsApp comercial.</p>
+              <div class="hbars"><div><span>Mercado</span><i style="--w:.3"></i><em>2% a 5%</em></div><div class="us"><span>Com a CZ</span><i style="--w:1"></i><em>8% a 15%</em></div></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COMO TRABALHAMOS ================= -->
+  <section class="ed process" id="processo" data-pin="08">
+    <div class="shell">
+      <p class="label in-up">Metodologia de Trabalho</p>
+      <h2 class="ed-title in-up">A Jornada Estratégica<br><em>Rumo ao Topo.</em></h2>
+      <ol class="climb">
+        <li class="step in-up" style="--d:0;--lv:25">
+          <span class="step-n">01</span>
+          <div class="step-card">
+            <p class="step-when">Semana 1</p>
+            <h3>Diagnóstico &amp; Score GMN</h3>
+            <p>Mapeamento completo dos gargalos do perfil, auditoria do Score GMN e análise semântica dos 3 principais concorrentes locais.</p>
+            <span class="step-bar" aria-hidden="true"><i></i></span>
+          </div>
+        </li>
+        <li class="step in-up" style="--d:1;--lv:50">
+          <span class="step-n">02</span>
+          <div class="step-card">
+            <p class="step-when">Semanas 2 e 3</p>
+            <h3>Otimização &amp; Estruturação</h3>
+            <p>Ajuste de categorias, descrição conversacional para IA, fotos com contexto semântico, indexação em diretórios e publicação da Landing Page.</p>
+            <span class="step-bar" aria-hidden="true"><i></i></span>
+          </div>
+        </li>
+        <li class="step in-up" style="--d:2;--lv:75">
+          <span class="step-n">03</span>
+          <div class="step-card">
+            <p class="step-when">Semana 4</p>
+            <h3>Lançamento &amp; Entrega do Ecossistema</h3>
+            <p>Ficha 100% blindada e otimizada, kit de captação de avaliações ativado e integração de mensagens no WhatsApp funcionando perfeitamente.</p>
+            <span class="step-bar" aria-hidden="true"><i></i></span>
+          </div>
+        </li>
+        <li class="step in-up" style="--d:3;--lv:100">
+          <span class="step-n">04</span>
+          <div class="step-card">
+            <p class="step-when">Gestão Contínua de 6 Meses</p>
+            <h3>Acompanhamento &amp; Escala de Resultados</h3>
+            <p>Monitoramento constante de métricas, postagens estratégicas, respostas otimizadas a reviews, relatórios mensais de ligações e mensagens.</p>
+            <span class="step-bar" aria-hidden="true"><i></i></span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= SCORE: o palco do diagnóstico (momento interativo) ================= -->
+  <section class="score" id="score" data-pin="09">
+    <div class="shell">
+      <div class="score-head">
+        <p class="label in-up">Ferramenta Exclusiva de Auditoria</p>
+        <h2 class="ed-title in-up" style="--d:1">Qual é a nota real do seu<br>perfil no <em>Google</em> hoje?</h2>
+        <p class="lede in-up" style="--d:2">Responda a 10 perguntas rápidas e descubra instantaneamente o nível de competitividade da sua empresa nas buscas locais.</p>
+      </div>
+      <div class="stage-panel s-stage in-rise" id="sStage">
+        <p class="s-mini" aria-hidden="true">Seu Score GMN <b id="sMini">0</b><small>/ 1000</small></p>
+        <div class="ftabs" role="tablist" aria-label="Áreas de Análise">
+          <button class="ftab" role="tab" aria-selected="true" data-pilar="basicos">Dados Básicos <i data-for="basicos">0/4</i></button>
+          <button class="ftab" role="tab" aria-selected="false" data-pilar="atualizacao">Atualização &amp; Sinais <i data-for="atualizacao">0/4</i></button>
+          <button class="ftab" role="tab" aria-selected="false" data-pilar="gatilhos">Gatilhos &amp; IA <i data-for="gatilhos">0/2</i></button>
+        </div>
+        <div class="s-body">
+          <div class="panel-card s-questions" id="sQuestions" role="tabpanel"></div>
+          <div class="s-side">
+            <div class="panel-card s-live in-up">
+              <p class="label">Seu Score Atual</p>
+              <div class="s-score" aria-live="polite"><b id="gVal">0</b><span>/ 1000</span></div>
+              <div class="s-meter" aria-hidden="true"><i class="z1"></i><i class="z2"></i><i class="z3"></i><i class="z4"></i><span class="s-needle" id="sNeedle"></span></div>
+              <div class="s-pillars" id="sPillars"></div>
+            </div>
+            <div class="panel-card dark s-verdict in-up" style="--d:1" id="sVerdict">
+              <p class="label light" id="vKicker">Faltam 10 respostas rápidas</p>
+              <h3 id="vTitle">O resultado da sua auditoria aparecerá aqui.</h3>
+              <p id="vText">Responda ao questionário para ver o status da sua ficha e identificar as falhas que estão custando clientes à sua empresa.</p>
+              <a class="btn btn-light js-wa" id="vCta" href="#" hidden>Receber Laudo Gratuito no WhatsApp</a>
+            </div>
+          </div>
+        </div>
+        <div class="s-foot"><button class="txt-btn" id="qReset">Recomeçar Diagnóstico</button><button class="txt-btn s-next" id="sNext">Próxima Etapa →</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="faq" id="faq" data-pin="10">
+    <div class="shell faq-grid">
+      <h2 class="ed-title in-up">Respostas Claras<br><em>sem Enrolação.</em></h2>
+      <div class="qa">
+        <details class="in-up"><summary>Já paguei agências no passado e não obtive resultados. Por que com a CZ é diferente?</summary><p>Agências tradicionais vendem “mídia social” ou postagens genéricas. Nós focamos na intenção real de compra do cliente: Medimos e otimizamos ligações recebidas, rotas traçadas e orçamentos gerados no WhatsApp através de dados transparentes.</p></details>
+        <details class="in-up"><summary>Preciso investir dinheiro em tráfego pago (Google Ads) para ranquear?</summary><p>Não! A otimização do Google Meu Negócio e o SEO Local fazem sua empresa aparecer no topo de forma orgânica (gratuita), capturando clientes sem a necessidade de pagar por cada clique. O tráfego pago torna-se opcional.</p></details>
+        <details class="in-up"><summary>Em quanto tempo começo a ver o retorno do investimento?</summary><p>Os primeiros ganhos em posições e interações ocorrem já nas primeiras semanas após o ajuste estrutural. O crescimento consistente e a consolidação no Top 3 do mapa acontecem entre o segundo e o terceiro mês de gestão.</p></details>
+        <details class="in-up"><summary>Como a Inteligência Artificial (Gemini &amp; ChatGPT) afeta as buscas pela minha empresa?</summary><p>As pessoas agora utilizam buscas conversacionais (ex.: “Qual o melhor dentista para clareamento no centro?”). As IAs leem a coerência dos seus dados (NAP), avaliações de clientes e conteúdo da sua Landing Page para decidir quem recomendar. Nós preparamos seu negócio exatamente para isso.</p></details>
+        <details class="in-up"><summary>Já possuo um site institucional. Ainda assim preciso de uma Landing Page?</summary><p>O site institucional apresenta a empresa de forma ampla. A Landing Page é projetada para um objetivo específico: converter visitantes em conversas imediatas no WhatsApp. Uma complementa a outra na construção da sua autoridade digital.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA: o banner escuro ================= -->
+  <section class="cta" id="contato" data-pin="11">
+    <div class="shell">
+      <div class="cta-banner in-scale">
+        <span class="cta-glow" aria-hidden="true"></span>
+        <p class="label light">Diagnóstico 100% Gratuito</p>
+        <h2 class="cta-title">Pronto para colocar sua empresa<br>no <em>topo das buscas?</em></h2>
+        <p class="cta-text">Receba seu Laudo Score GMN completo, o comparativo com seus 3 maiores concorrentes e um plano estratégico para os próximos 90 dias.</p>
+        <a class="btn btn-light btn-lg js-wa" href="#">Agendar Diagnóstico no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="shell foot">
+    <a class="foot-logo" href="#top" aria-label="CZ Tech, voltar ao topo"><svg viewBox="0 0 522 254" aria-hidden="true"><path d="M60 0H268L224 61H87L70 72V175L88 190H259L214 254H60L0 200V55Z"/><path d="M298 0H522L322 254H242L390 61H252Z"/><path d="M402 191H516L466 254H352Z"/></svg><span class="foot-tech"></span></a>
+    <p>Especialistas em Google Meu Negócio, SEO Local, IAs e Landing Pages de Alta Conversão.</p>
+    <a href="privacidade.html">Política de Privacidade</a>
+  </div>
+</footer>
+
+<a class="wa-float js-wa" href="#" aria-label="Falar com Especialista no WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg></a>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
