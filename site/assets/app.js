@@ -635,6 +635,11 @@ function scoreStage() {
     if (animate) { box.classList.remove('swap'); void box.offsetWidth; box.classList.add('swap'); }
     updateNext();
   }
+  /* a mesma mensagem, com a nota, vale para o botão do laudo e para o "Entre em Contato" */
+  const scoreWa = () => {
+    const v = Math.round(total()), f = faixa(v);
+    return 'https://wa.me/' + config.whatsapp + '?text=' + encodeURIComponent('Olá! Fiz o Score GMN no site da CZ Tech e minha nota foi ' + v + ' de 1000 (' + f.status + '). Gostaria de receber a auditoria completa do perfil da minha empresa.');
+  };
   function updateNext() {
     const next = $('#sNext'), pos = ORDER.indexOf(cur);
     next.textContent = pos < 2 ? 'Próxima Etapa →' : answered() === Q.length ? 'Entre em Contato →' : 'Ver Respostas Faltantes →';
@@ -666,6 +671,7 @@ function scoreStage() {
       $('#vKicker').innerHTML = `Diagnóstico <span class="status" style="background:${f.cor}">${f.status}</span>`;
       $('#vTitle').textContent = f.titulo;
       $('#vText').textContent = f.texto;
+      $('#vCta').href = scoreWa();
       $('#vCta').hidden = false;
     }
     updateNext();
@@ -688,9 +694,7 @@ function scoreStage() {
     const pos = ORDER.indexOf(cur);
     if (pos < 2) { render(ORDER[pos + 1]); showTab(); toStage(true); }
     else if (answered() === Q.length) {                       // tudo respondido: abre o WhatsApp já com a nota
-      const v = Math.round(total()), f = faixa(v);
-      const msg = 'Olá! Fiz o Score GMN no site da CZ Tech e minha nota foi ' + v + ' de 1000 (' + f.status + '). Gostaria de receber a auditoria completa do perfil da minha empresa.';
-      window.open('https://wa.me/' + config.whatsapp + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+      window.open(scoreWa(), '_blank', 'noopener');
     } else {                                                  // falta resposta: leva até a primeira área incompleta
       const miss = ORDER.find(k => idxOf(k).some(i => ans[i] == null));
       if (miss && miss !== cur) render(miss);
