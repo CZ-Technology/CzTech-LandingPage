@@ -578,7 +578,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   .pin{right:10px}
 }
 /* palcos sem pino: celular e movimento reduzido (idêntico ao JS) */
-@media (max-width: 720px){
+@media (max-width: 720px), (prefers-reduced-motion: reduce){
   .journey{height:auto}
   .j-sticky{position:static;height:auto;display:block;padding:100px 0 70px}
   .j-sticky .shell{padding-top:0}
@@ -601,7 +601,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 }
 
 /* ===== HERO ESTÁTICO: os cinco portões (idênticos ao JS) ===== */
-@media (max-width: 720px), (orientation: portrait) and (max-width: 1024px), (orientation: portrait) and (pointer: coarse), (orientation: landscape) and (pointer: coarse) and (max-height: 560px){
+@media (max-width: 720px), (orientation: portrait) and (max-width: 1024px), (orientation: portrait) and (pointer: coarse), (orientation: landscape) and (pointer: coarse) and (max-height: 560px), (prefers-reduced-motion: reduce){
   .hero{height:auto}
   .stage{display:none}
   .hero-static{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;min-height:100vh;min-height:100svh;padding:130px var(--gutter) 90px;color:#F4F8FF;
@@ -706,7 +706,7 @@ a,button,summary,.chip-opt,.ftab,.j-bar{touch-action:manipulation;-webkit-tap-hi
 .menu-btn,.nav-menu,.dots{display:none}
 .only-m{display:none}
 .j-detail,.case-detail,.s-stage{scroll-margin-top:84px}
-@media (max-width:720px){
+@media (max-width:720px),(prefers-reduced-motion:reduce){
   .only-d{display:none}.only-m{display:inline}
   .j-bar{cursor:pointer}
   .j-bar::after{content:"›";font:400 1.5rem/1 var(--f-display);opacity:.55;margin-left:2px;flex:none}

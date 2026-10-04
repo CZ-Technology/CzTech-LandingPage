@@ -7,8 +7,6 @@ const smoothstep = (p, e0, e1) => { const t = clamp((p - e0) / (e1 - e0)); retur
 /* o ajuste "reduzir movimento" do sistema não desliga as animações do site (decisão de marca); só o layout estático do hero usa a media query de verdade, em GATES e STACK_MQ */
 const reduceMQ = { matches: false, addEventListener() {} };
 window.__czOk = true;
-/* a página sempre abre no topo, igual em qualquer navegador (sem restaurar a rolagem da visita anterior) */
-try { history.scrollRestoration = "manual"; if (!location.hash) scrollTo(0, 0); } catch (e) {}
 const { config, cases, score } = window.CZ;
 
 /* ---------- Rolagem no celular: leva o conteúdo novo para dentro da tela, abaixo do menu ---------- */
@@ -258,7 +256,8 @@ const GATES = [
   '(max-width: 720px)',
   '(orientation: portrait) and (max-width: 1024px)',
   '(orientation: portrait) and (pointer: coarse)',
-  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)'
+  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
+  '(prefers-reduced-motion: reduce)'
 ];
 const MQLS = GATES.map(q => matchMedia(q));
 function enableScrub() {
@@ -472,7 +471,7 @@ function buildGmn() {
 }
 
 /* ---------- Palcos com pino (celular e movimento reduzido ficam sem pino, idêntico ao CSS) ---------- */
-const STACK_MQ = matchMedia('(max-width: 720px)');
+const STACK_MQ = matchMedia('(max-width: 720px), (prefers-reduced-motion: reduce)');
 const pinned = () => !STACK_MQ.matches;
 
 /* abas: setas do teclado movem entre as abas */
