@@ -787,7 +787,7 @@ carousel($('#rStage'), '.r-card', $('#rStage').parentElement, 'dots-720');
 carousel($('.mf-cards'), '.mf-c', $('.mf-stage'), 'dots-560');
 
 /* ---------- Scroll geral ---------- */
-const nav = $('#nav'), wa = $('.wa-float');
+const nav = $('#nav'), floats = $$('.wa-float, .ig-float');
 let navAcc = 0, lastY = scrollY, ticking = false, navHidden = false, waShown = false, pinOn = false;
 function pageScroll() {
   ticking = false;
@@ -800,7 +800,7 @@ function pageScroll() {
   else if (navAcc < -6) hide = false;
   if (hide !== navHidden) { navHidden = hide; nav.classList.toggle('hide', hide); }
   const show = y > heroEnd;
-  if (show !== waShown) { waShown = show; wa.classList.toggle('show', show); }
+  if (show !== waShown) { waShown = show; floats.forEach(f => f.classList.toggle('show', show)); }
   if (show !== pinOn) { pinOn = show; pin.classList.toggle('on', show); }
   lastY = y;
   journeyScroll();

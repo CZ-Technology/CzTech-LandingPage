@@ -829,3 +829,18 @@ a,button,summary,.chip-opt,.ftab,.j-bar{touch-action:manipulation;-webkit-tap-hi
 .js .in-up:not(.in) .mf-count,.js .in-up:not(.in) .ex-av,.js .in-up:not(.in) .step-n,.js .in-up:not(.in) .tl-node{transform:scale(.3);opacity:0}
 @media (min-width:961px){.step:nth-child(-n+3) .step-card{padding:clamp(26px,2.8vw,40px);gap:14px}.step:nth-child(-n+3) .step-card p:not(.step-when){font-size:1.04rem}}
 @media (min-width:961px){.step:nth-child(-n+3) .step-card{padding-left:clamp(22px,2.2vw,32px);padding-right:clamp(22px,2.2vw,32px)}.step:nth-child(4) .step-card{padding-left:clamp(20px,1.8vw,26px);padding-right:clamp(20px,1.8vw,26px)}}
+
+/* ===== Botões flutuantes: WhatsApp e Instagram, com o mesmo brilho pulsando ===== */
+.wa-float,.ig-float{text-decoration:none}
+.wa-float::after,.ig-float::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;opacity:0;animation:floatGlow 2.8s ease-out infinite}
+.wa-float::after{box-shadow:0 0 0 0 rgba(31,168,85,.55),0 0 22px 4px rgba(31,168,85,.45)}
+.ig-float::after{box-shadow:0 0 0 0 rgba(214,41,118,.5),0 0 22px 4px rgba(214,41,118,.4)}
+.ig-float{position:fixed;right:calc(20px + env(safe-area-inset-right));bottom:calc(92px + env(safe-area-inset-bottom));z-index:55;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#fff;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);box-shadow:0 14px 30px -10px rgba(214,41,118,.7);transform:scale(0);transition:transform .5s var(--out)}
+.ig-float.show{transform:scale(1)}
+.ig-float::after{animation-delay:-1.4s}
+@keyframes floatGlow{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.55)}}
+.wa-float,.ig-float{position:fixed}
+@media (hover:hover){.ig-float:hover,.wa-float:hover{filter:brightness(1.08)}}
+/* ícone do Instagram no rodapé da política: sem sublinhado, sem cara de link */
+.ig-link{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;color:#8EA6C8;text-decoration:none;transition:color .3s var(--out),background .3s var(--out)}
+.ig-link:hover,.ig-link:focus-visible{color:#fff;background:rgba(142,166,200,.14)}
