@@ -844,3 +844,15 @@ a,button,summary,.chip-opt,.ftab,.j-bar{touch-action:manipulation;-webkit-tap-hi
 /* ícone do Instagram no rodapé da política: sem sublinhado, sem cara de link */
 .ig-link{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;color:#8EA6C8;text-decoration:none;transition:color .3s var(--out),background .3s var(--out)}
 .ig-link:hover,.ig-link:focus-visible{color:#fff;background:rgba(142,166,200,.14)}
+/* Brilho dos botões flutuantes: a luz nasce colada no botão e se espalha para fora, sem anel vazio no meio */
+.wa-float::after,.ig-float::after{display:none}
+.wa-float.show{animation:waGlow 2.6s ease-out infinite}
+.ig-float.show{animation:igGlow 2.6s ease-out infinite;animation-delay:-1.3s}
+@keyframes waGlow{
+  0%{box-shadow:0 14px 30px -10px rgba(31,168,85,.8),0 0 0 0 rgba(31,168,85,.6),0 0 14px 2px rgba(31,168,85,.5)}
+  70%,100%{box-shadow:0 14px 30px -10px rgba(31,168,85,.8),0 0 0 22px rgba(31,168,85,0),0 0 34px 12px rgba(31,168,85,0)}
+}
+@keyframes igGlow{
+  0%{box-shadow:0 14px 30px -10px rgba(214,41,118,.7),0 0 0 0 rgba(214,41,118,.55),0 0 14px 2px rgba(253,89,73,.5)}
+  70%,100%{box-shadow:0 14px 30px -10px rgba(214,41,118,.7),0 0 0 22px rgba(214,41,118,0),0 0 34px 12px rgba(253,89,73,0)}
+}
