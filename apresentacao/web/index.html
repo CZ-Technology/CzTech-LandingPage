@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CZ Tech · Apresentação Comercial</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/cz-mark.svg">
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+:root{
+  --night:#061430; --night-2:#0A1F44; --card:#0E2652; --accent:#1A66D6; --accent-2:#3F86EB; --muted:#8CC4FF;
+  --text:#EAF1FF; --text-2:#A9BCDC; --line:#1D3A6B; --light:#EEF4FB; --ink:#0B1A33;
+  --f-display:"Bricolage Grotesque",Georgia,serif; --f-text:"Figtree",system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
+  --out:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#020A1C;overflow:hidden;color:var(--text);font-family:var(--f-text);-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+/* palco fixo 1920x1080 que escala para qualquer tela */
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center;overflow:hidden;background:var(--night)}
+.slide{position:absolute;inset:0;padding:96px 120px 110px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .6s var(--out),visibility 0s .6s;background:radial-gradient(1200px 700px at 78% 8%,#12336e 0%,transparent 60%),var(--night)}
+.slide::before{content:"";position:absolute;inset:0;background:url(../assets/mapa-topo.svg) center/1700px no-repeat;opacity:.07;pointer-events:none}
+.slide.on{opacity:1;visibility:visible;transition:opacity .6s var(--out)}
+.slide>*{position:relative}
+.kicker{font:400 22px/1.4 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+h1,h2{font-family:var(--f-display);font-weight:400;letter-spacing:-.035em;line-height:1}
+h2{font-size:92px;max-width:1500px}
+h2 em,h1 em{color:var(--accent-2);font-style:normal}
+.lead{font-size:34px;line-height:1.45;color:var(--text-2);max-width:1250px;margin-top:30px}
+.grid{display:grid;gap:28px;margin-top:auto}
+.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:linear-gradient(180deg,#0F2A59,#0B2048);border:1px solid var(--line);border-radius:36px;padding:44px 42px}
+.card .n{font:400 22px var(--f-mono);color:var(--muted);letter-spacing:.1em}
+.card h3{font:400 46px/1.08 var(--f-display);letter-spacing:-.025em;margin:18px 0 16px}
+.card p{font-size:27px;line-height:1.45;color:var(--text-2)}
+.card.light{background:var(--light);border-color:#C9D7EA;color:var(--ink)}
+.card.light p{color:#3F5175}.card.light .n{color:var(--accent)}
+.card.hl{background:linear-gradient(180deg,#1A66D6,#124CA8);border-color:#3F86EB}
+.card.hl p,.card.hl .n{color:#DCEBFF}
+.pill{display:inline-block;padding:8px 20px;border-radius:99px;background:rgba(63,134,235,.18);border:1px solid #2F5FA8;font:400 21px var(--f-mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.cols{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;flex:1;align-items:center}
+.list li{display:flex;gap:22px;align-items:flex-start;font-size:31px;line-height:1.4;color:var(--text);padding:20px 0;border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:0}
+.list li::before{content:"";flex:none;width:16px;height:16px;border-radius:50%;background:var(--accent-2);margin-top:14px;box-shadow:0 0 0 8px rgba(63,134,235,.18)}
+.big{font:400 150px/1 var(--f-display);letter-spacing:-.04em;color:#fff}
+.card p.big{font:400 150px/1 var(--f-display);letter-spacing:-.04em;color:#fff}
+.btnlike{display:inline-flex;align-items:center;gap:14px;padding:26px 46px;border-radius:99px;background:var(--accent);color:#fff;font:600 30px var(--f-text);box-shadow:0 20px 50px -18px rgba(26,102,214,.9)}
+/* rodapé do slide */
+.foot{position:absolute;left:120px;right:120px;bottom:38px;display:flex;justify-content:space-between;align-items:center;font:400 18px var(--f-mono);letter-spacing:.1em;color:#5F7BA8;text-transform:uppercase}
+.foot img{height:26px;opacity:.85}
+/* entrada dos elementos a cada visita */
+.r{opacity:0;transform:translateY(34px)}
+.slide.on .r{animation:rin .9s var(--out) both;animation-delay:calc(var(--i,0)*.11s + .15s)}
+@keyframes rin{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+/* controles */
+#bar{position:fixed;left:0;top:0;height:5px;background:linear-gradient(90deg,#1A66D6,#8CC4FF);width:0;transition:width .5s var(--out);z-index:20}
+#hud{position:fixed;right:18px;bottom:14px;z-index:20;display:flex;gap:8px;align-items:center;font:400 13px var(--f-mono);color:#6F8DBA;opacity:.0;transition:opacity .3s}
+body:hover #hud,#hud:focus-within{opacity:1}
+#hud button{all:unset;cursor:pointer;padding:8px 12px;border-radius:10px;background:rgba(15,42,89,.85);border:1px solid #1D3A6B;color:#BFD3F2}
+#hud button:hover{background:#1A66D6}
+#count{padding:0 8px}
+.hit{position:fixed;top:0;bottom:0;width:14%;z-index:10;cursor:pointer}
+#hitL{left:0}#hitR{right:0}
+/* notas do apresentador */
+#notes{position:fixed;left:0;right:0;bottom:0;z-index:30;max-height:34vh;overflow:auto;padding:22px 7vw 28px;background:rgba(2,10,28,.96);border-top:1px solid #1D3A6B;font:400 clamp(15px,1.5vw,20px)/1.5 var(--f-text);color:#D6E4FA;transform:translateY(100%);transition:transform .35s var(--out)}
+#notes.on{transform:none}
+#notes b{display:block;font:400 12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+#notes li{margin:6px 0;padding-left:18px;position:relative}#notes li::before{content:"•";position:absolute;left:0;color:var(--accent-2)}
+.src{font-size:20px;color:#6F8DBA;margin-top:18px}
+/* visão geral */
+body.ov #stage{opacity:0;pointer-events:none}
+#grid{position:fixed;inset:0;z-index:25;display:none;grid-template-columns:repeat(4,1fr);gap:18px;padding:5vh 4vw;overflow:auto;background:#020A1C;align-content:start}
+body.ov #grid{display:grid}
+#grid button{all:unset;cursor:pointer;aspect-ratio:16/9;border-radius:14px;border:1px solid #1D3A6B;background:#0A1F44;padding:16px;font:400 clamp(12px,1.1vw,16px)/1.3 var(--f-text);color:#BFD3F2;display:flex;flex-direction:column;justify-content:space-between}
+#grid button:hover,#grid button.cur{border-color:#3F86EB;background:#10306A}
+#grid i{font:400 12px var(--f-mono);color:var(--muted);font-style:normal}
+@media print{html,body{overflow:visible}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage">
+
+<!-- 1 CAPA -->
+<section class="slide" data-title="Capa" data-notes="Abra se apresentando e perguntando como o cliente recebe hoje os pedidos: Google, indicação ou Instagram.|Diga que a reunião tem 3 partes: o cenário, como a CZ resolve e os resultados reais.|Combine o tempo: cerca de 20 minutos e, no fim, o diagnóstico gratuito.">
+  <img class="r" style="--i:0;width:520px;margin-top:20px" src="../assets/cztech-wordmark.png" alt="CZ Tech">
+  <div style="margin-top:auto">
+    <p class="kicker r" style="--i:1">Google Meu Negócio · SEO Local · Inteligência Artificial</p>
+    <h1 class="r" style="--i:2;font-size:150px;max-width:1500px">A gente faz a sua empresa ser a <em>escolha número 1</em></h1>
+    <p class="lead r" style="--i:3">Posições no topo do Google Maps, recomendações por IA e páginas que convertem no WhatsApp.</p>
+  </div>
+  <div class="foot"><span>Apresentação comercial</span><span>cztech.oficial</span></div>
+</section>
+
+<!-- 2 CENÁRIO -->
+<section class="slide" data-title="O cenário" data-notes="Pergunte: quando você precisa de um serviço novo, onde você procura? Quase todo mundo responde Google.|Explique que hoje também existem as IAs (Gemini, ChatGPT) que recomendam empresas em respostas diretas.|Ponto central: o cliente olha só os primeiros perfis. Quem está abaixo quase não é visto.">
+  <p class="kicker r" style="--i:0">O cenário</p>
+  <h2 class="r" style="--i:1">O seu cliente decide <em>antes</em> de ligar.</h2>
+  <p class="lead r" style="--i:2">Ele pesquisa no Google, no Gemini ou no ChatGPT, olha as primeiras empresas e escolhe uma delas.</p>
+  <div class="grid g3">
+    <div class="card r" style="--i:3"><span class="n">01</span><h3>Busca</h3><p>Ele digita o que precisa, como “melhor café perto de mim”, direto no celular.</p></div>
+    <div class="card r" style="--i:4"><span class="n">02</span><h3>Mapa</h3><p>Olha só os 3 primeiros perfis do Google Maps. Quem está abaixo quase não é visto.</p></div>
+    <div class="card r" style="--i:5"><span class="n">03</span><h3>Confiança</h3><p>Compara a nota, lê as avaliações e vê as fotos antes de chamar.</p></div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>02</span></div>
+</section>
+
+<!-- 3 PROBLEMA -->
+<section class="slide" data-title="O problema" data-notes="Aqui o cliente deve se reconhecer. Pergunte se a ficha dele aparece na primeira tela quando ele busca o próprio serviço.|Evite números que não tenham fonte. Use a lógica: quem está no Top 3 recebe a atenção, quem não está doa o cliente para o concorrente.|Faça a ponte: o problema não é ser ruim, é não estar preparado para ser encontrado.">
+  <p class="kicker r" style="--i:0">O problema</p>
+  <h2 class="r" style="--i:1">Fora do Top 3, a sua empresa <em>doa clientes</em> para o concorrente.</h2>
+  <div class="cols" style="margin-top:20px">
+    <ul class="list">
+      <li class="r" style="--i:2">Ficha do Google incompleta, com categoria errada ou dados desatualizados</li>
+      <li class="r" style="--i:3">Poucas avaliações, sem resposta e sem fotos que passem confiança</li>
+      <li class="r" style="--i:4">Nenhum caminho curto até o WhatsApp, e o cliente desiste</li>
+      <li class="r" style="--i:5">Dados diferentes em cada lugar, e as IAs não sabem se podem recomendar você</li>
+    </ul>
+    <div class="card hl r" style="--i:6;padding:56px"><span class="n">A boa notícia</span><h3 style="font-size:64px">Tudo isso tem solução e dá para medir.</h3><p style="font-size:30px">É o que a CZ Tech faz, em etapas claras e com relatório todo mês.</p></div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>03</span></div>
+</section>
+
+<!-- 4 JORNADA -->
+<section class="slide" data-title="A jornada do cliente" data-notes="Percorra as 5 etapas com o dedo: busca, mapa, confiança, contato, fechamento.|Mostre que a CZ atua nas etapas 2, 3 e 4, que é onde a escolha é feita.|Frase de apoio: a decisão de compra leva poucos minutos. Quem está pronto nesses minutos fecha.">
+  <p class="kicker r" style="--i:0">A jornada do cliente</p>
+  <h2 class="r" style="--i:1">A decisão leva poucos minutos. <em>Estar pronto</em> é o que vale.</h2>
+  <div style="margin-top:auto;display:grid;gap:16px">
+    <div class="r" style="--i:2;display:flex;align-items:center;gap:26px"><div class="card" style="width:100%;padding:26px 36px;display:flex;justify-content:space-between;align-items:center"><span style="font:400 40px var(--f-display)">01 Busca no Google</span><span class="pill" style="opacity:.6">cliente</span></div></div>
+    <div class="r" style="--i:3;padding:0 4%"><div class="card hl" style="padding:26px 36px;display:flex;justify-content:space-between;align-items:center"><span style="font:400 40px var(--f-display)">02 Top 3 do Google Maps</span><span class="pill" style="background:#fff;color:#124FA8;border-color:#fff">CZ atua</span></div></div>
+    <div class="r" style="--i:4;padding:0 8%"><div class="card hl" style="padding:26px 36px;display:flex;justify-content:space-between;align-items:center"><span style="font:400 40px var(--f-display)">03 Reputação e avaliações</span><span class="pill" style="background:#fff;color:#124FA8;border-color:#fff">CZ atua</span></div></div>
+    <div class="r" style="--i:5;padding:0 12%"><div class="card hl" style="padding:26px 36px;display:flex;justify-content:space-between;align-items:center"><span style="font:400 40px var(--f-display)">04 Contato em 1 toque</span><span class="pill" style="background:#fff;color:#124FA8;border-color:#fff">CZ atua</span></div></div>
+    <div class="r" style="--i:6;padding:0 16%"><div class="card" style="padding:26px 36px;display:flex;justify-content:space-between;align-items:center"><span style="font:400 40px var(--f-display)">05 Venda no WhatsApp</span><span class="pill" style="opacity:.6">você fecha</span></div></div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>04</span></div>
+</section>
+
+<!-- 5 SOLUÇÃO -->
+<section class="slide" data-title="Nossa solução" data-notes="Este é o mapa geral. Cada pilar tem um slide logo em seguida.|Reforce que é um ecossistema: os quatro pilares trabalham juntos. Perfil sem página perde a conversão; página sem perfil não é encontrada.|Pergunte qual desses pilares dói mais hoje para o cliente. Use a resposta para ir direto ao slide certo.">
+  <p class="kicker r" style="--i:0">Nossa solução</p>
+  <h2 class="r" style="--i:1">Quatro pilares. <em>Domínio local</em> absoluto.</h2>
+  <div class="grid g4">
+    <div class="card r" style="--i:2"><span class="n">01</span><h3>Google Meu Negócio</h3><p>Ficha estruturada para o Google e para as IAs recomendarem você.</p></div>
+    <div class="card r" style="--i:3"><span class="n">02</span><h3>Landing Pages</h3><p>Páginas rápidas e persuasivas, com um só objetivo: o seu WhatsApp.</p></div>
+    <div class="card r" style="--i:4"><span class="n">03</span><h3>Avaliações</h3><p>Captação de reviews ricos e resposta para todos, bons e ruins.</p></div>
+    <div class="card r" style="--i:5"><span class="n">04</span><h3>SEO Local</h3><p>Sua empresa em mais de 50 diretórios de confiança do Google.</p></div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>05</span></div>
+</section>
+
+<!-- 6 GMN -->
+<section class="slide" data-title="Google Meu Negócio" data-notes="Explique em palavras simples: a ficha é a vitrine. Se ela está bem montada, o Google entende o que você faz e mostra para quem procura.|A descrição conversacional serve para quando a pessoa pergunta para a IA, como “qual o melhor dentista para clareamento no centro?”.|Fotos com contexto: não é foto bonita, é foto que mostra o serviço e o lugar.">
+  <p class="kicker r" style="--i:0">Pilar 01</p>
+  <h2 class="r" style="--i:1">Google Meu Negócio e <em>busca por IA</em></h2>
+  <div class="cols">
+    <p class="lead r" style="--i:2;margin-top:0">A sua ficha é a vitrine que o cliente vê primeiro. Montamos cada detalhe para o Google e as IAs entenderem o seu negócio e recomendarem você.</p>
+    <ul class="list">
+      <li class="r" style="--i:3">Categorias principal e secundárias certas</li>
+      <li class="r" style="--i:4">Descrição preparada para a busca conversacional</li>
+      <li class="r" style="--i:5">Fotos com contexto do serviço e do local</li>
+      <li class="r" style="--i:6">Postagens periódicas com foco no que o cliente busca</li>
+    </ul>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>06</span></div>
+</section>
+
+<!-- 7 LANDING -->
+<section class="slide" data-title="Landing pages" data-notes="Diferença simples: o site mostra a empresa, a landing page vende um serviço específico.|Cada página leva o visitante para um único lugar, o WhatsApp.|Se o cliente já tem site, ótimo: a landing complementa, não substitui.">
+  <p class="kicker r" style="--i:0">Pilar 02</p>
+  <h2 class="r" style="--i:1">Landing pages de <em>alta conversão</em></h2>
+  <div class="cols">
+    <p class="lead r" style="--i:2;margin-top:0">O site mostra a empresa. A landing page vende um serviço. Fazemos páginas leves, persuasivas e pensadas para levar o visitante direto ao seu WhatsApp comercial.</p>
+    <div style="display:grid;gap:22px">
+      <div class="card r" style="--i:3"><span class="n">Velocidade</span><p style="color:#fff;font-size:30px;margin-top:8px">Páginas ultrarrápidas no celular.</p></div>
+      <div class="card r" style="--i:4"><span class="n">Foco</span><p style="color:#fff;font-size:30px;margin-top:8px">Um serviço, um objetivo, um botão.</p></div>
+      <div class="card hl r" style="--i:5"><span class="n">1 toque</span><p style="font-size:30px;margin-top:8px">Da página até a conversa no WhatsApp.</p></div>
+    </div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>07</span></div>
+</section>
+
+<!-- 8 AVALIAÇÕES E SEO -->
+<section class="slide" data-title="Avaliações e SEO local" data-notes="Avaliação é o que mais pesa na confiança. Mostre que não é só pedir, é ter um jeito simples e responder todas.|NAP significa Nome, Endereço e Telefone iguais em todos os lugares. Quando os dados batem, o Google e as IAs confiam mais.|Mais de 50 diretórios é o que está no escopo do site. Confirme o número exato do pacote antes de prometer.">
+  <p class="kicker r" style="--i:0">Pilares 03 e 04</p>
+  <h2 class="r" style="--i:1">Reputação forte e <em>dados que batem</em></h2>
+  <div class="grid g2">
+    <div class="card r" style="--i:2;padding:56px"><span class="n">03 · Avaliações</span><h3 style="font-size:58px">Um jeito simples de pedir. Resposta para todas.</h3><p>Reviews com fotos e palavras-chave são o sinal que as IAs mais leem para decidir quem recomendar.</p></div>
+    <div class="card r" style="--i:3;padding:56px"><span class="n">04 · SEO Local</span><h3 style="font-size:58px">Mais de 50 diretórios com os mesmos dados.</h3><p>Nome, Endereço e Telefone padronizados aumentam a autoridade do seu perfil local.</p></div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>08</span></div>
+</section>
+
+<!-- 9 SCORE -->
+<section class="slide" data-title="Score GMN" data-notes="Se der tempo, abra o site e faça o Score ao vivo com o cliente. São 10 perguntas e a nota muda a cada resposta.|Mostre as 4 faixas e pergunte onde ele acha que está. Quase sempre ele se coloca mais acima do que a ficha mostra.|Fechamento: o diagnóstico gratuito entrega esse laudo completo, com os 3 concorrentes acima dele.">
+  <p class="kicker r" style="--i:0">Diagnóstico</p>
+  <h2 class="r" style="--i:1">Score GMN: a nota real do seu perfil, <em>de 0 a 1000</em></h2>
+  <p class="lead r" style="--i:2">São 10 pontos críticos da ficha. O score mostra onde você está e o que falta para chegar ao Top 3.</p>
+  <div style="margin-top:auto">
+    <div class="r" style="--i:3;display:flex;height:34px;border-radius:99px;overflow:hidden;gap:6px">
+      <i style="flex:30;background:#ef4444"></i><i style="flex:30;background:#f59e0b"></i><i style="flex:30;background:#1a66d6"></i><i style="flex:10;background:#5fae12"></i>
+    </div>
+    <div class="grid g4" style="margin-top:28px">
+      <div class="r" style="--i:4"><p class="n" style="font:400 22px var(--f-mono);color:#ef7a7a">0 a 300 · Ruim</p><h3 style="font:400 36px/1.15 var(--f-display);margin-top:10px">Perfil apagado e vulnerável</h3></div>
+      <div class="r" style="--i:5"><p style="font:400 22px var(--f-mono);color:#f5b94d">301 a 600 · Regular</p><h3 style="font:400 36px/1.15 var(--f-display);margin-top:10px">Visível, mas sem destaque</h3></div>
+      <div class="r" style="--i:6"><p style="font:400 22px var(--f-mono);color:#6fa8ff">601 a 900 · Bom</p><h3 style="font:400 36px/1.15 var(--f-display);margin-top:10px">Relevante e pronto para liderar</h3></div>
+      <div class="r" style="--i:7"><p style="font:400 22px var(--f-mono);color:#9ad24f">901 a 1000 · Ótimo</p><h3 style="font:400 36px/1.15 var(--f-display);margin-top:10px">Autoridade máxima local</h3></div>
+    </div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>09</span></div>
+</section>
+
+<!-- 10 COMO TRABALHAMOS -->
+<section class="slide" data-title="Como trabalhamos" data-notes="Mostre que há começo, meio e acompanhamento. O cliente sabe o que acontece em cada semana.|Semana 1: diagnóstico. Semanas 2 e 3: otimização. Semana 4: entrega. Depois, 6 meses de gestão contínua.|Deixe claro que a entrega não é o fim: o crescimento firme vem com o acompanhamento.">
+  <p class="kicker r" style="--i:0">Como trabalhamos</p>
+  <h2 class="r" style="--i:1">Do diagnóstico ao <em>topo</em></h2>
+  <div class="grid g4" style="align-items:end">
+    <div class="card r" style="--i:2;min-height:430px"><span class="pill">Semana 1</span><h3 style="margin-top:26px">Diagnóstico e Score GMN</h3><p>Mapeamento dos gargalos, auditoria do Score e análise dos 3 principais concorrentes locais.</p></div>
+    <div class="card r" style="--i:3;min-height:520px"><span class="pill">Semanas 2 e 3</span><h3 style="margin-top:26px">Otimização e estruturação</h3><p>Categorias, descrição para IA, fotos, diretórios e publicação da landing page.</p></div>
+    <div class="card r" style="--i:4;min-height:610px"><span class="pill">Semana 4</span><h3 style="margin-top:26px">Lançamento e entrega</h3><p>Ficha 100% otimizada, kit de captação de avaliações ativo e WhatsApp integrado.</p></div>
+    <div class="card hl r" style="--i:5;min-height:700px"><span class="pill" style="background:#fff;color:#124FA8;border-color:#fff">6 meses</span><h3 style="margin-top:26px">Gestão contínua</h3><p>Monitoramento, postagens, respostas a reviews e relatório mensal de ligações e mensagens.</p></div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>10</span></div>
+</section>
+
+<!-- 11 CASES -->
+<section class="slide" data-title="Histórias reais" data-notes="São clientes de verdade da CZ, de nichos diferentes: controle de pragas, medicina integrativa e nail designer.|Mensagem: o método funciona para qualquer negócio local, não só para um nicho.|Se o cliente quiser ver os perfis ao vivo, abra o Google e busque o nome de cada um.">
+  <p class="kicker r" style="--i:0">Histórias reais de sucesso</p>
+  <h2 class="r" style="--i:1">Empresas comuns que passaram a ser <em>escolhidas</em>.</h2>
+  <div class="grid g3" style="margin-top:34px">
+    <div class="card r" style="--i:2;display:flex;gap:26px;align-items:center;padding:34px"><img src="../assets/phone-defende.webp" alt="Perfil da Defende no Google" style="height:360px;width:auto;border-radius:22px"><div><span class="n">Cambé</span><h3 style="font-size:40px">Defende</h3><p style="font-size:24px">Controle de pragas. Mais que dobrou ligações, rotas e cliques em 60 dias.</p></div></div>
+    <div class="card r" style="--i:3;display:flex;gap:26px;align-items:center;padding:34px"><img src="../assets/phone-omnia.webp" alt="Perfil da OMNIA no Google" style="height:360px;width:auto;border-radius:22px"><div><span class="n">Londrina</span><h3 style="font-size:40px">OMNIA</h3><p style="font-size:24px">Medicina integrativa. Nota 5,0 no Google e perfil completo.</p></div></div>
+    <div class="card r" style="--i:4;display:flex;gap:26px;align-items:center;padding:34px"><img src="../assets/phone-nail.webp" alt="Perfil da Eduarda Mello no Google" style="height:360px;width:auto;border-radius:22px"><div><span class="n">Londrina</span><h3 style="font-size:40px">Eduarda Mello</h3><p style="font-size:24px">Nail designer. Nota 5,0 e 14 avaliações no perfil.</p></div></div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>11</span></div>
+</section>
+
+<!-- 12 DEFENDE -->
+<section class="slide" data-title="Case Defende" data-notes="Contexto: antes de começarmos, o perfil tinha menos de 30 interações por mês. Começamos em janeiro de 2025.|Em 60 dias, ligações, rotas e cliques no site mais que dobraram. Em 4 meses foram 198 interações.|Os números vêm do painel do Perfil da Empresa no Google. Se o cliente pedir, mostre o print.">
+  <p class="kicker r" style="--i:0">Case · Defende, controle de pragas em Cambé</p>
+  <h2 class="r" style="--i:1">De menos de 30 interações por mês para <em>mais que o dobro</em> em 60 dias.</h2>
+  <div class="cols" style="margin-top:10px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+      <div class="card r" style="--i:2"><p class="big">198</p><p style="margin-top:14px">interações em 4 meses</p></div>
+      <div class="card hl r" style="--i:3"><p class="big">+2x</p><p style="margin-top:14px">ligações, rotas e cliques em 60 dias</p></div>
+      <p class="src" style="grid-column:1/-1">Fonte: painel do Perfil da Empresa no Google.</p>
+    </div>
+    <div class="card r" style="--i:4;padding:44px">
+      <span class="n">Interações por mês</span>
+      <div style="display:flex;align-items:flex-end;gap:40px;height:330px;margin-top:30px">
+        <div style="flex:1;text-align:center"><div style="height:120px;background:#2B4A7E;border-radius:16px 16px 6px 6px"></div><p style="margin-top:14px;font-size:26px">dez · 30</p></div>
+        <div style="flex:1;text-align:center"><div style="height:240px;background:#3F86EB;border-radius:16px 16px 6px 6px"></div><p style="margin-top:14px;font-size:26px">jan · 60</p></div>
+        <div style="flex:1;text-align:center"><div style="height:300px;background:#8CC4FF;border-radius:16px 16px 6px 6px"></div><p style="margin-top:14px;font-size:26px">fev · 75</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>12</span></div>
+</section>
+
+<!-- 13 OBJEÇÕES -->
+<section class="slide" data-title="Perguntas frequentes" data-notes="Use este slide para as objeções mais comuns, uma por vez, sem ler tudo.|Já paguei agência: a diferença é medir ligações, rotas e orçamentos, não postagens genéricas.|Tráfego pago é opcional: o ganho vem do orgânico. Prazo: primeiros ganhos em semanas, consolidação entre o 2º e o 3º mês.">
+  <p class="kicker r" style="--i:0">Dúvidas frequentes</p>
+  <h2 class="r" style="--i:1">Perguntas de quem <em>já ouviu promessa</em>.</h2>
+  <div class="grid g2" style="margin-top:40px">
+    <div class="card r" style="--i:2"><h3 style="font-size:38px">Já paguei agência e não vi resultado.</h3><p>Focamos na intenção real de compra. Medimos ligações, rotas e orçamentos no WhatsApp com dados transparentes.</p></div>
+    <div class="card r" style="--i:3"><h3 style="font-size:38px">Preciso pagar anúncio?</h3><p>Não. O perfil otimizado aparece no mapa de forma orgânica. Anúncio é opcional.</p></div>
+    <div class="card r" style="--i:4"><h3 style="font-size:38px">Em quanto tempo vejo retorno?</h3><p>Os primeiros ganhos vêm nas primeiras semanas. A consolidação no Top 3 acontece entre o segundo e o terceiro mês.</p></div>
+    <div class="card r" style="--i:5"><h3 style="font-size:38px">Já tenho site. Preciso de landing page?</h3><p>O site apresenta a empresa. A landing page converte visitantes em conversas no WhatsApp. Uma complementa a outra.</p></div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>13</span></div>
+</section>
+
+<!-- 14 PRÓXIMO PASSO -->
+<section class="slide" data-title="Próximo passo" data-notes="Peça o sim para o diagnóstico gratuito agora. É o passo mais leve: sem compromisso e já entrega valor.|Combine a data e o melhor número de WhatsApp do cliente.|Deixe os contatos na tela e feche com: vamos fazer o seu ponto brilhar.">
+  <p class="kicker r" style="--i:0">Próximo passo</p>
+  <h2 class="r" style="--i:1">Vamos colocar a sua empresa <em>no topo das buscas</em>?</h2>
+  <p class="lead r" style="--i:2">Diagnóstico 100% gratuito: o seu laudo Score GMN completo, o comparativo com os 3 maiores concorrentes e um plano estratégico para os próximos 90 dias.</p>
+  <div style="margin-top:auto;display:flex;gap:30px;align-items:center;flex-wrap:wrap">
+    <span class="btnlike r" style="--i:3">WhatsApp (22) 99215-3465</span>
+    <div class="r" style="--i:4;font-size:30px;line-height:1.6;color:var(--text-2)">Instagram <b style="color:#fff">@cztech.oficial</b><br>E-mail <b style="color:#fff">cztechnology.contato@gmail.com</b></div>
+  </div>
+  <div class="foot"><img src="../assets/cztech-wordmark.png" alt="CZ Tech"><span>14</span></div>
+</section>
+
+</div>
+
+<div class="hit" id="hitL" aria-hidden="true"></div><div class="hit" id="hitR" aria-hidden="true"></div>
+<div id="grid" aria-label="Visão geral dos slides"></div>
+<aside id="notes" aria-live="polite"></aside>
+<div id="hud">
+  <button id="bPrev" aria-label="Slide anterior">‹</button><span id="count">1 / 14</span><button id="bNext" aria-label="Próximo slide">›</button>
+  <button id="bOv" title="Visão geral (O)">Slides</button><button id="bNotes" title="Roteiro (N)">Roteiro</button><button id="bFs" title="Tela cheia (F)">Tela cheia</button>
+</div>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage'), slides=[].slice.call(document.querySelectorAll('.slide')), n=slides.length, cur=0;
+  var bar=document.getElementById('bar'), count=document.getElementById('count'), notes=document.getElementById('notes'), grid=document.getElementById('grid');
+  function fit(){var s=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform='translate(-50%,-50%) scale('+s+')'}
+  addEventListener('resize',fit);fit();
+  function notesHtml(i){var t=(slides[i].dataset.notes||'').split('|').filter(Boolean);return '<b>Roteiro · '+(i+1)+'. '+slides[i].dataset.title+'</b><ul>'+t.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>'}
+  function go(i,fromHash){
+    i=Math.max(0,Math.min(n-1,i));
+    slides.forEach(function(s,k){s.classList.toggle('on',k===i)});
+    cur=i;bar.style.width=((i+1)/n*100)+'%';count.textContent=(i+1)+' / '+n;notes.innerHTML=notesHtml(i);
+    if(!fromHash&&history.replaceState)history.replaceState(null,'','#'+(i+1));
+    [].forEach.call(grid.children,function(b,k){b.classList.toggle('cur',k===i)});
+  }
+  grid.innerHTML=slides.map(function(s,k){return '<button data-i="'+k+'"><i>'+(k+1)+'</i><span>'+s.dataset.title+'</span></button>'}).join('');
+  grid.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;document.body.classList.remove('ov');go(+b.dataset.i)});
+  function fs(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen&&document.exitFullscreen()}
+  function ov(){document.body.classList.toggle('ov')}
+  function nt(){notes.classList.toggle('on')}
+  addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    var k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();go(cur+1)}
+    else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();go(cur-1)}
+    else if(k==='Home')go(0);else if(k==='End')go(n-1);
+    else if(k==='f'||k==='F')fs();else if(k==='o'||k==='O'||k==='Escape'&&document.body.classList.contains('ov'))ov();
+    else if(k==='n'||k==='N')nt();
+  });
+  document.getElementById('hitR').onclick=function(){go(cur+1)};document.getElementById('hitL').onclick=function(){go(cur-1)};
+  document.getElementById('bNext').onclick=function(){go(cur+1)};document.getElementById('bPrev').onclick=function(){go(cur-1)};
+  document.getElementById('bOv').onclick=ov;document.getElementById('bNotes').onclick=nt;document.getElementById('bFs').onclick=fs;
+  var tx=0;addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+  addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(cur+(d<0?1:-1))},{passive:true});
+  addEventListener('hashchange',function(){var h=parseInt(location.hash.slice(1),10);if(h)go(h-1,true)});
+  go((parseInt(location.hash.slice(1),10)||1)-1,true);
+})();
+</script>
+</body>
+</html>
