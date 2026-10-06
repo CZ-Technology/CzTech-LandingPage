@@ -4,7 +4,7 @@ Dois materiais feitos a partir do texto do site, com a mesma marca.
 
 | Material | Para quê | Onde |
 |---|---|---|
-| PDF de leitura (7 páginas) | O cliente lê sozinho, sem ninguém apresentando. Curto, com pouco texto e números grandes. | `pdf/CZ-Tech-Apresentacao.pdf` (fonte em `pdf/leitura.html`) |
+| PDF de leitura (8 páginas, cada uma com um layout diferente) | O cliente lê sozinho, sem ninguém apresentando. Curto, com pouco texto e números grandes. | `pdf/CZ-Tech-Apresentacao.pdf` (fonte em `pdf/leitura.html`) |
 | Apresentação web (14 slides) | Reunião guiada pela equipe. Mais completa, com roteiro de fala por slide. | `web/index.html` |
 
 ## Apresentação web
